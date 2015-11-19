@@ -42,7 +42,7 @@ setup(
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
     install_requires=[
-        'Sphinx>=1.0',
+        'Sphinx==1.3.1',
         'six>=1.4.1',
     ]
 )

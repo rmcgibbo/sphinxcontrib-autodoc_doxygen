@@ -1,11 +1,12 @@
 import os
+import re
+import codecs
 
 from jinja2 import FileSystemLoader, TemplateNotFound
 from jinja2.sandbox import SandboxedEnvironment
 
 from sphinx.util.osutil import ensuredir
 from sphinx.jinja2glue import BuiltinTemplateLoader
-from sphinx.ext.autosummary.generate import find_autosummary_in_files
 
 from .autosummary import import_by_name, get_documenter
 
@@ -126,6 +127,86 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
                                   suffix=suffix, warn=warn, info=info,
                                   base_path=base_path, builder=builder,
                                   template_dir=template_dir)
+
+
+def find_autosummary_in_files(filenames):
+    """Find out what items are documented in source/*.rst.
+
+    See `find_autosummary_in_lines`.
+    """
+    documented = []
+    for filename in filenames:
+        with codecs.open(filename, 'r', encoding='utf-8',
+                         errors='ignore') as f:
+            lines = f.read().splitlines()
+            documented.extend(find_autosummary_in_lines(lines,
+                                                        filename=filename))
+    return documented
+
+
+def find_autosummary_in_lines(lines, module=None, filename=None):
+    """Find out what items appear in autosummary:: directives in the
+    given lines.
+
+    Returns a list of (name, toctree, template) where *name* is a name
+    of an object and *toctree* the :toctree: path of the corresponding
+    autosummary directive (relative to the root of the file name), and
+    *template* the value of the :template: option. *toctree* and
+    *template* ``None`` if the directive does not have the
+    corresponding options set.
+    """
+    autosummary_re = re.compile(r'^(\s*)\.\.\s+autodoxysummary::\s*')
+    autosummary_item_re = re.compile(r'^\s+(~?[_a-zA-Z][a-zA-Z0-9_.:]*)\s*.*?')
+    toctree_arg_re = re.compile(r'^\s+:toctree:\s*(.*?)\s*$')
+    template_arg_re = re.compile(r'^\s+:template:\s*(.*?)\s*$')
+
+    documented = []
+
+    toctree = None
+    template = None
+    in_autosummary = False
+    base_indent = ""
+
+    for line in lines:
+        if in_autosummary:
+            m = toctree_arg_re.match(line)
+            if m:
+                toctree = m.group(1)
+                if filename:
+                    toctree = os.path.join(os.path.dirname(filename),
+                                           toctree)
+                continue
+
+            m = template_arg_re.match(line)
+            if m:
+                template = m.group(1).strip()
+                continue
+
+            if line.strip().startswith(':'):
+                continue  # skip options
+
+            m = autosummary_item_re.match(line)
+            if m:
+                name = m.group(1).strip()
+                if name.startswith('~'):
+                    name = name[1:]
+                documented.append((name, toctree, template))
+                continue
+
+            if not line.strip() or line.startswith(base_indent + " "):
+                continue
+
+            in_autosummary = False
+
+        m = autosummary_re.match(line)
+        if m:
+            in_autosummary = True
+            base_indent = m.group(1)
+            toctree = None
+            template = None
+            continue
+
+    return documented
 
 
 

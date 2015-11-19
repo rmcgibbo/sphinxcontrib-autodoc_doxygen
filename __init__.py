@@ -42,5 +42,5 @@ def setup(app):
         if cb == sphinx.ext.autosummary.process_generate_options:
              app._listeners['builder-inited'][id] = process_generate_options
 
-    app.add_directive('autosummary', DoxygenAutosummary)
+    app.add_directive('autodoxysummary', DoxygenAutosummary)
     return {'version': sphinx.__display_version__, 'parallel_read_safe': True}

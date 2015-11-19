@@ -6,7 +6,7 @@
    {% if methods %}
    .. rubric:: Methods
 
-   .. autosummary::
+   .. autodoxysummary::
    {% for item in methods %}
       ~{{ name }}.{{ item }}
    {%- endfor %}

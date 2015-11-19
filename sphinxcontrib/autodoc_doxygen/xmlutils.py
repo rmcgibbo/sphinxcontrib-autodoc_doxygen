@@ -1,37 +1,40 @@
-from lxml import etree as ET
 from . import get_doxygen_root
 
 
-class NodeVisitor(object):
+def format_xml_paragraph(xmlnode):
+    """Format an Doxygen XML segment (principally a detaileddescription)
+    as a paragraph for inclusion in the rst document
+
+    Parameters
+    ----------
+    xmlnode
+
+    Returns
+    -------
+    lines
+        A list of lines.
+    """
+    return _DoxygenXmlParagraphFormatter().generic_visit(xmlnode).lines
+
+
+class _DoxygenXmlParagraphFormatter(object):
+    def __init__(self):
+        self.lines = ['']
+        self.continue_line = False
+
     def visit(self, node):
-        """Visit a node. The default implementation calls the method called
-        self.visit_classname where classname is the name of the node class,
-        or generic_visit() if that method doesn’t exist
-        """
         method = 'visit_' + node.tag
         visitor = getattr(self, method, self.generic_visit)
         return visitor(node)
 
     def generic_visit(self, node):
-        """This visitor calls visit() on all children of the node.
-
-        Note that child nodes of nodes that have a custom visitor method won’t
-        be visited unless the visitor calls generic_visit() or visits them itself.
-        """
         for child in node.getchildren():
             self.visit(child)
         return self
 
-
-class DoxygenNodeVisitor(NodeVisitor):
-    def __init__(self):
-        self.lines = ['']
-        self.continue_line = False
-
     def visit_ref(self, node):
         ref = get_doxygen_root().findall('.//*[@id="%s"]' % node.get('refid'))[0]
 
-        # col1 = ':%s:`%s <%s>`' % (qualifier, name, real_name.replace('.', '::'))
         if ref.tag == 'memberdef':
             parent = ref.xpath('./ancestor::compounddef/compoundname')[0].text
             name = ref.find('./name').text

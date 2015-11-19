@@ -1,55 +1,21 @@
 from lxml import etree as ET
 
-import sphinx
-import sphinx.ext
-import sphinx.ext.autosummary
 from sphinx.util import rpartition
-from sphinx.ext.autodoc import ClassDocumenter, Documenter, AutoDirective, py_ext_sig_re
+from sphinx.ext.autodoc import Documenter, py_ext_sig_re
 
 from . import get_doxygen_root
-from .xmlutils import DoxygenNodeVisitor
+from .xmlutils import format_xml_paragraph
 
 
 class DoxygenDocumenter(Documenter):
     def parse_name(self):
-        """Determine what module to import and what attribute to document.
-        Returns True and sets *self.modname*, *self.objpath*, *self.fullname*,
-        *self.args* and *self.retann* if parsing and resolving was successful.
-        """
-        try:
-            explicit_modname, path, base, args, retann = \
-                py_ext_sig_re.match(self.name).groups()
-        except AttributeError:
-            self.directive.warn('invalid signature for auto%s (%r)' %
-                                (self.objtype, self.name))
-            return False
-
-        if explicit_modname is not None:
-            modname = explicit_modname[:-2]
-            parents = path and path.rstrip('.').split('.') or []
-        else:
-            modname = None
-            parents = []
-
-        self.modname, self.objpath = \
-                    self.resolve_name(modname, parents, path, base)
-
+        retcode = super(DoxygenDocumenter, self).parse_name()
         self.fullname = self.name
-        # print('%s parse_name' % type(self))
-        # print('  setting self.modname', self.modname)
-        # print('  setting self.objpath', self.objpath)
-        # print('  setting self.fullname', self.fullname)
-        return True
-
-    def format_name(self):
-        return self.fullname
-
-    def import_object(self):
-        """Import the object given by *self.modname* and *self.objpath* and set
-        it as *self.object*.
-        Returns True if successful, False if an error occurred.
-        """
-        pass
+        #print('%s parse_name' % type(self))
+        #print('  setting self.modname', self.modname)
+        #print('  setting self.objpath', self.objpath)
+        #print('  setting self.fullname', self.fullname)
+        return retcode
 
     def add_directive_header(self, sig):
         """Add the directive header and options to the generated content."""
@@ -59,8 +25,6 @@ class DoxygenDocumenter(Documenter):
         sourcename = self.get_sourcename()
         self.add_line(u'.. %s:%s:: %s%s' % (domain, directive, name, sig),
                       sourcename)
-
-
 
 
 class DoxygenClassDocumenter(DoxygenDocumenter):
@@ -90,9 +54,12 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
     def format_signaure(self):
         return ''
 
+    def format_name(self):
+        return self.fullname
+
     def get_doc(self, encoding):
         detaileddescription = self.object.find('detaileddescription')
-        doc = [DoxygenNodeVisitor().generic_visit(detaileddescription).lines]
+        doc = [format_xml_paragraph(detaileddescription)]
         return doc
 
     def get_object_members(self, want_all):
@@ -157,11 +124,10 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         #print('  base', base)
         return '::'.join(filter(lambda x: len(x)> 1,
             [modname] + parents)), base
-        #return modname + '::' + '::'.join(parents), base
 
     def get_doc(self, encoding):
         detaileddescription = self.object.find('detaileddescription')
-        doc = [DoxygenNodeVisitor().generic_visit(detaileddescription).lines]
+        doc = [format_xml_paragraph(detaileddescription)]
         return doc
 
     def format_name(self):

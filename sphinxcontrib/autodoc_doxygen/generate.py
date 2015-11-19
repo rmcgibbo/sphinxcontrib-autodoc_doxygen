@@ -1,8 +1,11 @@
+from __future__ import print_function
 import os
 import re
 import codecs
+import argparse
 
-from jinja2 import FileSystemLoader, TemplateNotFound
+
+from jinja2 import FileSystemLoader
 from jinja2.sandbox import SandboxedEnvironment
 
 from sphinx.util.osutil import ensuredir
@@ -10,22 +13,14 @@ from sphinx.jinja2glue import BuiltinTemplateLoader
 
 from .autosummary import import_by_name, get_documenter
 
-def _simple_info(msg):
-    print(msg)
-
-
-def _simple_warn(msg):
-    print('WARNING: ' + msg, file=sys.stderr)
-
 
 def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
-                              warn=_simple_warn, info=_simple_info,
                               base_path=None, builder=None, template_dir=None):
 
     showed_sources = list(sorted(sources))
     if len(showed_sources) > 20:
         showed_sources = showed_sources[:10] + ['...'] + showed_sources[-10:]
-    info('[autosummary] generating autosummary for: %s' %
+    print('[autosummary] generating autosummary for: %s' %
          ', '.join(showed_sources))
 
     if output_dir:
@@ -66,7 +61,7 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
         try:
             name, obj, parent, mod_name = import_by_name(name)
         except ImportError as e:
-            warn('[autosummary] failed to import %r: %s' % (name, e))
+            print('WARNING [autosummary] failed to import %r: %s' % (name, e), file=sys.stderr)
             continue
 
         fn = os.path.join(path, name + suffix)
@@ -77,13 +72,12 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
 
         new_files.append(fn)
 
-        from argparse import Namespace
-
-        documenter = get_documenter(obj, parent)(Namespace(env=None, genopt={}), None)
+        documenter = get_documenter(obj, parent)(
+            argparse.Namespace(env=None, genopt={}), parent)
         if not documenter.parse_name():
             raise ValueError('failed to parse name')
         if not documenter.import_object():
-            raise ValuError('failed to find object')
+            raise ValueError('failed to find object')
         _, members = documenter.get_object_members(True)
 
 
@@ -116,16 +110,13 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
             ns['objtype'] = documenter.objtype
             ns['underline'] = len(name) * '='
 
-            print('ns', ns)
-
             rendered = template.render(**ns)
             f.write(rendered)
 
     # descend recursively to new files
     if new_files:
         generate_autosummary_docs(new_files, output_dir=output_dir,
-                                  suffix=suffix, warn=warn, info=info,
-                                  base_path=base_path, builder=builder,
+                                  suffix=suffix, base_path=base_path, builder=builder,
                                   template_dir=template_dir)
 
 
@@ -226,5 +217,4 @@ def process_generate_options(app):
                 for genfile in genfiles]
 
     generate_autosummary_docs(genfiles, builder=app.builder,
-                              warn=app.warn, info=app.info, suffix=ext,
-                              base_path=app.srcdir)
+                              suffix=ext, base_path=app.srcdir)

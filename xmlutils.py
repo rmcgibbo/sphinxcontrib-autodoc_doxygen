@@ -1,3 +1,7 @@
+from lxml import etree as ET
+from . import get_doxygen_root
+
+
 class NodeVisitor(object):
     def visit(self, node):
         """Visit a node. The default implementation calls the method called
@@ -25,7 +29,26 @@ class DoxygenNodeVisitor(NodeVisitor):
         self.continue_line = False
 
     def visit_ref(self, node):
-        self.lines[-1] += ':cpp:any:`%s`%s' % (node.text, node.tail)
+        ref = get_doxygen_root().findall('.//*[@id="%s"]' % node.get('refid'))[0]
+
+        # col1 = ':%s:`%s <%s>`' % (qualifier, name, real_name.replace('.', '::'))
+        if ref.tag == 'memberdef':
+            parent = ref.xpath('./ancestor::compounddef/compoundname')[0].text
+            name = ref.find('./name').text
+            real_name = parent + '::' + name
+        elif ref.tag == 'compounddef':
+            name_node = ref.find('./name')
+            real_name = name_node.text if name_node is not None else ''
+        else:
+            raise NotImplementedError()
+
+        val = [':cpp:any:`', node.text]
+        if real_name:
+            val.extend((' <', real_name, '>`'))
+        else:
+            val.append('`')
+        val.append(node.tail)
+        self.lines[-1] += ''.join(val)
 
     def visit_para(self, node):
         if node.text is not None:

@@ -74,14 +74,8 @@ class DoxygenAutosummary(Autosummary):
             body.append(row)
 
         for name, sig, summary, real_name in items:
-            real_name = name
             qualifier = 'cpp:any'
-            #if 'nosignatures' not in self.options:
-            #    col1 = ':%s:`%s <%s>`\ %s' % (qualifier, name, real_name, sig)
-            #else:
-            col1 = ':%s:`%s <%s>`' % (qualifier, name, real_name)
-
-            print(col1)
+            col1 = ':%s:`%s <%s>`' % (qualifier, name, real_name.replace('.', '::'))
             col2 = summary
             append_row(col1, col2)
 

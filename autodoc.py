@@ -57,7 +57,7 @@ class DoxygenDocumenter(Documenter):
         directive = getattr(self, 'directivetype', self.objtype)
         name = self.format_name()
         sourcename = self.get_sourcename()
-        self.add_line(u'.. %s:%s::%s%s' % (domain, directive, name, sig),
+        self.add_line(u'.. %s:%s:: %s%s' % (domain, directive, name, sig),
                       sourcename)
 
 
@@ -166,7 +166,7 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
 
     def format_name(self):
         rtype = self.object.find('type').text
-        return (rtype and (rtype + ' ') or '') + self.objpath
+        return (rtype and (rtype + ' ') or '') + self.modname + '::' + self.objpath
 
     def format_signature(self):
         args = self.object.find('argsstring').text

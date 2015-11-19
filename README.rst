@@ -22,9 +22,10 @@ Examples
 
 ::
 
+  .. autodoxyclass:: OpenMM::CustomCompoundBondForce
+
 
 Requirements
 ------------
 - sphinx
 - lxml
-  .. autodoxyclass:: OpenMM::CustomCompoundBondForce

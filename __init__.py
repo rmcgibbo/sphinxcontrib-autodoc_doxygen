@@ -19,7 +19,9 @@ def setup(app):
     import sphinx.ext.autosummary
     from .autodoc import DoxygenClassDocumenter, DoxygenMethodDocumenter
     from .autosummary import import_by_name, get_documenter, DoxygenAutosummary
+    from .generate import process_generate_options
 
+    app.connect("builder-inited", set_doxygen_xml)
     app.setup_extension('sphinx.ext.autodoc')
     app.setup_extension('sphinx.ext.autosummary')
 
@@ -27,12 +29,18 @@ def setup(app):
     app.add_autodocumenter(DoxygenMethodDocumenter)
     app.add_config_value("doxygen_xml", "", True)
 
-    app.connect("builder-inited", set_doxygen_xml)
+
     setup.autosummary_import_by_name = sphinx.ext.autosummary.import_by_name
     setup.autosummary_get_documenter = sphinx.ext.autosummary.get_documenter
+    setup.autosummary_process_generate_options = sphinx.ext.autosummary.process_generate_options
 
     sphinx.ext.autosummary.import_by_name = import_by_name
     sphinx.ext.autosummary.get_documenter = get_documenter
-    app.add_directive('autosummary', DoxygenAutosummary)
 
+    # replace process_generate_options callback
+    for id, cb in app._listeners['builder-inited'].items():
+        if cb == sphinx.ext.autosummary.process_generate_options:
+             app._listeners['builder-inited'][id] = process_generate_options
+
+    app.add_directive('autosummary', DoxygenAutosummary)
     return {'version': sphinx.__display_version__, 'parallel_read_safe': True}

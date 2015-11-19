@@ -7,34 +7,72 @@ from docutils.statemachine import ViewList
 from sphinx.ext.autosummary import Autosummary, autosummary_table
 
 from . import get_doxygen_root
-from .autodoc import DoxygenMethodDocumenter
-
+from .autodoc import DoxygenMethodDocumenter, DoxygenClassDocumenter
 
 
 def import_by_name(name, prefixes=[None]):
-    env = inspect.stack()[1].frame.f_locals['env']
-    parent = str(env.ref_context.get('cpp:parent')[0])
+    caller_locals = inspect.stack()[1].frame.f_locals
+    if 'env' in caller_locals:
+        env = caller_locals['env']
+        if env.ref_context.get('cpp:parent') is not None:
+            prefixes.append(str(env.ref_context.get('cpp:parent')[0]))
 
-    xpath_query = ('.//compoundname[text()="%s"]/../'
-           'sectiondef[@kind="public-func"]/memberdef[@kind="function"]/'
-           'name[text()="%s"]/..') % (parent, name)
-    obj = get_doxygen_root().xpath(xpath_query)[0]
-    full_name = parent + '.' + name
-    out = (full_name, obj, full_name, '')
-    return out
+    tried = []
+    name = name.replace('.', '::')
+    for prefix in prefixes:
+        try:
+            if prefix:
+                prefixed_name = '::'.join([prefix, name])
+            else:
+                prefixed_name = name
+            return _import_by_name(prefixed_name)
+        except ImportError:
+            tried.append(prefixed_name)
+    raise ImportError('no module named %s' % ' or '.join(tried))
+
+
+def _import_by_name(name):
+    root = get_doxygen_root()
+
+    if '::' in name:
+        xpath_query = ('.//compoundname[text()="%s"]/../'
+               'sectiondef[@kind="public-func"]/memberdef[@kind="function"]/'
+               'name[text()="%s"]/..') % tuple(name.rsplit('::', 1))
+
+        m = root.xpath(xpath_query)
+        if len(m) > 0:
+            obj = m[0]
+            full_name = '.'.join(name.rsplit('::', 1))
+            return (full_name, obj, full_name, '')
+
+    xpath_query = ('.//compoundname[text()="%s"]/..' % name)
+    m = root.xpath(xpath_query)
+    if len(m) > 0:
+        obj = m[0]
+        return (name, obj, name, '')
+
+    raise ImportError()
+
 
 
 def get_documenter(obj, parent_or_full_name):
     if not ET.iselement(obj):
+        from . import setup
         return setup.autosummary_get_documenter(obj, parent_or_full_name)
 
     full_name = parent_or_full_name
     if obj.tag == 'memberdef':
         def creator(directive, _):
             return DoxygenMethodDocumenter(directive, full_name)
-        return creator
+    elif obj.tag == 'compounddef':
+        def creator(directive, _):
+            return DoxygenClassDocumenter(directive, full_name)
+
     else:
         raise NotImplementedError()
+
+    creator.objtype = DoxygenClassDocumenter.objtype
+    return creator
 
 
 class DoxygenAutosummary(Autosummary):
@@ -80,25 +118,3 @@ class DoxygenAutosummary(Autosummary):
             append_row(col1, col2)
 
         return [table_spec, table]
-
-    # def get_table(self, items):
-    #     table_spec, table = super(DoxygenAutosummary, self).get_table(items)
-    #
-    #     rows =  table.children[0].children[0].children[2]
-    #     for row in rows:
-    #
-    #
-    #         text = 'sdfds'
-    #
-    #
-    #         node = nodes.paragraph('')
-    #         vl = ViewList()
-    #         vl.append(text, '<autosummary>')
-    #
-    #         import IPython as ip
-    #         ip.embed()
-    #
-    #         col1 = rows[0].replace(node)
-    #
-    #
-    #     return [table_spec, table]

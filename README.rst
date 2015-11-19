@@ -8,7 +8,7 @@ To get started, install the package and then add and then add ``'sphinxcontrib.a
 This adds support for a couple new directives, principlally ``autodoxysummary`` and ``autodoxyclass``.
 
 Examples
----------
+--------
 
 ::
 
@@ -22,4 +22,9 @@ Examples
 
 ::
 
+
+Requirements
+------------
+- sphinx
+- lxml
   .. autodoxyclass:: OpenMM::CustomCompoundBondForce

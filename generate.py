@@ -76,38 +76,30 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
 
         new_files.append(fn)
 
-        with open(fn, 'w') as f:
-            doc = get_documenter(obj, parent)
-            template = template_env.get_template(template_name)
+        from argparse import Namespace
 
-            # def get_members(obj, typ, include_public=[]):
-            #     items = []
-            #     for name in dir(obj):
-            #         try:
-            #             documenter = get_documenter(safe_getattr(obj, name),
-            #                                         obj)
-            #         except AttributeError:
-            #             continue
-            #         if documenter.objtype == typ:
-            #             items.append(name)
-            #     public = [x for x in items
-            #               if x in include_public or not x.startswith('_')]
-            #     return public, items
+        documenter = get_documenter(obj, parent)(Namespace(env=None, genopt={}), None)
+        if not documenter.parse_name():
+            raise ValueError('failed to parse name')
+        if not documenter.import_object():
+            raise ValuError('failed to find object')
+        _, members = documenter.get_object_members(True)
+
+
+        with open(fn, 'w') as f:
+            template = template_env.get_template(template_name)
 
             ns = {}
 
-            if doc.objtype == 'module':
+            if documenter.objtype == 'module':
                 raise NotImplementedError()
-            elif doc.objtype == 'class':
-                pass
-                #ns['members'] = dir(obj)
-                #ns['methods'], ns['all_methods'] = \
-                #    get_members(obj, 'method', ['__init__'])
-                #ns['attributes'], ns['all_attributes'] = \
-                #    get_members(obj, 'attribute')
+            elif documenter.objtype == 'doxyclass':
+                ns['methods'] = [m[0] for m in members]
+            else:
+                raise ValueError(documenter.objtype)
 
             parts = name.split('.')
-            if doc.objtype in ('method', 'attribute'):
+            if documenter.objtype in ('method', 'attribute'):
                 mod_name = '.'.join(parts[:-2])
                 cls_name = parts[-2]
                 obj_name = '.'.join(parts[-2:])
@@ -120,7 +112,7 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
             ns['objname'] = obj_name
             ns['name'] = parts[-1]
 
-            ns['objtype'] = doc.objtype
+            ns['objtype'] = documenter.objtype
             ns['underline'] = len(name) * '='
 
             print('ns', ns)

@@ -8,6 +8,6 @@ COMMIT_ID="$(git rev-parse --short HEAD)"
  git config user.name $GH_USER_NAME && \
  git config user.email $GH_USER_EMAIL && \
  git add . && \
- git commit -m "Travis-CI -> gh-pages: $(date) from ${COMMIT_ID}" && \
+ git commit -m "Travis-CI deploy ${COMMIT_ID} to gh-pages" && \
  git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
 )

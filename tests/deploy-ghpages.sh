@@ -1,5 +1,6 @@
 #!/bin/bash
-(cd deploy-html && \
+pwd
+(cd $TRAVIS_BUILD_DIR/deploy-html && \
  git init && \
  git config user.name "Travis-CI" && \
  git config user.email "noreply@travis-ci.org" && \

@@ -10,6 +10,7 @@ autosummary_generate = True
 autodoc_default_flags = ['members', 'inherited-members']
 autodoc_member_order = 'bysource'
 
+project="autodoc_doxygen test site"
 source_suffix = '.rst'
 master_doc = 'index'
 

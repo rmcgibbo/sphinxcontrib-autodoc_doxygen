@@ -22,10 +22,10 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
     if len(showed_sources) > 20:
         showed_sources = showed_sources[:10] + ['...'] + showed_sources[-10:]
     print('[autosummary] generating autosummary for: %s' %
-         ', '.join(showed_sources))
+          ', '.join(showed_sources))
 
     if output_dir:
-        info('[autosummary] writing to %s' % output_dir)
+        print('[autosummary] writing to %s' % output_dir)
 
     if base_path is not None:
         sources = [os.path.join(base_path, filename) for filename in sources]
@@ -80,7 +80,6 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
         if not documenter.import_object():
             raise ValueError('failed to find object')
         _, members = documenter.get_object_members(True)
-
 
         with open(fn, 'w') as f:
             template = template_env.get_template(template_name)
@@ -199,7 +198,6 @@ def find_autosummary_in_lines(lines, module=None, filename=None):
             continue
 
     return documented
-
 
 
 def process_generate_options(app):

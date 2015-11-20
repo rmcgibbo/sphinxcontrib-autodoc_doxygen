@@ -35,9 +35,10 @@ def _import_by_name(name):
     name = name.replace('.', '::')
 
     if '::' in name:
-        xpath_query = ('.//compoundname[text()="%s"]/../'
-               'sectiondef[@kind="public-func"]/memberdef[@kind="function"]/'
-               'name[text()="%s"]/..') % tuple(name.rsplit('::', 1))
+        xpath_query = (
+            './/compoundname[text()="%s"]/../'
+            'sectiondef[@kind="public-func"]/memberdef[@kind="function"]/'
+            'name[text()="%s"]/..') % tuple(name.rsplit('::', 1))
 
         m = root.xpath(xpath_query)
         if len(m) > 0:
@@ -61,7 +62,6 @@ def get_documenter(obj, full_name):
         return DoxygenClassDocumenter
 
     raise NotImplementedError(obj.tag)
-
 
 
 class DoxygenAutosummary(Autosummary):
@@ -164,7 +164,9 @@ class DoxygenAutosummary(Autosummary):
 
         for name, sig, summary, real_name in items:
             qualifier = 'cpp:any'
-            col1 = ':%s:`%s <%s>`' % (qualifier, name, real_name.replace('.', '::'))
+            # required for cpp autolink
+            full_name = real_name.replace('.', '::')
+            col1 = ':%s:`%s <%s>`' % (qualifier, name, full_name)
             col2 = summary
             append_row(col1, col2)
 

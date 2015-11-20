@@ -1,7 +1,7 @@
 from lxml import etree as ET
 
 from sphinx.util import rpartition
-from sphinx.ext.autodoc import Documenter, py_ext_sig_re
+from sphinx.ext.autodoc import Documenter
 
 from . import get_doxygen_root
 from .xmlutils import format_xml_paragraph
@@ -11,10 +11,10 @@ class DoxygenDocumenter(Documenter):
     def parse_name(self):
         retcode = super(DoxygenDocumenter, self).parse_name()
         self.fullname = self.name
-        #print('%s parse_name' % type(self))
-        #print('  setting self.modname', self.modname)
-        #print('  setting self.objpath', self.objpath)
-        #print('  setting self.fullname', self.fullname)
+        # print('%s parse_name' % type(self))
+        # print('  setting self.modname', self.modname)
+        # print('  setting self.objpath', self.objpath)
+        # print('  setting self.fullname', self.fullname)
         return retcode
 
     def add_directive_header(self, sig):
@@ -40,15 +40,15 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
 
     def import_object(self):
         xpath_query = './/compoundname[text()="%s"]/..' % self.fullname
-        #print('import_object')
-        #print('  xpath', xpath_query)
+        # print('import_object')
+        # print('  xpath', xpath_query)
         self.object = get_doxygen_root().xpath(xpath_query)[0]
-        #print('  setting self.object', self.object)
+        # print('  setting self.object', self.object)
         return True
 
     def resolve_name(self, modname, parents, path, base):
-        #print('DoxygenClassDocumenter.resolve_name')
-        #print('  ', modname, parents, path, base)
+        # print('DoxygenClassDocumenter.resolve_name')
+        # print('  ', modname, parents, path, base)
         return modname, parents + [base]
 
     def format_signaure(self):
@@ -92,10 +92,10 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
 
     def import_object(self):
         xpath_query = './/compoundname[text()="%s"]/../sectiondef[@kind="public-func"]/memberdef[@kind="function"]/name[text()="%s"]/..' % (self.modname, self.objpath)
-        #print('DoxygenMethodDocumenter import_object')
-        #print('  xpath', xpath_query)
+        # print('DoxygenMethodDocumenter import_object')
+        # print('  xpath', xpath_query)
         self.object = get_doxygen_root().xpath(xpath_query)[0]
-        #print('  setting self.object', self.object)
+        # print('  setting self.object', self.object)
         return True
 
     def resolve_name(self, modname, parents, path, base):
@@ -117,13 +117,12 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
             modname, cls = rpartition(mod_cls, '.')
             parents = [cls]
 
-        #print('DoxygenMethodDocumenter.resolve_name')
-        #print('  modname', modname)
-        #print('  parents', parents)
-        #print('  path', path)
-        #print('  base', base)
-        return '::'.join(filter(lambda x: len(x)> 1,
-            [modname] + parents)), base
+        # print('DoxygenMethodDocumenter.resolve_name')
+        # print('  modname', modname)
+        # print('  parents', parents)
+        # print('  path', path)
+        # print('  base', base)
+        return '::'.join(filter(lambda x: len(x) > 1, [modname] + parents)), base
 
     def get_doc(self, encoding):
         detaileddescription = self.object.find('detaileddescription')

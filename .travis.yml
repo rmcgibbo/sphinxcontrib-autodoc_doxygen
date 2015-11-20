@@ -15,7 +15,6 @@ branches:
   except:
     - gh-pages
 
-
 before_install:
   - "pip install --upgrade pip wheel"
   - PYVER=$(python -c "import sys; print(sys.version[:3])")
@@ -29,7 +28,9 @@ install:
 script:
   - (cd tests && tar -xjf openmm-doxygen-xml.tar.bz2)
   - (cd tests/openmm && python -m sphinx . $TRAVIS_BUILD_DIR/deploy-html)
+  - pwd
   - ls
+  - ls deploy-html
 
 deploy:
   provider: script

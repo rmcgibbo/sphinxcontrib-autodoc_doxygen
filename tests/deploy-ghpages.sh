@@ -1,6 +1,6 @@
 #!/bin/bash -e
-git config user.email "$(git --no-pager show -s --format='%ae' HEAD)"
-git config user.name "$(git --no-pager show -s --format='%an' HEAD)"
+git config --global user.email "$(git --no-pager show -s --format='%ae' HEAD)"
+git config --global user.name "$(git --no-pager show -s --format='%an' HEAD)"
 COMMIT_ID="$(git rev-parse --short HEAD)"
 
 TEMPDIR=$(mktemp -d)

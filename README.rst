@@ -41,19 +41,15 @@ Installation
 
   pip install pip install git+https://github.com/rmcgibbo/sphinxcontrib-autodoc_doxygen.git
 
-- Dependecies with Conda (cross-platform)
-  
-  If you use Python through the conda package manager (cross platform), you can install the dependencies with ::
+- Dependecies with Conda (cross-platform) ::
 
     conda install sphinx six lxml
 
-- Dependencies with Linux (for system python)
-  If you want to use the system python (e.g. ``/usr/local/bin/python``),, you can get the dependencies on
-  Debian and Ubuntu with::
+- Dependencies with linux system package manager ``/usr/local/bin/python``::
 
     sudo apt-get install python-setuptools python-lxml python-sphinx python-six python-pip
 
-  Or on Fedora (you might need to enable the EPEL repo too)::
+  Or::
 
     sudo yum install python-setuptools python-lxml python-sphinx python-six python-pip
 

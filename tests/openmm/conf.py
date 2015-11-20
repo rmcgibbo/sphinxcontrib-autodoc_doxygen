@@ -10,7 +10,7 @@ autosummary_generate = True
 autodoc_default_flags = ['members', 'inherited-members']
 autodoc_member_order = 'bysource'
 
-project="test 1"
+project="test1"
 source_suffix = '.rst'
 master_doc = 'index'
 

@@ -1,6 +1,4 @@
 import re
-import inspect
-from lxml import etree as ET
 
 from sphinx import addnodes
 from docutils import nodes

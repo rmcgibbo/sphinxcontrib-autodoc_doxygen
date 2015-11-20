@@ -8,6 +8,7 @@ from sphinx.ext.autosummary import Autosummary, autosummary_table
 
 from . import get_doxygen_root
 from .autodoc import DoxygenMethodDocumenter, DoxygenClassDocumenter
+from .xmlutils import format_xml_paragraph
 
 
 def import_by_name(name, env=None, prefixes=None):
@@ -40,12 +41,21 @@ def _import_by_name(name):
             './/compoundname[text()="%s"]/../'
             'sectiondef[@kind="public-func"]/memberdef[@kind="function"]/'
             'name[text()="%s"]/..') % tuple(name.rsplit('::', 1))
-
         m = root.xpath(xpath_query)
         if len(m) > 0:
             obj = m[0]
             full_name = '.'.join(name.rsplit('::', 1))
-            return (full_name, obj, full_name, '')
+            return full_name, obj, full_name, ''
+
+        xpath_query = (
+            './/compoundname[text()="%s"]/../'
+            'sectiondef[@kind="public-type"]/memberdef[@kind="enum"]/'
+            'name[text()="%s"]/..') % tuple(name.rsplit('::', 1))
+        m = root.xpath(xpath_query)
+        if len(m) > 0:
+            obj = m[0]
+            full_name = '.'.join(name.rsplit('::', 1))
+            return full_name, obj, full_name, ''
 
     xpath_query = ('.//compoundname[text()="%s"]/..' % name)
     m = root.xpath(xpath_query)
@@ -57,10 +67,11 @@ def _import_by_name(name):
 
 
 def get_documenter(obj, full_name):
-    if obj.tag == 'memberdef':
+    if obj.tag == 'memberdef' and obj.get('kind') == 'function':
         return DoxygenMethodDocumenter
     elif obj.tag == 'compounddef':
         return DoxygenClassDocumenter
+
 
     raise NotImplementedError(obj.tag)
 
@@ -77,7 +88,7 @@ class DoxygenAutosummary(Autosummary):
             display_name = name
             if name.startswith('~'):
                 name = name[1:]
-                display_name = name.split('.')[-1]
+                display_name = name.split('::')[-1]
 
             try:
                 real_name, obj, parent, modname = import_by_name(name, env=env)
@@ -98,7 +109,6 @@ class DoxygenAutosummary(Autosummary):
                 continue
             if documenter.options.members and not documenter.check_module():
                 continue
-
             # -- Grab the signature
             sig = documenter.format_signature()
 
@@ -130,11 +140,7 @@ class DoxygenAutosummary(Autosummary):
 
         return items
 
-    def get_table(self, items):
-        """Generate a proper list of table nodes for autosummary:: directive.
-
-        *items* is a list produced by :meth:`get_items`.
-        """
+    def get_tablespec(self):
         table_spec = addnodes.tabular_col_spec()
         table_spec['spec'] = 'll'
 
@@ -162,7 +168,14 @@ class DoxygenAutosummary(Autosummary):
                     pass
                 row.append(nodes.entry('', node))
             body.append(row)
+        return table, table_spec, append_row
 
+    def get_table(self, items):
+        """Generate a proper list of table nodes for autosummary:: directive.
+
+        *items* is a list produced by :meth:`get_items`.
+        """
+        table, table_spec, append_row = self.get_tablespec()
         for name, sig, summary, real_name in items:
             qualifier = 'cpp:any'
             # required for cpp autolink
@@ -171,4 +184,27 @@ class DoxygenAutosummary(Autosummary):
             col2 = summary
             append_row(col1, col2)
 
+        self.result.append('   .. rubric: sdsf', 0)
         return [table_spec, table]
+
+
+class DoxygenAutoEnum(DoxygenAutosummary):
+
+    def get_items(self, names):
+        env = self.state.document.settings.env
+        self.name = names[0]
+
+        real_name, obj, parent, modname = import_by_name(self.name, env=env)
+        names = [n.text for n in obj.findall('./enumvalue/name')]
+        descriptions = [format_xml_paragraph(d) for d in obj.findall('./enumvalue/detaileddescription')]
+        return zip(names, descriptions)
+
+    def get_table(self, items):
+        table, table_spec, append_row = self.get_tablespec()
+        for name, description in items:
+            col1 = ':strong:`' + name + '`'
+            while description and not description[0].strip():
+                description.pop(0)
+            col2 = ' '.join(description)
+            append_row(col1, col2)
+        return [nodes.rubric('', 'Enum: %s' % self.name), table]

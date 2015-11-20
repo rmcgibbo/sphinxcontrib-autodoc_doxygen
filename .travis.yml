@@ -13,8 +13,8 @@ before_install:
 
 install:
   - PYVER=$(python -c "import sys; print(sys.version[:3])")
-  - wget "https://github.com/getnikola/wheelhouse/archive/${PYVER}.zip"
-  - unzip "${PYVER}.zip"
+  - wget "https://github.com/getnikola/wheelhouse/archive/v${PYVER}.zip"
+  - unzip "v${PYVER}.zip"
   - pip install --use-wheel --find-links=wheelhouse-$i -r requirements.txt
   - pip install .
 

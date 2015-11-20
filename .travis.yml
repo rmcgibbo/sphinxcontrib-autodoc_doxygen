@@ -17,5 +17,5 @@ install:
   - pip install .
 
 script:
-  - (cd tests/openmm && tar -xjf openmm-doxygen-xml.tar.bz2)
+  - (cd tests && tar -xjf openmm-doxygen-xml.tar.bz2)
   - (cd tests/openmm && python -m sphinx . html)

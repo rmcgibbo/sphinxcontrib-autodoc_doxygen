@@ -17,7 +17,7 @@ In your Sphinx ``conf.py` add ``'sphinxcontrib.autodoc_doxygen'`` to the list of
 variable ``doxygen_xml`` to a string containing the path to the directory containing your Doxygen XML
 output.
 
-This adds the following RST diretives. ::
+This adds the following RST directives. ::
 
   autodoxysummary
   autodoxyclass

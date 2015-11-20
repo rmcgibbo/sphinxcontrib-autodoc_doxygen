@@ -39,18 +39,16 @@ Installation
 ------------
 ``sphinxcontrib-autodoc_doxygen`` runs with Python 2.7 or Python 3.3 or later. You can install it with pip ::
 
-  pip install pip install git+https://github.com/rmcgibbo/sphinxcontrib-autodoc_doxygen.git
+  pip install git+https://github.com/rmcgibbo/sphinxcontrib-autodoc_doxygen.git
 
 - Dependecies with Conda (cross-platform) ::
 
     conda install sphinx six lxml
 
-- Dependencies with linux system package manager ``/usr/local/bin/python``::
+- Dependencies with linux system package manager (e.g. with ``/usr/local/bin/python``)::
 
     sudo apt-get install python-setuptools python-lxml python-sphinx python-six python-pip
-
-  Or::
-
+    # or, for fedora
     sudo yum install python-setuptools python-lxml python-sphinx python-six python-pip
 
 - Dependencies with Windows

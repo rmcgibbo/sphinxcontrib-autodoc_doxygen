@@ -12,8 +12,8 @@ python:
   - "3.5"
 
 branches:
-  except:
-    - gh-pages
+  only:
+    - master
 
 before_install:
   - "pip install --upgrade pip wheel"

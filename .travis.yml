@@ -11,6 +11,11 @@ python:
   - "3.4"
   - "3.5"
 
+branches:
+  except:
+    - gh-pages
+
+
 before_install:
   - "pip install --upgrade pip wheel"
   - PYVER=$(python -c "import sys; print(sys.version[:3])")

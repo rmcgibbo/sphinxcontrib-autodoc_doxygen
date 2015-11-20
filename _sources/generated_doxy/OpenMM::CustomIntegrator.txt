@@ -1,0 +1,42 @@
+OpenMM::CustomIntegrator
+========================
+
+.. autodoxyclass:: OpenMM::CustomIntegrator
+
+   
+   .. rubric:: Methods
+
+   .. autodoxysummary::
+   
+      ~OpenMM::CustomIntegrator.CustomIntegrator
+      ~OpenMM::CustomIntegrator.getNumGlobalVariables
+      ~OpenMM::CustomIntegrator.getNumPerDofVariables
+      ~OpenMM::CustomIntegrator.getNumComputations
+      ~OpenMM::CustomIntegrator.addGlobalVariable
+      ~OpenMM::CustomIntegrator.getGlobalVariableName
+      ~OpenMM::CustomIntegrator.addPerDofVariable
+      ~OpenMM::CustomIntegrator.getPerDofVariableName
+      ~OpenMM::CustomIntegrator.getGlobalVariable
+      ~OpenMM::CustomIntegrator.getGlobalVariableByName
+      ~OpenMM::CustomIntegrator.setGlobalVariable
+      ~OpenMM::CustomIntegrator.setGlobalVariableByName
+      ~OpenMM::CustomIntegrator.getPerDofVariable
+      ~OpenMM::CustomIntegrator.getPerDofVariableByName
+      ~OpenMM::CustomIntegrator.setPerDofVariable
+      ~OpenMM::CustomIntegrator.setPerDofVariableByName
+      ~OpenMM::CustomIntegrator.addComputeGlobal
+      ~OpenMM::CustomIntegrator.addComputePerDof
+      ~OpenMM::CustomIntegrator.addComputeSum
+      ~OpenMM::CustomIntegrator.addConstrainPositions
+      ~OpenMM::CustomIntegrator.addConstrainVelocities
+      ~OpenMM::CustomIntegrator.addUpdateContextState
+      ~OpenMM::CustomIntegrator.beginIfBlock
+      ~OpenMM::CustomIntegrator.beginWhileBlock
+      ~OpenMM::CustomIntegrator.endBlock
+      ~OpenMM::CustomIntegrator.getComputationStep
+      ~OpenMM::CustomIntegrator.getKineticEnergyExpression
+      ~OpenMM::CustomIntegrator.setKineticEnergyExpression
+      ~OpenMM::CustomIntegrator.getRandomNumberSeed
+      ~OpenMM::CustomIntegrator.setRandomNumberSeed
+      ~OpenMM::CustomIntegrator.step
+   

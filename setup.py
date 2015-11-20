@@ -11,6 +11,7 @@ setup(
     name='sphinxcontrib-autodoc_doxygen',
     url='https://github.com/rmcgibbo/sphinxcontrib-autodoc_doxygen',
     download_url='https://pypi.python.org/pypi/sphinxcontrib-autodoc_doxygen',
+    version="0.1",
     license="MIT",
     author="Robert T. McGibbon",
     author_email="rmcgibbo@gmail.com",
@@ -41,8 +42,5 @@ setup(
     namespace_packages=['sphinxcontrib'],
     #use_scm_version=True,
     #setup_requires=['setuptools_scm'],
-    install_requires=[
-        'Sphinx==1.3.1',
-        'six>=1.4.1',
-    ]
+    install_requires=readfile('requirements.txt'),
 )

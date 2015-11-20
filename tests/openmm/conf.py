@@ -10,7 +10,7 @@ autosummary_generate = True
 autodoc_default_flags = ['members', 'inherited-members']
 autodoc_member_order = 'bysource'
 
-project="autodoc_doxygen test site"
+project="test 1"
 source_suffix = '.rst'
 master_doc = 'index'
 
@@ -18,7 +18,7 @@ exclude_patterns = ['_build']
 pygments_style = 'sphinx'
 html_theme = "alabaster"
 html_theme_options = {
-    'description': "Test site",
+    'description': "sphinx-contrib autodoc_doxygen test site",
     'github_button': False,
 }
 

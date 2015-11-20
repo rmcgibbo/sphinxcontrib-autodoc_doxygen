@@ -1,3 +1,4 @@
+from __future__ import print_function, absolute_import, division
 from lxml import etree as ET
 
 from sphinx.util import rpartition
@@ -122,7 +123,7 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         # print('  parents', parents)
         # print('  path', path)
         # print('  base', base)
-        return '::'.join(filter(lambda x: len(x) > 1, [modname] + parents)), base
+        return '::'.join([x for x in [modname] + parents if len(x) > 1]), base
 
     def get_doc(self, encoding):
         detaileddescription = self.object.find('detaileddescription')

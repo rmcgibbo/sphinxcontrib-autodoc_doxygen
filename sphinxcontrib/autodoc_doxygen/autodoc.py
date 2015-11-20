@@ -74,7 +74,7 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
         return ret
 
     def document_members(self, members, all_members=False):
-        super().document_members(members)
+        super(DoxygenClassDocumenter, self).document_members(members)
         # print('\n'.join(self.directive.result))
 
 

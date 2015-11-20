@@ -11,15 +11,15 @@ from . import get_doxygen_root
 from .autodoc import DoxygenMethodDocumenter, DoxygenClassDocumenter
 
 
-def import_by_name(name, prefixes=[None]):
-    caller_locals = inspect.stack()[1].frame.f_locals
-    if 'env' in caller_locals:
-        env = caller_locals['env']
+def import_by_name(name, env=None, prefixes=None):
+    if prefixes is None:
+        prefixes = [None]
+
+    if env is not None:
         if env.ref_context.get('cpp:parent') is not None:
             prefixes.append(str(env.ref_context.get('cpp:parent')[0]))
 
     tried = []
-    name = name.replace('.', '::')
     for prefix in prefixes:
         try:
             if prefix:
@@ -34,6 +34,7 @@ def import_by_name(name, prefixes=[None]):
 
 def _import_by_name(name):
     root = get_doxygen_root()
+    name = name.replace('.', '::')
 
     if '::' in name:
         xpath_query = ('.//compoundname[text()="%s"]/../'
@@ -70,6 +71,7 @@ class DoxygenAutosummary(Autosummary):
         """Try to import the given names, and return a list of
         ``[(name, signature, summary_string, real_name), ...]``.
         """
+        env = self.state.document.settings.env
         items = []
 
         for name in names:
@@ -79,7 +81,7 @@ class DoxygenAutosummary(Autosummary):
                 display_name = name.split('.')[-1]
 
             try:
-                real_name, obj, parent, modname = import_by_name(name)
+                real_name, obj, parent, modname = import_by_name(name, env=env)
             except ImportError:
                 self.warn('failed to import %s' % name)
                 items.append((name, '', '', name))

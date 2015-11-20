@@ -31,4 +31,5 @@ script:
 
 
 after_success:
-  - if [[ $PYVER = 3.5 ]]; then ./tests/deploy-ghpages.sh $TRAVIS_BUILD_DIR/deploy-html; fi
+  - test $PYVER = '3.5' && test $TRAVIS_PULL_REQUEST = 'false' &&
+   ./tests/deploy-ghpages.sh $TRAVIS_BUILD_DIR/deploy-html

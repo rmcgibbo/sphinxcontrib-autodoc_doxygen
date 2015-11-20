@@ -13,15 +13,8 @@ autodoc_member_order = 'bysource'
 source_suffix = '.rst'
 master_doc = 'index'
 
-project = u'OpenMM'
-copyright = u'2015, Stanford University and the Authors'
-
-exclude_patterns = ['_build', 'autodoc_doxygen']
-html_static_path = ['_static']
-templates_path = ['_templates']
-
+exclude_patterns = ['_build']
 pygments_style = 'sphinx'
-
 html_theme = "alabaster"
 html_theme_options = {
     'description': "High performance molecular simulation on GPUs",
@@ -38,8 +31,5 @@ html_sidebars = {
     ]
 }
 
-
-with tarfile.open(os.path.join(os.path.dirname(__file__), '..', 'openmm-doxygen-xml.tar.bz2'), "r:bz2") as f:
-    f.extractall()
-
-doxygen_xml = os.path.join(os.path.dirname(__file__), "xml")
+# needs to be unpacked from the included tarball
+doxygen_xml = os.path.join(os.path.dirname(__file__), "..", "xml")

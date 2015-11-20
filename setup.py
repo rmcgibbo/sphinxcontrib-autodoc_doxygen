@@ -39,8 +39,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     namespace_packages=['sphinxcontrib'],
-    use_scm_version=True,
-    setup_requires=['setuptools_scm'],
+    #use_scm_version=True,
+    #setup_requires=['setuptools_scm'],
     install_requires=[
         'Sphinx==1.3.1',
         'six>=1.4.1',

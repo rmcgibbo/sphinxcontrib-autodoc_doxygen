@@ -7,10 +7,9 @@ sphinxcontrib-autodoc_doxygen
 
 `Example Output <https://rawgit.com/rmcgibbo/sphinxcontrib-autodoc_doxygen/gh-pages/index.html>`_
 
-
 This a (pre-alpha) sphinx plugin for documenting C++ projects using data drawn from Doxygen's XML. It is similar to
- reathe. However, the implementation extends ``sphinx.ext.autodoc`` and ``sphinx.ext.autosummary`` as closely as
- possble.
+Breathe. However, the implementation extends ``sphinx.ext.autodoc`` and ``sphinx.ext.autosummary`` as closely as
+possble.
 
 To get started, install the package and then add and then add ``'sphinxcontrib.autodoc_doxygen'`` to the list of
 extensions in your Sphinx ``conf.py`` file. Then, in ``conf.py``, set the variable `doxygen_xml` to a string
@@ -40,13 +39,13 @@ Installation
 ------------
 ``sphinxcontrib-autodoc_doxygen`` runs with Python 2.7 or Python 3.3 or later. You can install it with pip ::
 
- pip install pip install git+https://github.com/rmcgibbo/sphinxcontrib-autodoc_doxygen.git
+  pip install pip install git+https://github.com/rmcgibbo/sphinxcontrib-autodoc_doxygen.git
 
 - Dependecies with Conda (cross-platform)
   
   If you use Python through the conda package manager (cross platform), you can install the dependencies with ::
 
- conda install sphinx six lxml
+    conda install sphinx six lxml
 
 - Dependencies with Linux (for system python)
   If you want to use the system python (e.g. ``/usr/local/bin/python``),, you can get the dependencies on

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>OpenMM::CustomIntegrator &mdash; test1  documentation</title>
+    <title>CustomIntegrator &mdash; test1  documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="test1  documentation" href="../index.html" />
-    <link rel="next" title="OpenMM::CustomCompoundBondForce" href="OpenMM::CustomCompoundBondForce.html" />
+    <link rel="next" title="CustomCompoundBondForce" href="OpenMM::CustomCompoundBondForce.html" />
     <link rel="prev" title="Index" href="../index.html" />
    
   
@@ -39,8 +39,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="openmm-customintegrator">
-<h1>OpenMM::CustomIntegrator<a class="headerlink" href="#openmm-customintegrator" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="customintegrator">
+<h1>CustomIntegrator<a class="headerlink" href="#customintegrator" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="_CPPv2N6OpenMM16CustomIntegratorE">
 <span id="OpenMM::CustomIntegrator"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">CustomIntegrator</code><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="Permalink to this definition">¶</a></dt>
@@ -219,6 +219,42 @@
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator6OpenMM16CustomIntegrator4stepEi" title="OpenMM::CustomIntegrator::OpenMM::CustomIntegrator::step"><code class="xref cpp cpp-any docutils literal"><span class="pre">step</span></code></a></td>
 <td>Advance a simulation through time by taking a series of time steps.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Enum: ComputationType</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>ComputeGlobal</strong></td>
+<td>Compute an expression and store it in a global variable.</td>
+</tr>
+<tr class="row-even"><td><strong>ComputePerDof</strong></td>
+<td>Compute an expression for every degree of freedom and store it in a per-DOF variable.</td>
+</tr>
+<tr class="row-odd"><td><strong>ComputeSum</strong></td>
+<td>Compute an expression for every degree of freedom, sum the values, and store the result in a global variable.</td>
+</tr>
+<tr class="row-even"><td><strong>ConstrainPositions</strong></td>
+<td>Update particle positions so all constraints are satisfied.</td>
+</tr>
+<tr class="row-odd"><td><strong>ConstrainVelocities</strong></td>
+<td>Update particle velocities so the net velocity along all constraints is 0.</td>
+</tr>
+<tr class="row-even"><td><strong>UpdateContextState</strong></td>
+<td>Allow Forces to update the context state.</td>
+</tr>
+<tr class="row-odd"><td><strong>BeginIfBlock</strong></td>
+<td>Begin an &#8220;if&#8221; block.</td>
+</tr>
+<tr class="row-even"><td><strong>BeginWhileBlock</strong></td>
+<td>Begin a while&#8221; block.</td>
+</tr>
+<tr class="row-odd"><td><strong>EndBlock</strong></td>
+<td>End an &#8220;if&#8221; or &#8220;while&#8221; block.</td>
 </tr>
 </tbody>
 </table>
@@ -720,8 +756,8 @@
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">OpenMM::CustomIntegrator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="OpenMM::CustomCompoundBondForce.html">OpenMM::CustomCompoundBondForce</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">CustomIntegrator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OpenMM::CustomCompoundBondForce.html">CustomCompoundBondForce</a></li>
 </ul>
 
 

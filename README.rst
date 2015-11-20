@@ -7,15 +7,22 @@ sphinxcontrib-autodoc_doxygen
 
 `Example Output <https://rawgit.com/rmcgibbo/sphinxcontrib-autodoc_doxygen/gh-pages/index.html>`_
 
-This a (pre-alpha) sphinx plugin for documenting C++ projects using data drawn from Doxygen's XML. It is similar to
-Breathe. However, the implementation extends ``sphinx.ext.autodoc`` and ``sphinx.ext.autosummary`` as closely as
+This a (pre-alpha) extension for sphinx that to read and display Doxygen XML output. It is similar to
+Breathe. The implementation extends ``sphinx.ext.autodoc`` and ``sphinx.ext.autosummary`` as closely as
 possble.
 
-To get started, install the package and then add and then add ``'sphinxcontrib.autodoc_doxygen'`` to the list of
-extensions in your Sphinx ``conf.py`` file. Then, in ``conf.py``, set the variable `doxygen_xml` to a string
-containing the path to the directory in which the doxygen XML files live.
+Usage
+-----
+In your Sphinx ``conf.py` add ``'sphinxcontrib.autodoc_doxygen'`` to the list of extensions, and set the
+variable ``doxygen_xml`` to a string containing the path to the directory containing your Doxygen XML
+output.
 
-This adds support for a couple new directives, principlally ``autodoxysummary`` and ``autodoxyclass``.
+This adds the following RST diretives. ::
+
+  autodoxysummary
+  autodoxyclass
+  autodoxymethod
+  autodoxyenum
 
 Examples
 --------
@@ -29,10 +36,7 @@ Examples
        OpenMM::CustomIntegrator
        OpenMM::CustomCompoundBondForce
 
-
-::
-
-  .. autodoxyclass:: OpenMM::CustomCompoundBondForce
+This produces the output shown `here <https://rawgit.com/rmcgibbo/sphinxcontrib-autodoc_doxygen/gh-pages/index.html>`_
 
 
 Installation
@@ -53,5 +57,6 @@ You can install it with pip (py27 or py33+)::
     sudo yum install python-setuptools python-lxml python-sphinx python-six python-pip
 
 - Dependencies with Windows
+
   If you use windows, I receommend using conda. If not, you may be able to download the lxml dependency from
   `Christoph Gohlke's repository <http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml>`_

@@ -17,4 +17,4 @@ install:
   - pip install .
 
 script:
-  - (cd test/openmm && python -m sphinx . html)
+  - (cd tests/openmm && python -m sphinx . html)

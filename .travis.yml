@@ -1,0 +1,21 @@
+language: python
+sudo: false
+
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+
+before_install:
+  - "pip install --upgrade pip wheel"
+
+install:
+  - PYVER=$(python -c "import sys; print(sys.version[:3])")
+  - wget "https://github.com/getnikola/wheelhouse/archive/${PYVER}.zip"
+  - unzip "${PYVER}.zip"
+  - pip install --use-wheel --find-links=wheelhouse-$i -r requirements.txt
+  - pip install .
+
+script:
+  - (cd test/openmm && python -m sphinx . html)

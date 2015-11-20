@@ -6,8 +6,9 @@ def set_doxygen_xml(app):
     setup.DOXYGEN_ROOT = ET.ElementTree(ET.Element('root')).getroot()
 
     for file in os.listdir(app.config.doxygen_xml):
-        if file.lower().endswith('xml'):
-            root = ET.parse(os.path.join(app.config.doxygen_xml, file)).getroot()
+        if file.lower().endswith('xml') and not file.lower().startswith('._'):
+            file = os.path.join(app.config.doxygen_xml, file)
+            root = ET.parse(file).getroot()
             for node in root:
                 setup.DOXYGEN_ROOT.append(node)
 

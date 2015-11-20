@@ -1,3 +1,8 @@
+env:
+  global:
+    - GH_REF: github.com/rmcgibbo/sphinxcontrib-autodoc_doxygen.git
+    - secure: "bPrVkpG2QmMofklFp/cCQhmHNlSaRST4pKyLDjQ20qVh6h0UUSX0hWxXTgn+kYY+JEufGvGQAeRCHQfYeALevT9ulxIPgJROiRxX7fSAAUNPFGixb++Q4erTfpQktCukRFjFMyfkqK4CSc4KG5US9bHe7N0QqCh2HgBi0qskPgG64TEVZqC8RirbNiR5FNO66km2+X/nUZOwdBoKZW4eEHyHMTF74Em6W62Xp1P5/GS0/J623z7y4JfIEW3TnnvTxZvU+0nylWkbmd0pCa0s57L0+77/J1nZAEi1pDne1l8Zc7IxwDEgrA8VwAU13RWKktjzwH9+4HTnlx86x04OZEXV8jo9ROnNg1l32K55XiIuU0NhOVeNBLXGPwHzzhHsV5FhDfG1Xl0gzts+BgSUL2WOQ1RxDjHdfAjz2iC7iiPngLoQLHvxmyY92aI18u//64nORTlpKCEWr7pzUzoBsSA4kT+oPILQp3Rsvk6cvhlmjUXjlJ4jPEljSDHkq8FvRf0Y4qrdYLDt/EvCqBUn+Y0d3bmPSMB1mJklQdIk9UlDkEnB6+JF2tNmBCkRvSTfMlHSScsL0Oh6LjRIWRi/t1D1PCs8onMPtTSNRqRPegefCAsX4RbBlestOTx1YLTUWArxGCLUA4VIz5n/pC+ArU3f2WWM2Z2LDd/dXzihs4U="
+
 sudo: false
 language: python
 python:
@@ -8,9 +13,9 @@ python:
 
 before_install:
   - "pip install --upgrade pip wheel"
+  - PYVER=$(python -c "import sys; print(sys.version[:3])")
 
 install:
-  - PYVER=$(python -c "import sys; print(sys.version[:3])")
   - wget "https://github.com/getnikola/wheelhouse/archive/v${PYVER}.zip"
   - unzip "v${PYVER}.zip"
   - pip install --use-wheel --find-links=wheelhouse-${PYVER} -r requirements.txt
@@ -19,3 +24,9 @@ install:
 script:
   - (cd tests && tar -xjf openmm-doxygen-xml.tar.bz2)
   - (cd tests/openmm && python -m sphinx . html)
+
+deploy:
+  provider: script
+  script: tests/deploy-ghpages.sh
+  on:
+    condition: $PYVER = 3.5

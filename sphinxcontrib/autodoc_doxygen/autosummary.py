@@ -72,7 +72,6 @@ def get_documenter(obj, full_name):
     elif obj.tag == 'compounddef':
         return DoxygenClassDocumenter
 
-
     raise NotImplementedError(obj.tag)
 
 

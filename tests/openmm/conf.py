@@ -17,10 +17,8 @@ exclude_patterns = ['_build']
 pygments_style = 'sphinx'
 html_theme = "alabaster"
 html_theme_options = {
-    'description': "High performance molecular simulation on GPUs",
+    'description': "Test site",
     'github_button': False,
-    'logo_name': False,
-    'logo': 'logo.png',
 }
 
 html_sidebars = {

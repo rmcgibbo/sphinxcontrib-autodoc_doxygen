@@ -1,10 +1,13 @@
 #!/bin/bash
-pwd
+GH_USER_NAME="$(git --no-pager show -s --format='%an' HEAD)"
+GH_USER_EMAIL="$(git --no-pager show -s --format='%ae' HEAD)"
+COMMIT_ID="$(git rev-parse --short HEAD)"
+
 (cd $TRAVIS_BUILD_DIR/deploy-html && \
  git init && \
- git config user.name "Travis-CI" && \
- git config user.email "noreply@travis-ci.org" && \
+ git config user.name $GH_USER_NAME && \
+ git config user.email $GH_USER_EMAIL && \
  git add . && \
- git commit -m "Deployed to Github Pages" && \
+ git commit -m "Travis-CI Deployed to Github Pages: $(date) from ${COMMIT_ID}" && \
  git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
 )

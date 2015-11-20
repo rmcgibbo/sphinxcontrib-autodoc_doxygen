@@ -3,8 +3,6 @@ import os
 import re
 import sys
 import codecs
-import argparse
-
 
 from jinja2 import FileSystemLoader
 from jinja2.sandbox import SandboxedEnvironment
@@ -12,7 +10,7 @@ from jinja2.sandbox import SandboxedEnvironment
 from sphinx.util.osutil import ensuredir
 from sphinx.jinja2glue import BuiltinTemplateLoader
 
-from .autosummary import import_by_name, get_documenter
+from .autosummary import import_by_name
 
 
 def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
@@ -73,41 +71,30 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
 
         new_files.append(fn)
 
-        documenter = get_documenter(obj, parent)(
-            argparse.Namespace(env=None, genopt={}), parent)
-        if not documenter.parse_name():
-            raise ValueError('failed to parse name')
-        if not documenter.import_object():
-            raise ValueError('failed to find object')
-        _, members = documenter.get_object_members(True)
-
         with open(fn, 'w') as f:
             template = template_env.get_template(template_name)
 
             ns = {}
-
-            if documenter.objtype == 'module':
-                raise NotImplementedError()
-            elif documenter.objtype == 'doxyclass':
-                ns['methods'] = [m[0] for m in members]
+            if obj.tag == 'compounddef' and obj.get('kind') == 'class':
+                ns['methods'] = [e.text for e in obj.findall('.//sectiondef[@kind="public-func"]/memberdef[@kind="function"]/name')]
+                ns['enums'] = [e.text for e in obj.findall('.//sectiondef[@kind="public-type"]/memberdef[@kind="enum"]/name')]
+                ns['objtype'] = 'class'
             else:
-                raise ValueError(documenter.objtype)
+                raise NotImplementedError(obj)
 
-            parts = name.split('.')
-            if documenter.objtype in ('method', 'attribute'):
-                mod_name = '.'.join(parts[:-2])
-                cls_name = parts[-2]
-                obj_name = '.'.join(parts[-2:])
-                ns['class'] = cls_name
-            else:
-                mod_name, obj_name = '.'.join(parts[:-1]), parts[-1]
+            parts = name.split('::')
+            # if documenter.objtype in ('method', 'attribute'):
+            #     mod_name = '.'.join(parts[:-2])
+            #     cls_name = parts[-2]
+            #     obj_name = '.'.join(parts[-2:])
+            #     ns['class'] = cls_name
+            # else:
+            mod_name, obj_name = '::'.join(parts[:-1]), parts[-1]
 
             ns['fullname'] = name
             ns['module'] = mod_name
             ns['objname'] = obj_name
             ns['name'] = parts[-1]
-
-            ns['objtype'] = documenter.objtype
             ns['underline'] = len(name) * '='
 
             rendered = template.render(**ns)

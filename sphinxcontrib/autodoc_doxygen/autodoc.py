@@ -87,24 +87,15 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
 
     @classmethod
     def can_document_member(cls, member, membername, isattr, parent):
-        if ET.iselement(member) and member.tag == 'memberdef':
+        if ET.iselement(member) and member.tag == 'memberdef' and member.get('kind') == 'function':
             return True
         return False
-
-    def import_object(self):
-        xpath_query = './/compoundname[text()="%s"]/../sectiondef[@kind="public-func"]/memberdef[@kind="function"]/name[text()="%s"]/..' % (self.modname, self.objpath)
-        # print('DoxygenMethodDocumenter import_object')
-        # print('  xpath', xpath_query)
-        self.object = get_doxygen_root().xpath(xpath_query)[0]
-        # print('  setting self.object', self.object)
-        return True
 
     def resolve_name(self, modname, parents, path, base):
         if modname is None:
             if path:
                 mod_cls = path.rstrip('.')
             else:
-                mod_cls = None
                 # if documenting a class-level object without path,
                 # there must be a current class, either from a parent
                 # auto directive ...
@@ -124,6 +115,14 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         # print('  path', path)
         # print('  base', base)
         return '::'.join([x for x in [modname] + parents if len(x) > 1]), base
+
+    def import_object(self):
+        xpath_query = './/compoundname[text()="%s"]/../sectiondef[@kind="public-func"]/memberdef[@kind="function"]/name[text()="%s"]/..' % (self.modname, self.objpath)
+        # print('DoxygenMethodDocumenter import_object')
+        # print('  xpath', xpath_query)
+        self.object = get_doxygen_root().xpath(xpath_query)[0]
+        # print('  setting self.object', self.object)
+        return True
 
     def get_doc(self, encoding):
         detaileddescription = self.object.find('detaileddescription')

@@ -1,14 +1,19 @@
-{{ fullname }}
+{{ name }}
 {{ underline }}
 
-.. autodoxyclass:: {{ objname }}
+.. autodoxyclass:: {{ fullname }}
 
    {% if methods %}
    .. rubric:: Methods
 
    .. autodoxysummary::
    {% for item in methods %}
-      ~{{ name }}.{{ item }}
+      ~{{ fullname }}::{{ item }}
    {%- endfor %}
    {% endif %}
 
+   {% if enums %}
+   {% for enum in enums %}
+   .. autodoxyenum:: {{ enum }}
+   {% endfor %}
+   {% endif %}

@@ -1,19 +1,36 @@
-import os
+import os.path
 from lxml import etree as ET
-
+from sphinx.errors import ExtensionError
 
 def set_doxygen_xml(app):
-    setup.DOXYGEN_ROOT = ET.ElementTree(ET.Element('root')).getroot()
+    """Load all doxygen XML files from the app config variable
+    `app.config.doxygen_xml` which should be a path to a directory
+    containing doxygen xml output
+    """
+    err = ExtensionError(
+        '[sphinxcontrib-autodoc_doxygen] No doxygen '
+        'xml output found in doxygen_xml="%s"' % app.config.doxygen_xml)
 
-    for file in os.listdir(app.config.doxygen_xml):
-        if file.lower().endswith('xml') and not file.lower().startswith('._'):
-            file = os.path.join(app.config.doxygen_xml, file)
-            root = ET.parse(file).getroot()
-            for node in root:
-                setup.DOXYGEN_ROOT.append(node)
+    if not os.path.isdir(app.config.doxygen_xml):
+        raise err
+
+    files = [os.path.join(app.config.doxygen_xml, f)
+             for f in os.listdir(app.config.doxygen_xml)
+             if f.lower().endswith('.xml') and not f.startswith('._')]
+    if len(files) == 0:
+        raise err
+
+    setup.DOXYGEN_ROOT = ET.ElementTree(ET.Element('root')).getroot()
+    for file in files:
+        root = ET.parse(file).getroot()
+        for node in root:
+            setup.DOXYGEN_ROOT.append(node)
+
 
 
 def get_doxygen_root():
+    """Get the root element of the doxygen XML document.
+    """
     return setup.DOXYGEN_ROOT
 
 

@@ -38,7 +38,7 @@ setup(
     ],
     platforms='any',
     packages=find_packages(),
-    package_data={'sphinxcontrib.autodoc_doxygen': ['templates/*']},
+    package_data={'sphinxcontrib.autodoc_doxygen.autosummary': ['templates/*']},
     namespace_packages=['sphinxcontrib'],
     #include_package_data=True,
     #use_scm_version=True,

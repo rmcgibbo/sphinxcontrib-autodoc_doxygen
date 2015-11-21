@@ -1,22 +1,41 @@
 from __future__ import print_function, absolute_import, division
-from lxml import etree as ET
 
-from sphinx.util import rpartition
-from sphinx.ext.autodoc import Documenter
+from lxml import etree as ET
+from sphinx.ext.autodoc import Documenter, members_option
+from sphinx.errors import ExtensionError
 
 from . import get_doxygen_root
 from .xmlutils import format_xml_paragraph
 
 
 class DoxygenDocumenter(Documenter):
+    modname = None
+    objname = None
+    option_spec = {
+        'members': members_option,
+    }
+
     def parse_name(self):
-        retcode = super(DoxygenDocumenter, self).parse_name()
+        """Determine what module to import and what attribute to document.
+        Returns True and sets *self.modname*, *self.objname*, *self.fullname*,
+        if parsing and resolving was successful.
+        """
+        # methods in the superclass sometimes use '.' to join namespace/class
+        # names with method names, and we don't want that.
+        self.name = self.name.replace('.', '::')
+
         self.fullname = self.name
-        # print('%s parse_name' % type(self))
-        # print('  setting self.modname', self.modname)
-        # print('  setting self.objpath', self.objpath)
-        # print('  setting self.fullname', self.fullname)
-        return retcode
+        if '::' in self.name:
+            parts = self.name.split('::')
+            self.modname = self.fullname
+            self.objpath = []
+            self.objname = parts[-1]
+        else:
+            self.modname = self.fullname
+            self.objpath = []
+            self.objname = self.name
+
+        return True
 
     def add_directive_header(self, sig):
         """Add the directive header and options to the generated content."""
@@ -34,6 +53,10 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
     domain = 'cpp'
     priority = 100
 
+    option_spec = {
+        'members': members_option,
+    }
+
     @classmethod
     def can_document_member(cls, member, membername, isattr, parent):
         # print('can_document_member', member, membername, isattr, parent)
@@ -41,16 +64,14 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
 
     def import_object(self):
         xpath_query = './/compoundname[text()="%s"]/..' % self.fullname
-        # print('import_object')
-        # print('  xpath', xpath_query)
-        self.object = get_doxygen_root().xpath(xpath_query)[0]
-        # print('  setting self.object', self.object)
+        match = get_doxygen_root().xpath(xpath_query)
+        if len(match) != 1:
+            raise ExtensionError('[autodoc_doxygen] could not find class (fullname="%s"). I tried'
+                                 'the following xpath: "%s"' % (self.fullname, xpath_query))
+
+        self.object = match[0]
         return True
 
-    def resolve_name(self, modname, parents, path, base):
-        # print('DoxygenClassDocumenter.resolve_name')
-        # print('  ', modname, parents, path, base)
-        return modname, parents + [base]
 
     def format_signaure(self):
         return ''
@@ -64,9 +85,16 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
         return doc
 
     def get_object_members(self, want_all):
-        members = self.object.findall('.//sectiondef[@kind="public-func"]/memberdef[@kind="function"]')
-        names = [m.find('name').text for m in members]
-        return True, zip(names, members)
+        all_members = self.object.findall('.//sectiondef[@kind="public-func"]/memberdef[@kind="function"]')
+
+        if want_all:
+            return False, ((m.find('name').text, m) for m in all_members)
+        else:
+            if not self.options.members:
+                return False, []
+            else:
+                return False, ((m.find('name').text, m) for m in all_members
+                               if m.find('name').text in self.options.members)
 
     def filter_members(self, members, want_all):
         ret = []
@@ -74,8 +102,8 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
             ret.append((membername, member, False))
         return ret
 
-    def document_members(self, members, all_members=False):
-        super(DoxygenClassDocumenter, self).document_members(members)
+    def document_members(self, all_members=False):
+        super(DoxygenClassDocumenter, self).document_members(all_members=all_members)
         # print('\n'.join(self.directive.result))
 
 
@@ -91,37 +119,14 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
             return True
         return False
 
-    def resolve_name(self, modname, parents, path, base):
-        if modname is None:
-            if path:
-                mod_cls = path.rstrip('.')
-            else:
-                # if documenting a class-level object without path,
-                # there must be a current class, either from a parent
-                # auto directive ...
-                mod_cls = self.env.temp_data.get('autodoc:class')
-                # ... or from a class directive
-                if mod_cls is None:
-                    mod_cls = str(self.env.ref_context.get('cpp:lastname'))
-                # ... if still None, there's no way to know
-                if mod_cls is None:
-                    return None, []
-            modname, cls = rpartition(mod_cls, '.')
-            parents = [cls]
-
-        # print('DoxygenMethodDocumenter.resolve_name')
-        # print('  modname', modname)
-        # print('  parents', parents)
-        # print('  path', path)
-        # print('  base', base)
-        return '::'.join([x for x in [modname] + parents if len(x) > 1]), base
-
     def import_object(self):
-        xpath_query = './/compoundname[text()="%s"]/../sectiondef[@kind="public-func"]/memberdef[@kind="function"]/name[text()="%s"]/..' % (self.modname, self.objpath)
-        # print('DoxygenMethodDocumenter import_object')
-        # print('  xpath', xpath_query)
-        self.object = get_doxygen_root().xpath(xpath_query)[0]
-        # print('  setting self.object', self.object)
+        xpath_query = ('.//compoundname[text()="%s"]/../sectiondef[@kind="public-func"]'
+                       '/memberdef[@kind="function"]/name[text()="%s"]/..') % tuple(self.fullname.rsplit('::',1))
+        match = get_doxygen_root().xpath(xpath_query)
+        if len(match) == 0:
+            raise ExtensionError('[autodoc_doxygen] could not find method (modname="%s", objname="%s"). I tried '
+                                 'the following xpath: "%s"' % (tuple(self.fullname.rsplit('::',1)) + (xpath_query,)))
+        self.object = match[0]
         return True
 
     def get_doc(self, encoding):
@@ -130,8 +135,7 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         return doc
 
     def format_name(self):
-        rtype = self.object.find('type').text
-        return (rtype and (rtype + ' ') or '') + self.modname + '::' + self.objpath
+        return self.object.find('definition').text
 
     def format_signature(self):
         args = self.object.find('argsstring').text

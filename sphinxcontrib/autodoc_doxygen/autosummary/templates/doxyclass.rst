@@ -2,6 +2,7 @@
 {{ underline }}
 
 .. autodoxyclass:: {{ fullname }}
+   :members:
 
    {% if methods %}
    .. rubric:: Methods

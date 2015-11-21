@@ -1,14 +1,15 @@
 from __future__ import print_function, absolute_import, division
+
 import re
 
-from sphinx import addnodes
 from docutils import nodes
 from docutils.statemachine import ViewList
+from sphinx import addnodes
 from sphinx.ext.autosummary import Autosummary, autosummary_table
 
-from . import get_doxygen_root
-from .autodoc import DoxygenMethodDocumenter, DoxygenClassDocumenter
-from .xmlutils import format_xml_paragraph
+from .. import get_doxygen_root
+from ..autodoc import DoxygenMethodDocumenter, DoxygenClassDocumenter
+from ..xmlutils import format_xml_paragraph
 
 
 def import_by_name(name, env=None, prefixes=None):
@@ -16,8 +17,9 @@ def import_by_name(name, env=None, prefixes=None):
         prefixes = [None]
 
     if env is not None:
-        if env.ref_context.get('cpp:parent') is not None:
-            prefixes.append(str(env.ref_context.get('cpp:parent')[0]))
+        parent = env.ref_context.get('cpp:parent')
+        if parent:
+            prefixes.append(str(parent[0]))
 
     tried = []
     for prefix in prefixes:

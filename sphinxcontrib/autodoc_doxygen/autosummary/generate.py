@@ -1,16 +1,17 @@
 from __future__ import print_function, absolute_import, division
+
+import codecs
 import os
 import re
 import sys
-import codecs
 
-from jinja2 import FileSystemLoader
+from jinja2 import FileSystemLoader, TemplateNotFound
 from jinja2.sandbox import SandboxedEnvironment
-
-from sphinx.util.osutil import ensuredir
 from sphinx.jinja2glue import BuiltinTemplateLoader
+from sphinx.util.osutil import ensuredir
+from sphinx.errors import ExtensionError
 
-from .autosummary import import_by_name
+from . import import_by_name
 
 
 def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
@@ -30,6 +31,7 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
 
     # create our own templating environment
     template_dirs = [os.path.join(os.path.dirname(__file__), 'templates')]
+    print(template_dirs)
 
     if builder is not None:
         # allow the user to override the templates
@@ -47,7 +49,6 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
     # keep track of new files
     new_files = []
 
-    # write
     for name, path, template_name in sorted(set(items), key=str):
         if path is None:
             # The corresponding autosummary:: directive did not have
@@ -71,9 +72,14 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
 
         new_files.append(fn)
 
+        if template_name is None:
+            if obj.tag == 'compounddef' and obj.get('kind') == 'class':
+                 template_name = 'doxyclass.rst'
+            else:
+                raise NotImplementedError('No template for %s' % obj)
+
         with open(fn, 'w') as f:
             template = template_env.get_template(template_name)
-
             ns = {}
             if obj.tag == 'compounddef' and obj.get('kind') == 'class':
                 ns['methods'] = [e.text for e in obj.findall('.//sectiondef[@kind="public-func"]/memberdef[@kind="function"]/name')]

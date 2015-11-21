@@ -38,7 +38,7 @@ def setup(app):
     import sphinx.ext.autosummary
     from .autodoc import DoxygenClassDocumenter, DoxygenMethodDocumenter
     from .autosummary import DoxygenAutosummary, DoxygenAutoEnum
-    from .generate import process_generate_options
+    from .autosummary.generate import process_generate_options
 
     app.connect("builder-inited", set_doxygen_xml)
     app.connect("builder-inited", process_generate_options)

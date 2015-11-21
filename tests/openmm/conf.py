@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import os
-import sys
-import tarfile
+import os.path
 
 extensions = ['sphinx.ext.mathjax', 'sphinx.ext.ifconfig', 'sphinxcontrib.autodoc_doxygen']
 
 autosummary_generate = True
-autodoc_default_flags = ['members', 'inherited-members']
 autodoc_member_order = 'bysource'
 
 project="test1"

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Index &mdash; test1  documentation</title>
+    <title>autodoxymethod &mdash; test1  documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="test1  documentation" href="#" />
-    <link rel="next" title="autodoxysummary" href="autodoxysummary.html" />
+    <link rel="top" title="test1  documentation" href="index.html" />
+    <link rel="prev" title="autodoxyclass" href="autodoxyclass.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -38,15 +38,42 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="index">
-<h1>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h1>
-<p>This page show some examples using Doxygen XML from OpenMM.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="autodoxysummary.html">autodoxysummary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autodoxyclass.html">autodoxyclass</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autodoxymethod.html">autodoxymethod</a></li>
+  <div class="section" id="autodoxymethod">
+<h1>autodoxymethod<a class="headerlink" href="#autodoxymethod" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="input">
+<h2>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h2>
+<p>Methods can also be documented individually:</p>
+<div class="highlight-python"><div class="highlight"><pre>.. autodoxymethod:: OpenMM::AmoebaAngleForce::addAngle
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="_CPPv2N6OpenMM16AmoebaAngleForce8addAngleEiiidd">
+<span id="OpenMM::AmoebaAngleForce::addAngle__i.i.i.double.double"></span>int <code class="descclassname">OpenMM::AmoebaAngleForce::</code><code class="descname">addAngle</code><span class="sig-paren">(</span>int <em>particle1</em>, int <em>particle2</em>, int <em>particle3</em>, double <em>length</em>, double <em>quadraticK</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16AmoebaAngleForce8addAngleEiiidd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an angle term to the force field.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>particle1</strong> &#8211; (int) the index of the first particle connected by the angle</li>
+<li><strong>particle2</strong> &#8211; (int) the index of the second particle connected by the angle</li>
+<li><strong>particle3</strong> &#8211; (int) the index of the third particle connected by the angle</li>
+<li><strong>length</strong> &#8211; (double) the equilibrium angle, measured in degrees</li>
+<li><strong>quadraticK</strong> &#8211; (double) the quadratic force constant for the angle, measured in kJ/mol/radian^2</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the index of the angle that was added</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 </div>
 
@@ -56,7 +83,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">test1</a></h1>
+<h1 class="logo"><a href="index.html">test1</a></h1>
 
 
 
@@ -79,10 +106,10 @@
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="autodoxysummary.html">autodoxysummary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autodoxyclass.html">autodoxyclass</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autodoxymethod.html">autodoxymethod</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">autodoxymethod</a></li>
 </ul>
 
 
@@ -98,7 +125,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
-      <a href="_sources/index.txt"
+      <a href="_sources/autodoxymethod.txt"
           rel="nofollow">Page source</a>
     </div>
 

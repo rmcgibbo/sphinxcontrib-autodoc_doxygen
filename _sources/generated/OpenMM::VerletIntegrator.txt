@@ -1,0 +1,16 @@
+VerletIntegrator
+========================
+
+.. autodoxyclass:: OpenMM::VerletIntegrator
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autodoxysummary::
+   
+      ~OpenMM::VerletIntegrator::VerletIntegrator
+      ~OpenMM::VerletIntegrator::step
+   
+
+   

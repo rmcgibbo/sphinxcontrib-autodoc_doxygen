@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>autodoxyclass &mdash; test1  documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="test1  documentation" href="index.html" />
+    <link rel="next" title="autodoxymethod" href="autodoxymethod.html" />
+    <link rel="prev" title="VerletIntegrator" href="generated/OpenMM::VerletIntegrator.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="autodoxyclass">
+<h1>autodoxyclass<a class="headerlink" href="#autodoxyclass" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="input">
+<h2>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">autodoxyclass</span></code> directive will insert the docstring of the class:</p>
+<div class="highlight-python"><div class="highlight"><pre>.. autodoxyclass:: OpenMM::Force
+</pre></div>
+</div>
+<p>which produces something like</p>
+<div class="highlight-python"><div class="highlight"><pre>.. :cpp:class:: OpenMM::Force
+
+   Force&#39;s documentation.
+</pre></div>
+</div>
+<p>If you want to automatically document members, there is a members option:</p>
+<div class="highlight-python"><div class="highlight"><pre>.. autodoxyclass:: OpenMM::Force
+   :members:
+</pre></div>
+</div>
+<p>which will automatically insert documentation for each of the members.</p>
+<p>You can also add content to the directive which will appear after the class docstring
+but before the methods, like a summary table.</p>
+<div class="highlight-python"><div class="highlight"><pre>.. autodoxyclass:: OpenMM::Force
+   :members:
+
+   .. rubric:: Methods
+
+   .. autodoxysummary::
+
+     ~OpenMM::Force::getForceGroup
+     ~OpenMM::Force::setForceGroup
+     ~OpenMM::Force::usesPeriodicBoundaryConditions
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>.. autodoxyclass:: OpenMM::Platform
+</pre></div>
+</div>
+<dl class="class">
+<dt id="_CPPv2N6OpenMM8PlatformE">
+<span id="OpenMM::Platform"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">Platform</code><a class="headerlink" href="#_CPPv2N6OpenMM8PlatformE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#_CPPv2N6OpenMM8PlatformE" title="OpenMM::Platform"><code class="xref cpp cpp-any docutils literal"><span class="pre">Platform</span></code></a> defines an implementation of all the kernels needed to perform some calculation. More precisely, a <a class="reference internal" href="#_CPPv2N6OpenMM8PlatformE" title="OpenMM::Platform"><code class="xref cpp cpp-any docutils literal"><span class="pre">Platform</span></code></a> object acts as a registry for a set of KernelFactory objects which together implement the kernels. The <a class="reference internal" href="#_CPPv2N6OpenMM8PlatformE" title="OpenMM::Platform"><code class="xref cpp cpp-any docutils literal"><span class="pre">Platform</span></code></a> class, in turn, provides a static registry of all available <a class="reference internal" href="#_CPPv2N6OpenMM8PlatformE" title="OpenMM::Platform"><code class="xref cpp cpp-any docutils literal"><span class="pre">Platform</span></code></a> objects.</p>
+<p>To get a <a class="reference internal" href="#_CPPv2N6OpenMM8PlatformE" title="OpenMM::Platform"><code class="xref cpp cpp-any docutils literal"><span class="pre">Platform</span></code></a> object, call</p>
+<div class="highlight-C++"><div class="highlight"><pre><span class="n">Platform</span><span class="o">&amp;</span> <span class="n">platform</span> <span class="n">Platform</span><span class="o">::</span><span class="n">findPlatform</span><span class="p">(</span><span class="n">kernelNames</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>passing in the names of all kernels that will be required for the calculation you plan to perform. It will return the fastest available <a class="reference internal" href="#_CPPv2N6OpenMM8PlatformE" title="OpenMM::Platform"><code class="xref cpp cpp-any docutils literal"><span class="pre">Platform</span></code></a> which provides implementations of all the specified kernels. You can then call <code class="xref cpp cpp-any docutils literal"><span class="pre">createKernel()</span></code> to construct particular kernels as needed.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<div class="highlight-python"><div class="highlight"><pre>.. autodoxyclass:: OpenMM::Integrator
+   :members:
+</pre></div>
+</div>
+<dl class="class">
+<dt id="_CPPv2N6OpenMM10IntegratorE">
+<span id="OpenMM::Integrator"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">Integrator</code><a class="headerlink" href="#_CPPv2N6OpenMM10IntegratorE" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <a class="reference internal" href="#_CPPv2N6OpenMM10IntegratorE" title="OpenMM::Integrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">Integrator</span></code></a> defines a method for simulating a <code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code> by integrating the equations of motion. This is an abstract class. Subclasses define particular integration methods.</p>
+<p>Each <a class="reference internal" href="#_CPPv2N6OpenMM10IntegratorE" title="OpenMM::Integrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">Integrator</span></code></a> object is bound to a particular <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> which it integrates. This connection is specified by passing the <a class="reference internal" href="#_CPPv2N6OpenMM10IntegratorE" title="OpenMM::Integrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">Integrator</span></code></a> as an argument to the constructor of the <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>.</p>
+<dl class="function">
+<dt id="_CPPv2N6OpenMM10Integrator6OpenMM10Integrator10IntegratorEv">
+<span id="OpenMM::Integrator::OpenMM::Integrator::Integrator"></span><code class="descclassname">OpenMM::Integrator::</code><code class="descname">Integrator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM10Integrator6OpenMM10Integrator10IntegratorEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6OpenMM10Integrator6OpenMM10IntegratorD0Ev">
+<span id="OpenMM::Integrator::OpenMM::Integrator::~Integrator"></span><em class="property">virtual</em> <code class="descclassname">OpenMM::Integrator::</code><code class="descname">~Integrator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM10Integrator6OpenMM10IntegratorD0Ev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK6OpenMM10Integrator6OpenMM10Integrator11getStepSizeEv">
+<span id="OpenMM::Integrator::OpenMM::Integrator::getStepSizeC"></span><em class="property">virtual</em> double <code class="descclassname">OpenMM::Integrator::</code><code class="descname">getStepSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM10Integrator6OpenMM10Integrator11getStepSizeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the size of each time step, in picoseconds. If this integrator uses variable time steps, the size of the most recent step is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the step size, measured in ps</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6OpenMM10Integrator6OpenMM10Integrator11setStepSizeEd">
+<span id="OpenMM::Integrator::OpenMM::Integrator::setStepSize__double"></span><em class="property">virtual</em> void <code class="descclassname">OpenMM::Integrator::</code><code class="descname">setStepSize</code><span class="sig-paren">(</span>double <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM10Integrator6OpenMM10Integrator11setStepSizeEd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the size of each time step, in picoseconds. If this integrator uses variable time steps, the effect of calling this method is undefined, and it may simply be ignored.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Parameters size:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">(double) the step size, measured in ps</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK6OpenMM10Integrator6OpenMM10Integrator22getConstraintToleranceEv">
+<span id="OpenMM::Integrator::OpenMM::Integrator::getConstraintToleranceC"></span><em class="property">virtual</em> double <code class="descclassname">OpenMM::Integrator::</code><code class="descname">getConstraintTolerance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM10Integrator6OpenMM10Integrator22getConstraintToleranceEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the distance tolerance within which constraints are maintained, as a fraction of the constrained distance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6OpenMM10Integrator6OpenMM10Integrator22setConstraintToleranceEd">
+<span id="OpenMM::Integrator::OpenMM::Integrator::setConstraintTolerance__double"></span><em class="property">virtual</em> void <code class="descclassname">OpenMM::Integrator::</code><code class="descname">setConstraintTolerance</code><span class="sig-paren">(</span>double <em>tol</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM10Integrator6OpenMM10Integrator22setConstraintToleranceEd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the distance tolerance within which constraints are maintained, as a fraction of the constrained distance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6OpenMM10Integrator6OpenMM10Integrator4stepEi">
+<span id="OpenMM::Integrator::OpenMM::Integrator::step__i"></span><em class="property">virtual</em> void <code class="descclassname">OpenMM::Integrator::</code><code class="descname">step</code><span class="sig-paren">(</span>int <em>steps</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N6OpenMM10Integrator6OpenMM10Integrator4stepEi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advance a simulation through time by taking a series of time steps.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Parameters steps:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">(int) the number of time steps to take</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<hr class="docutils" />
+<div class="highlight-python"><div class="highlight"><pre>.. autodoxyclass:: OpenMM::Force
+   :members:
+
+   .. rubric:: Methods
+
+   .. autodoxysummary::
+
+     ~OpenMM::Force::getForceGroup
+     ~OpenMM::Force::setForceGroup
+     ~OpenMM::Force::usesPeriodicBoundaryConditions
+</pre></div>
+</div>
+<dl class="class">
+<dt id="_CPPv2N6OpenMM5ForceE">
+<span id="OpenMM::Force"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">Force</code><a class="headerlink" href="#_CPPv2N6OpenMM5ForceE" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> objects apply forces to the particles in a <code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code>, or alter their behavior in other ways. This is an abstract class. Subclasses define particular forces.</p>
+<p>More specifically, a <a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> object can do any or all of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Add a contribution to the force on each particle</li>
+<li>Add a contribution to the potential energy of the <code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></li>
+<li>Modify the positions and velocities of particles at the start of each time step</li>
+<li>Define parameters which are stored in the <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> and can be modified by the user</li>
+<li>Change the values of parameters defined by other <a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> objects at the start of each time step</li>
+</ul>
+</div></blockquote>
+<p>Forces may be organized into &#8220;force groups&#8221;. This is used for multiple time step integration, and allows subsets of the Forces in a <code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code> to be evaluated at different times. By default, all Forces are in group 0. Call <a class="reference internal" href="#_CPPv2N6OpenMM5Force6OpenMM5Force13setForceGroupEi" title="OpenMM::Force::OpenMM::Force::setForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">setForceGroup()</span></code></a> to change this. Some <a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> subclasses may provide additional methods to further split their computations into multiple groups. Be aware that particular Platforms may place restrictions on the use of force groups, such as requiring all nonbonded forces to be in the same group.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM5Force6OpenMM5Force13getForceGroupEv" title="OpenMM::Force::OpenMM::Force::getForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">getForceGroup</span></code></a></td>
+<td>Get the force group this <a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> belongs to.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM5Force6OpenMM5Force13setForceGroupEi" title="OpenMM::Force::OpenMM::Force::setForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">setForceGroup</span></code></a></td>
+<td>Set the force group this <a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> belongs to.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM5Force6OpenMM5Force30usesPeriodicBoundaryConditionsEv" title="OpenMM::Force::OpenMM::Force::usesPeriodicBoundaryConditions"><code class="xref cpp cpp-any docutils literal"><span class="pre">usesPeriodicBoundaryConditions</span></code></a></td>
+<td>Returns whether or not this force makes use of periodic boundary conditions.</td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="_CPPv2N6OpenMM5Force6OpenMM5Force5ForceEv">
+<span id="OpenMM::Force::OpenMM::Force::Force"></span><code class="descclassname">OpenMM::Force::</code><code class="descname">Force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM5Force6OpenMM5Force5ForceEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6OpenMM5Force6OpenMM5ForceD0Ev">
+<span id="OpenMM::Force::OpenMM::Force::~Force"></span><em class="property">virtual</em> <code class="descclassname">OpenMM::Force::</code><code class="descname">~Force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM5Force6OpenMM5ForceD0Ev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK6OpenMM5Force6OpenMM5Force13getForceGroupEv">
+<span id="OpenMM::Force::OpenMM::Force::getForceGroupC"></span>int <code class="descclassname">OpenMM::Force::</code><code class="descname">getForceGroup</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM5Force6OpenMM5Force13getForceGroupEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the force group this <a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> belongs to.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6OpenMM5Force6OpenMM5Force13setForceGroupEi">
+<span id="OpenMM::Force::OpenMM::Force::setForceGroup__i"></span>void <code class="descclassname">OpenMM::Force::</code><code class="descname">setForceGroup</code><span class="sig-paren">(</span>int <em>group</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM5Force6OpenMM5Force13setForceGroupEi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the force group this <a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> belongs to.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Parameters group:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">(int) the group index. Legal values are between 0 and 31 (inclusive).</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK6OpenMM5Force6OpenMM5Force30usesPeriodicBoundaryConditionsEv">
+<span id="OpenMM::Force::OpenMM::Force::usesPeriodicBoundaryConditionsC"></span><em class="property">virtual</em> bool <code class="descclassname">OpenMM::Force::</code><code class="descname">usesPeriodicBoundaryConditions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM5Force6OpenMM5Force30usesPeriodicBoundaryConditionsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether or not this force makes use of periodic boundary conditions. This method should be overridden for all <a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> subclasses, or a <code class="xref cpp cpp-any docutils literal"><span class="pre">OpenMM::OpenMMException</span></code> will be thrown</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">true if <a class="reference internal" href="#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> uses periodic boundaries or false if it does not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">test1</a></h1>
+
+
+
+<p class="blurb">sphinx-contrib autodoc_doxygen test site</p>
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="autodoxysummary.html">autodoxysummary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">autodoxyclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autodoxymethod.html">autodoxymethod</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+      |
+      <a href="_sources/autodoxyclass.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,49 @@
+NonbondedForce
+======================
+
+.. autodoxyclass:: OpenMM::NonbondedForce
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autodoxysummary::
+   
+      ~OpenMM::NonbondedForce::NonbondedForce
+      ~OpenMM::NonbondedForce::getNumParticles
+      ~OpenMM::NonbondedForce::getNumExceptions
+      ~OpenMM::NonbondedForce::getNonbondedMethod
+      ~OpenMM::NonbondedForce::setNonbondedMethod
+      ~OpenMM::NonbondedForce::getCutoffDistance
+      ~OpenMM::NonbondedForce::setCutoffDistance
+      ~OpenMM::NonbondedForce::getUseSwitchingFunction
+      ~OpenMM::NonbondedForce::setUseSwitchingFunction
+      ~OpenMM::NonbondedForce::getSwitchingDistance
+      ~OpenMM::NonbondedForce::setSwitchingDistance
+      ~OpenMM::NonbondedForce::getReactionFieldDielectric
+      ~OpenMM::NonbondedForce::setReactionFieldDielectric
+      ~OpenMM::NonbondedForce::getEwaldErrorTolerance
+      ~OpenMM::NonbondedForce::setEwaldErrorTolerance
+      ~OpenMM::NonbondedForce::getPMEParameters
+      ~OpenMM::NonbondedForce::setPMEParameters
+      ~OpenMM::NonbondedForce::getPMEParametersInContext
+      ~OpenMM::NonbondedForce::addParticle
+      ~OpenMM::NonbondedForce::getParticleParameters
+      ~OpenMM::NonbondedForce::setParticleParameters
+      ~OpenMM::NonbondedForce::addException
+      ~OpenMM::NonbondedForce::getExceptionParameters
+      ~OpenMM::NonbondedForce::setExceptionParameters
+      ~OpenMM::NonbondedForce::createExceptionsFromBonds
+      ~OpenMM::NonbondedForce::getUseDispersionCorrection
+      ~OpenMM::NonbondedForce::setUseDispersionCorrection
+      ~OpenMM::NonbondedForce::getReciprocalSpaceForceGroup
+      ~OpenMM::NonbondedForce::setReciprocalSpaceForceGroup
+      ~OpenMM::NonbondedForce::updateParametersInContext
+      ~OpenMM::NonbondedForce::usesPeriodicBoundaryConditions
+   
+
+   
+   
+   .. autodoxyenum:: NonbondedMethod
+   
+   

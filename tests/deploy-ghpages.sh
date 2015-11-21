@@ -11,6 +11,7 @@ git clone -b gh-pages --single-branch "https://${GH_REF}" gh-pages
 cp -rf $TRAVIS_BUILD_DIR/deploy-html/* gh-pages/
 cd gh-pages
 git add .
+git rm $(git ls-files --deleted)
 git commit -m "Travis-CI deploy ${COMMIT_ID} to gh-pages" && \
 git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages > /dev/null 2>&1
 

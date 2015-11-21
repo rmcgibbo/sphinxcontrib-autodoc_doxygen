@@ -56,3 +56,6 @@ docs/_build/
 # PyBuilder
 target/
 .idea
+examples/xml
+examples/openmm/html
+examples/openmm/generated

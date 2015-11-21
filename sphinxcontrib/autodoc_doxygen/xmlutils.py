@@ -19,6 +19,12 @@ def format_xml_paragraph(xmlnode):
 
 
 class _DoxygenXmlParagraphFormatter(object):
+    # This class follows the model of the stdlib's ast.NodeVisitor for tree traversal
+    # where you dispatch on the element type to a different method for each node
+    # during the traverse.
+
+    # It's supposed to handle paragraphs, references, preformatted text (code blocks), and lists.
+
     def __init__(self):
         self.lines = ['']
         self.continue_line = False

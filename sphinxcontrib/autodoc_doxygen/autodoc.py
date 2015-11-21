@@ -9,8 +9,13 @@ from .xmlutils import format_xml_paragraph
 
 
 class DoxygenDocumenter(Documenter):
-    modname = None
-    objname = None
+    # Variables to store the names of the object being documented. modname and fullname are redundant,
+    # and objpath is always the empty list. This is inelegant, but we need to work with the superclass.
+
+    fullname = None  # example: "OpenMM::NonbondedForce" or "OpenMM::NonbondedForce::methodName""
+    modname = None   # example: "OpenMM::NonbondedForce" or "OpenMM::NonbondedForce::methodName""
+    objname = None   # example: "NonbondedForce"  or "methodName"
+    objpath = []     # always the empty list
     option_spec = {
         'members': members_option,
     }
@@ -20,19 +25,23 @@ class DoxygenDocumenter(Documenter):
         Returns True and sets *self.modname*, *self.objname*, *self.fullname*,
         if parsing and resolving was successful.
         """
+        # To view the context and order in which all of these methods get called,
+        # See, Documenter.generate(). That's the main "entry point" that first
+        # calls parse_name(), follwed by import_object(), format_signature(),
+        # add_directive_header(), and then add_content() (which calls get_doc())
+
         # methods in the superclass sometimes use '.' to join namespace/class
         # names with method names, and we don't want that.
         self.name = self.name.replace('.', '::')
 
         self.fullname = self.name
+        self.modname = self.fullname
+        self.objpath = []
+
         if '::' in self.name:
             parts = self.name.split('::')
-            self.modname = self.fullname
-            self.objpath = []
             self.objname = parts[-1]
         else:
-            self.modname = self.fullname
-            self.objpath = []
             self.objname = self.name
 
         return True
@@ -59,10 +68,20 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
 
     @classmethod
     def can_document_member(cls, member, membername, isattr, parent):
-        # print('can_document_member', member, membername, isattr, parent)
+        # this method is only called from Documenter.document_members
+        # when a higher level documenter (module or namespace) is trying
+        # to choose the appropriate documenter for each of its lower-level
+        # members. Currently not implemented since we don't have a higher-level
+        # doumenter like a DoxygenNamespaceDocumenter.
         return False
 
     def import_object(self):
+        """Import the object and set it as *self.object*.  In the call sequence, this
+        is executed right after parse_name(), so it can use *self.fullname*, *self.objname*,
+        and *self.modname*.
+
+        Returns True if successful, False if an error occurred.
+        """
         xpath_query = './/compoundname[text()="%s"]/..' % self.fullname
         match = get_doxygen_root().xpath(xpath_query)
         if len(match) != 1:
@@ -71,7 +90,6 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
 
         self.object = match[0]
         return True
-
 
     def format_signaure(self):
         return ''
@@ -104,6 +122,7 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
 
     def document_members(self, all_members=False):
         super(DoxygenClassDocumenter, self).document_members(all_members=all_members)
+        # Uncomment to view the generated rst for the class.
         # print('\n'.join(self.directive.result))
 
 

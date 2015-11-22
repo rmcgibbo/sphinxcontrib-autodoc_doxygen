@@ -32,7 +32,7 @@ after_success:
    ./examples/deploy-ghpages.sh $TRAVIS_BUILD_DIR/deploy-html
 
 before_cache:
-  - rm -f $HOME/.cache/pip/log/debug.log
+  - rm -f $HOME/.cache/pip/log
   - find $HOME/.cache/pip -name 'sphinxcontrib_autodoc_doxygen*.whl' -delete || true
 
 cache:

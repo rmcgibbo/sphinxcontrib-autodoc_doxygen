@@ -29,7 +29,7 @@ script:
 
 
 after_success:
-  - test $PYVER == '3.5' && test $TRAVIS_PULL_REQUEST == 'false' &&
+  - test $TRAVIS_PYTHON_VERSION = '3.5' && test $TRAVIS_PULL_REQUEST = 'false' &&
    ./examples/deploy-ghpages.sh $TRAVIS_BUILD_DIR/deploy-html
 
 before_cache:

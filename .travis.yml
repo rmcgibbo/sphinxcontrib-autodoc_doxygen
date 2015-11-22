@@ -21,7 +21,7 @@ branches:
 before_install:
   - pip install --upgrade pip wheel
   - ls $HOME/.wheelhouse
-  - pip wheel -r requirements.txt -w $HOME/.wheelhouse
+  - pip wheel -r requirements.txt -w $HOME/.wheelhouse -f $HOME/.wheelhouse
 
 install:
   - pip install . --no-index --find-links $HOME/.wheelhouse

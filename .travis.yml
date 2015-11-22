@@ -23,8 +23,7 @@ install:
   - wget "https://github.com/getnikola/wheelhouse/archive/v${PYVER}.zip"
   - unzip "v${PYVER}.zip"
   - pip install pytest
-  - pip install --use-wheel --find-links=wheelhouse-${PYVER} -r requirements.txt
-  - pip install .
+  - pip install --use-wheel --find-links=wheelhouse-${PYVER} .
 
 script:
   - py.test

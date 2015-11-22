@@ -43,5 +43,10 @@ setup(
     #include_package_data=True,
     #use_scm_version=True,
     #setup_requires=['setuptools_scm'],
-    install_requires=readfile('requirements.txt'),
+    install_requires=[
+        'sphinx==1.3.1',
+        'docutils>=0.11',
+        'jinja2>=2.3',
+        'lxml',
+    ],
 )

@@ -13,7 +13,7 @@ possble.
 
 Usage
 -----
-In your Sphinx ``conf.py` add ``'sphinxcontrib.autodoc_doxygen'`` to the list of extensions, and set the
+In your Sphinx ``conf.py`` add ``'sphinxcontrib.autodoc_doxygen'`` to the list of extensions, and set the
 variable ``doxygen_xml`` to a string containing the path to the directory containing your Doxygen XML
 output.
 

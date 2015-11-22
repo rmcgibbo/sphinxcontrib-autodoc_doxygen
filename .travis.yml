@@ -16,13 +16,11 @@ branches:
     - master
 
 before_install:
-  - "pip install --upgrade pip wheel"
-  - PYVER=$(python -c "import sys; print(sys.version[:3])")
+  - pip install --upgrade pip wheel
+  - find $HOME/.cache/pip -name '*.whl'
 
 install:
-  - wget "https://github.com/getnikola/wheelhouse/archive/v${PYVER}.zip"
-  - unzip "v${PYVER}.zip"
-  - pip install --use-wheel --find-links=wheelhouse-${PYVER} .
+  - pip install .
 
 script:
   - py.test
@@ -33,3 +31,12 @@ script:
 after_success:
   - test $PYVER = '3.5' && test $TRAVIS_PULL_REQUEST = 'false' &&
    ./examples/deploy-ghpages.sh $TRAVIS_BUILD_DIR/deploy-html
+
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+  - rm -rf $HOME/.cache/pip/http
+  - find $HOME/.cache/pip -name 'sphinxcontrib_autodoc_doxygen*.whl' -delete || true
+
+cache:
+  directories:
+    - $HOME/.cache/pip

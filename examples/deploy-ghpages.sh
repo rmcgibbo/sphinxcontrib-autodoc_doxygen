@@ -8,8 +8,9 @@ trap "rm -rf ${TEMPDIR}" EXIT
 
 cd $TEMPDIR
 git clone -b gh-pages --single-branch "https://${GH_REF}" gh-pages
-cp -rf $TRAVIS_BUILD_DIR/deploy-html/* gh-pages/
 cd gh-pages
+rm -f $(git ls-files)
+cp -rf $TRAVIS_BUILD_DIR/deploy-html/* .
 git add .
 git rm $(git ls-files --deleted)
 git commit -m "Travis-CI deploy ${COMMIT_ID} to gh-pages" && \

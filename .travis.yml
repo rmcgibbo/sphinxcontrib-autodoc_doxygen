@@ -22,10 +22,12 @@ before_install:
 install:
   - wget "https://github.com/getnikola/wheelhouse/archive/v${PYVER}.zip"
   - unzip "v${PYVER}.zip"
+  - pip install pytest
   - pip install --use-wheel --find-links=wheelhouse-${PYVER} -r requirements.txt
   - pip install .
 
 script:
+  - py.test
   - (cd examples && tar -xjf openmm-doxygen-xml.tar.bz2)
   - (cd examples/openmm && python -m sphinx . $TRAVIS_BUILD_DIR/deploy-html)
 

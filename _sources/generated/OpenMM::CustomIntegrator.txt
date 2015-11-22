@@ -2,6 +2,7 @@ CustomIntegrator
 ========================
 
 .. autodoxyclass:: OpenMM::CustomIntegrator
+   :members:
 
    
    .. rubric:: Methods

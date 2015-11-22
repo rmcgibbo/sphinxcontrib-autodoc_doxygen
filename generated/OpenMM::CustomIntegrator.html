@@ -25,8 +25,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="test1  documentation" href="../index.html" />
-    <link rel="next" title="CustomCompoundBondForce" href="OpenMM::CustomCompoundBondForce.html" />
-    <link rel="prev" title="Index" href="../index.html" />
+    <link rel="up" title="autodoxysummary" href="../autodoxysummary.html" />
+    <link rel="next" title="autodoxyclass" href="../autodoxyclass.html" />
+    <link rel="prev" title="VerletIntegrator" href="OpenMM::VerletIntegrator.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -44,7 +45,7 @@
 <dl class="class">
 <dt id="_CPPv2N6OpenMM16CustomIntegratorE">
 <span id="OpenMM::CustomIntegrator"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">CustomIntegrator</code><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is an <code class="xref cpp cpp-any docutils literal"><span class="pre">Integrator</span></code> that can be used to implemented arbitrary, user defined integration algorithms. It is flexible enough to support a wide range of methods including both deterministic and stochastic integrators, Metropolized integrators, and integrators that must integrate additional quantities along with the particle positions and momenta.</p>
+<dd><p>This is an <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM10IntegratorE" title="OpenMM::Integrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">Integrator</span></code></a> that can be used to implemented arbitrary, user defined integration algorithms. It is flexible enough to support a wide range of methods including both deterministic and stochastic integrators, Metropolized integrators, and integrators that must integrate additional quantities along with the particle positions and momenta.</p>
 <p>To create an integration algorithm, you first define a set of variables the integrator will compute. Variables come in two types: <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="OpenMM::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a>. All variables are persistent between integration steps; once a value is set, it keeps that value until it is changed by the user or recomputed in a later integration step.</p>
 <p>Next, you define the algorithm as a series of computations. To execute a time step, the integrator performs the list of computations in order. Each computation updates the value of one global or per-DOF value. There are several types of computations that can be done:</p>
 <blockquote>
@@ -112,7 +113,7 @@
 </pre></div>
 </div>
 <p>The condition in an &#8220;if&#8221; or &#8220;while&#8221; block is evaluated globally, so it may only involve global variables, not per-DOF ones. It may use any of the following comparison operators: =, &lt;. &gt;, !=, &lt;=, &gt;=. Blocks may be nested inside each other.</p>
-<p>An <code class="xref cpp cpp-any docutils literal"><span class="pre">Integrator</span></code> has one other job in addition to evolving the equations of motion: it defines how to compute the kinetic energy of the system. Depending on the integration method used, simply summing mv</p>
+<p>An <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM10IntegratorE" title="OpenMM::Integrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">Integrator</span></code></a> has one other job in addition to evolving the equations of motion: it defines how to compute the kinetic energy of the system. Depending on the integration method used, simply summing mv</p>
 <p>Call <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator6OpenMM16CustomIntegrator26setKineticEnergyExpressionERKNSt6stringE" title="OpenMM::CustomIntegrator::OpenMM::CustomIntegrator::setKineticEnergyExpression"><code class="xref cpp cpp-any docutils literal"><span class="pre">setKineticEnergyExpression()</span></code></a> to set an expression for the kinetic energy. It is computed for every degree of freedom (excluding ones whose mass is 0) and the result is summed. The default expression is &#8220;m*v*v/2&#8221;, which is correct for many integrators.</p>
 <p>As example, the following line defines the correct way to compute kinetic energy when using a leapfrog algorithm:</p>
 <div class="highlight-C++"><div class="highlight"><pre><span class="n">integrator</span><span class="p">.</span><span class="n">setKineticEnergyExpression</span><span class="p">(</span><span class="s">&quot;m*v1*v1/2; v1=v+0.5*dt*f/m&quot;</span><span class="p">);</span>
@@ -703,8 +704,8 @@
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator6OpenMM16CustomIntegrator19setRandomNumberSeedEi">
 <span id="OpenMM::CustomIntegrator::OpenMM::CustomIntegrator::setRandomNumberSeed__i"></span>void <code class="descclassname">OpenMM::CustomIntegrator::</code><code class="descname">setRandomNumberSeed</code><span class="sig-paren">(</span>int <em>seed</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator6OpenMM16CustomIntegrator19setRandomNumberSeedEi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the random number seed. The precise meaning of this parameter is undefined, and is left up to each <code class="xref cpp cpp-any docutils literal"><span class="pre">Platform</span></code> to interpret in an appropriate way. It is guaranteed that if two simulations are run with different random number seeds, the sequence of random numbers will be different. On the other hand, no guarantees are made about the behavior of simulations that use the same seed. In particular, Platforms are permitted to use non-deterministic algorithms which produce different results on successive runs, even if those runs were initialized identically.</p>
-<p>If seed is set to 0 (which is the default value assigned), a unique seed is chosen when a <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> is created from this <code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code>. This is done to ensure that each <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> receives unique random seeds without you needing to set them explicitly.</p>
+<dd><p>Set the random number seed. The precise meaning of this parameter is undefined, and is left up to each <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM8PlatformE" title="OpenMM::Platform"><code class="xref cpp cpp-any docutils literal"><span class="pre">Platform</span></code></a> to interpret in an appropriate way. It is guaranteed that if two simulations are run with different random number seeds, the sequence of random numbers will be different. On the other hand, no guarantees are made about the behavior of simulations that use the same seed. In particular, Platforms are permitted to use non-deterministic algorithms which produce different results on successive runs, even if those runs were initialized identically.</p>
+<p>If seed is set to 0 (which is the default value assigned), a unique seed is chosen when a <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> is created from this <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a>. This is done to ensure that each <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> receives unique random seeds without you needing to set them explicitly.</p>
 </dd></dl>
 
 <dl class="function">
@@ -756,8 +757,9 @@
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">CustomIntegrator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="OpenMM::CustomCompoundBondForce.html">CustomCompoundBondForce</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../autodoxysummary.html">autodoxysummary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autodoxyclass.html">autodoxyclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autodoxymethod.html">autodoxymethod</a></li>
 </ul>
 
 
@@ -773,7 +775,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
-      <a href="../_sources/generated_doxy/OpenMM::CustomIntegrator.txt"
+      <a href="../_sources/generated/OpenMM::CustomIntegrator.txt"
           rel="nofollow">Page source</a>
     </div>
 

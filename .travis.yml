@@ -19,7 +19,8 @@ before_install:
   - pip install --upgrade pip wheel
 
 install:
-  - pip install .
+  - pip wheel -r requirements.txt -w $HOME/.wheelhouse
+  - pip install . --no-index --find-links $HOME/.wheelhouse
 
 script:
   - py.test
@@ -31,10 +32,6 @@ after_success:
   - test $TRAVIS_PYTHON_VERSION = '3.5' && test $TRAVIS_PULL_REQUEST = 'false' &&
    ./examples/deploy-ghpages.sh $TRAVIS_BUILD_DIR/deploy-html
 
-before_cache:
-  - rm -f $HOME/.cache/pip/log
-  - find $HOME/.cache/pip -name 'sphinxcontrib_autodoc_doxygen*.whl' -delete || true
-
 cache:
   directories:
-    - $HOME/.cache/pip
+    - $HOME/.wheelhouse

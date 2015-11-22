@@ -20,7 +20,7 @@ before_install:
   - find $HOME/.cache/pip -name '*.whl'
 
 install:
-  - pip install --no-binary .
+  - pip install .
 
 script:
   - py.test

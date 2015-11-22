@@ -19,9 +19,9 @@ branches:
     - master
 
 before_install:
-  - pip install --upgrade pip wheel
   - ls $HOME/.wheelhouse
-  - pip wheel -r requirements.txt -w $HOME/.wheelhouse -f $HOME/.wheelhouse
+  - pip wheel pip wheel -r requirements.txt -w $HOME/.wheelhouse -f $HOME/.wheelhouse
+  - pip install --upgrade pip wheel --no-index --find-links $HOME/.wheelhouse
 
 install:
   - pip install . --no-index --find-links $HOME/.wheelhouse

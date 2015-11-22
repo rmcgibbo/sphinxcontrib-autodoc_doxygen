@@ -12,7 +12,7 @@ cd gh-pages
 rm -f $(git ls-files)
 cp -rf $TRAVIS_BUILD_DIR/deploy-html/* .
 git add -A .
-git rm -q $(git ls-files --deleted)
-git commit -m "Travis-CI deploy ${COMMIT_ID} to gh-pages" && \
+git rm -q $(git ls-files --deleted) || true
+git commit -m "Travis-CI deploy ${COMMIT_ID} to gh-pages"
 git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages > /dev/null 2>&1
 

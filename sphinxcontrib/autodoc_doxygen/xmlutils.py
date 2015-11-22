@@ -15,7 +15,7 @@ def format_xml_paragraph(xmlnode):
     lines
         A list of lines.
     """
-    return _DoxygenXmlParagraphFormatter().generic_visit(xmlnode).lines
+    return [l.rstrip() for l in _DoxygenXmlParagraphFormatter().generic_visit(xmlnode).lines]
 
 
 class _DoxygenXmlParagraphFormatter(object):
@@ -40,17 +40,20 @@ class _DoxygenXmlParagraphFormatter(object):
         return self
 
     def visit_ref(self, node):
-        ref = get_doxygen_root().findall('.//*[@id="%s"]' % node.get('refid'))[0]
-
-        if ref.tag == 'memberdef':
-            parent = ref.xpath('./ancestor::compounddef/compoundname')[0].text
-            name = ref.find('./name').text
-            real_name = parent + '::' + name
-        elif ref.tag == 'compounddef':
-            name_node = ref.find('./name')
-            real_name = name_node.text if name_node is not None else ''
+        ref = get_doxygen_root().findall('.//*[@id="%s"]' % node.get('refid'))
+        if ref:
+            ref = ref[0]
+            if ref.tag == 'memberdef':
+                parent = ref.xpath('./ancestor::compounddef/compoundname')[0].text
+                name = ref.find('./name').text
+                real_name = parent + '::' + name
+            elif ref.tag == 'compounddef':
+                name_node = ref.find('./name')
+                real_name = name_node.text if name_node is not None else ''
+            else:
+                raise NotImplementedError()
         else:
-            raise NotImplementedError()
+            real_name = None
 
         val = [':cpp:any:`', node.text]
         if real_name:
@@ -73,7 +76,7 @@ class _DoxygenXmlParagraphFormatter(object):
     def visit_parametername(self, node):
         ptype = None
         type_search = node.xpath('./ancestor::memberdef/param/declname[text()="%s"]/../type' % node.text)
-        if type_search is not None:
+        if type_search:
             ptype = type_search[0].text
 
         self.lines.append((':param %s: ' % node.text) + ('(%s) ' % ptype if ptype else ''))

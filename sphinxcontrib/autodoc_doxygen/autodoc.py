@@ -144,7 +144,7 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         match = get_doxygen_root().xpath(xpath_query)
         if len(match) == 0:
             raise ExtensionError('[autodoc_doxygen] could not find method (modname="%s", objname="%s"). I tried '
-                                 'the following xpath: "%s"' % (tuple(self.fullname.rsplit('::',1)) + (xpath_query,)))
+                                 'the following xpath: "%s"' % (tuple(self.fullname.rsplit('::', 1)) + (xpath_query,)))
         self.object = match[0]
         return True
 

@@ -5,11 +5,10 @@ import os
 import re
 import sys
 
-from jinja2 import FileSystemLoader, TemplateNotFound
+from jinja2 import FileSystemLoader
 from jinja2.sandbox import SandboxedEnvironment
 from sphinx.jinja2glue import BuiltinTemplateLoader
 from sphinx.util.osutil import ensuredir
-from sphinx.errors import ExtensionError
 
 from . import import_by_name
 
@@ -31,7 +30,6 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
 
     # create our own templating environment
     template_dirs = [os.path.join(os.path.dirname(__file__), 'templates')]
-    print(template_dirs)
 
     if builder is not None:
         # allow the user to override the templates
@@ -74,7 +72,7 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
 
         if template_name is None:
             if obj.tag == 'compounddef' and obj.get('kind') == 'class':
-                 template_name = 'doxyclass.rst'
+                template_name = 'doxyclass.rst'
             else:
                 raise NotImplementedError('No template for %s' % obj)
 
@@ -89,12 +87,6 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
                 raise NotImplementedError(obj)
 
             parts = name.split('::')
-            # if documenter.objtype in ('method', 'attribute'):
-            #     mod_name = '.'.join(parts[:-2])
-            #     cls_name = parts[-2]
-            #     obj_name = '.'.join(parts[-2:])
-            #     ns['class'] = cls_name
-            # else:
             mod_name, obj_name = '::'.join(parts[:-1]), parts[-1]
 
             ns['fullname'] = name

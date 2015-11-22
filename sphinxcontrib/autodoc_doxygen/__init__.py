@@ -2,6 +2,7 @@ import os.path
 from lxml import etree as ET
 from sphinx.errors import ExtensionError
 
+
 def set_doxygen_xml(app):
     """Load all doxygen XML files from the app config variable
     `app.config.doxygen_xml` which should be a path to a directory
@@ -27,10 +28,11 @@ def set_doxygen_xml(app):
             setup.DOXYGEN_ROOT.append(node)
 
 
-
 def get_doxygen_root():
     """Get the root element of the doxygen XML document.
     """
+    if not hasattr(setup, 'DOXYGEN_ROOT'):
+        setup.DOXYGEN_ROOT = ET.Element("root")  # dummy
     return setup.DOXYGEN_ROOT
 
 

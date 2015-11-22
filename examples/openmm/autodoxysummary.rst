@@ -11,6 +11,7 @@ Using ``autodoxysummary``, you can generate class-level documentation automatica
 
      OpenMM::NonbondedForce
      OpenMM::VerletIntegrator
+     OpenMM::CustomIntegrator
 
 
 This will generate a table to display, but also use the templating engine to generate class-level
@@ -29,3 +30,4 @@ Output
 
    OpenMM::NonbondedForce
    OpenMM::VerletIntegrator
+   OpenMM::CustomIntegrator

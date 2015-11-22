@@ -52,9 +52,9 @@ You can install it with pip (py27 or py33+)::
 - Dependencies with linux system package manager (e.g. with ``/usr/local/bin/python``)::
 
     # debian
-    sudo apt-get install python-setuptools python-lxml python-sphinx python-six python-pip
+    sudo apt-get install python-setuptools python-lxml python-sphinx python-pip
     # or, for fedora
-    sudo yum install python-setuptools python-lxml python-sphinx python-six python-pip
+    sudo yum install python-setuptools python-lxml python-sphinx python-pip
 
 - Dependencies with Windows
 

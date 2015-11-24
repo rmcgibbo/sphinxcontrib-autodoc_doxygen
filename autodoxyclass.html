@@ -113,7 +113,7 @@ but before the methods, like a summary table.</p>
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM10Integrator11getStepSizeEv">
-<span id="OpenMM::Integrator::getStepSizeC"></span><code class="descclassname"></code><code class="descname">getStepSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM10Integrator11getStepSizeEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::Integrator::getStepSizeC"></span>double <code class="descclassname"></code><code class="descname">getStepSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM10Integrator11getStepSizeEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the size of each time step, in picoseconds. If this integrator uses variable time steps, the size of the most recent step is returned.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -127,7 +127,7 @@ but before the methods, like a summary table.</p>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM10Integrator11setStepSizeEd">
-<span id="OpenMM::Integrator::setStepSize__double"></span><code class="descclassname"></code><code class="descname">setStepSize</code><span class="sig-paren">(</span>double <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM10Integrator11setStepSizeEd" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::Integrator::setStepSize__double"></span>void <code class="descclassname"></code><code class="descname">setStepSize</code><span class="sig-paren">(</span>double <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM10Integrator11setStepSizeEd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the size of each time step, in picoseconds. If this integrator uses variable time steps, the effect of calling this method is undefined, and it may simply be ignored.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -142,19 +142,19 @@ but before the methods, like a summary table.</p>
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM10Integrator22getConstraintToleranceEv">
-<span id="OpenMM::Integrator::getConstraintToleranceC"></span><code class="descclassname"></code><code class="descname">getConstraintTolerance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM10Integrator22getConstraintToleranceEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::Integrator::getConstraintToleranceC"></span>double <code class="descclassname"></code><code class="descname">getConstraintTolerance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM10Integrator22getConstraintToleranceEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the distance tolerance within which constraints are maintained, as a fraction of the constrained distance.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM10Integrator22setConstraintToleranceEd">
-<span id="OpenMM::Integrator::setConstraintTolerance__double"></span><code class="descclassname"></code><code class="descname">setConstraintTolerance</code><span class="sig-paren">(</span>double <em>tol</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM10Integrator22setConstraintToleranceEd" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::Integrator::setConstraintTolerance__double"></span>void <code class="descclassname"></code><code class="descname">setConstraintTolerance</code><span class="sig-paren">(</span>double <em>tol</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM10Integrator22setConstraintToleranceEd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the distance tolerance within which constraints are maintained, as a fraction of the constrained distance.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM10Integrator4stepEi">
-<span id="OpenMM::Integrator::step__i"></span><code class="descclassname"></code><code class="descname">step</code><span class="sig-paren">(</span>int <em>steps</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N6OpenMM10Integrator4stepEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::Integrator::step__i"></span>void <code class="descclassname"></code><code class="descname">step</code><span class="sig-paren">(</span>int <em>steps</em><span class="sig-paren">)</span> = 0<a class="headerlink" href="#_CPPv2N6OpenMM10Integrator4stepEi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Advance a simulation through time by taking a series of time steps.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -227,13 +227,13 @@ but before the methods, like a summary table.</p>
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM5Force13getForceGroupEv">
-<span id="OpenMM::Force::getForceGroupC"></span><code class="descclassname"></code><code class="descname">getForceGroup</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM5Force13getForceGroupEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::Force::getForceGroupC"></span>int <code class="descclassname"></code><code class="descname">getForceGroup</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM5Force13getForceGroupEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the force group this <a class="reference internal" href="#_CPPv2N6OpenMM5Force5ForceEv" title="OpenMM::Force::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> belongs to.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM5Force13setForceGroupEi">
-<span id="OpenMM::Force::setForceGroup__i"></span><code class="descclassname"></code><code class="descname">setForceGroup</code><span class="sig-paren">(</span>int <em>group</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM5Force13setForceGroupEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::Force::setForceGroup__i"></span>void <code class="descclassname"></code><code class="descname">setForceGroup</code><span class="sig-paren">(</span>int <em>group</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM5Force13setForceGroupEi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the force group this <a class="reference internal" href="#_CPPv2N6OpenMM5Force5ForceEv" title="OpenMM::Force::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> belongs to.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -248,7 +248,7 @@ but before the methods, like a summary table.</p>
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM5Force30usesPeriodicBoundaryConditionsEv">
-<span id="OpenMM::Force::usesPeriodicBoundaryConditionsC"></span><code class="descclassname"></code><code class="descname">usesPeriodicBoundaryConditions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM5Force30usesPeriodicBoundaryConditionsEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::Force::usesPeriodicBoundaryConditionsC"></span>bool <code class="descclassname"></code><code class="descname">usesPeriodicBoundaryConditions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM5Force30usesPeriodicBoundaryConditionsEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether or not this force makes use of periodic boundary conditions. This method should be overridden for all <a class="reference internal" href="#_CPPv2N6OpenMM5Force5ForceEv" title="OpenMM::Force::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> subclasses, or a <code class="xref cpp cpp-any docutils literal"><span class="pre">OpenMM::OpenMMException</span></code> will be thrown</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

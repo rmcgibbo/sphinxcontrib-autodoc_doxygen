@@ -46,11 +46,11 @@
 <dt id="_CPPv2N6OpenMM14NonbondedForceE">
 <span id="OpenMM::NonbondedForce"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">NonbondedForce</code><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForceE" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class implements nonbonded interactions between particles, including a Coulomb force to represent electrostatics and a Lennard-Jones force to represent van der Waals interactions. It optionally supports periodic boundary conditions and cutoffs for long range interactions. Lennard-Jones interactions are calculated with the Lorentz-Berthelot combining rule: it uses the arithmetic mean of the sigmas and the geometric mean of the epsilons for the two interacting particles.</p>
-<p>To use this class, create a <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForceE" title="OpenMM::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a> object, then call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce11addParticleEddd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::addParticle"><code class="xref cpp cpp-any docutils literal"><span class="pre">addParticle()</span></code></a> once for each particle in the <code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code> to define its parameters. The number of particles for which you define nonbonded parameters must be exactly equal to the number of particles in the <code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code>, or else an exception will be thrown when you try to create a <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>. After a particle has been added, you can modify its force field parameters by calling <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce21setParticleParametersEiddd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setParticleParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setParticleParameters()</span></code></a>. This will have no effect on Contexts that already exist unless you call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25updateParametersInContextER7Context" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::updateParametersInContext"><code class="xref cpp cpp-any docutils literal"><span class="pre">updateParametersInContext()</span></code></a>.
-<a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForceE" title="OpenMM::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a> also lets you specify &#8220;exceptions&#8221;, particular pairs of particles whose interactions should be computed based on different parameters than those defined for the individual particles. This can be used to completely exclude certain interactions from the force calculation, or to alter how they interact with each other.</p>
-<p>Many molecular force fields omit Coulomb and Lennard-Jones interactions between particles separated by one or two bonds, while using modified parameters for those separated by three bonds (known as &#8220;1-4 interactions&#8221;). This class provides a convenience method for this case called <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::createExceptionsFromBonds"><code class="xref cpp cpp-any docutils literal"><span class="pre">createExceptionsFromBonds()</span></code></a>. You pass to it a list of bonds and the scale factors to use for 1-4 interactions. It identifies all pairs of particles which are separated by 1, 2, or 3 bonds, then automatically creates exceptions for them.</p>
-<p>When using a cutoff, by default Lennard-Jones interactions are sharply truncated at the cutoff distance. Optionally you can instead use a switching function to make the interaction smoothly go to zero over a finite distance range. To enable this, call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce23setUseSwitchingFunctionEb" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setUseSwitchingFunction"><code class="xref cpp cpp-any docutils literal"><span class="pre">setUseSwitchingFunction()</span></code></a>. You must also call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce20setSwitchingDistanceEd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setSwitchingDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">setSwitchingDistance()</span></code></a> to specify the distance at which the interaction should begin to decrease. The switching distance must be less than the cutoff distance.</p>
-<p>Another optional feature of this class (enabled by default) is to add a contribution to the energy which approximates the effect of all Lennard-Jones interactions beyond the cutoff in a periodic system. When running a simulation at constant pressure, this can improve the quality of the result. Call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce26setUseDispersionCorrectionEb" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setUseDispersionCorrection"><code class="xref cpp cpp-any docutils literal"><span class="pre">setUseDispersionCorrection()</span></code></a> to set whether this should be used.</p>
+<p>To use this class, create a <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce14NonbondedForceEv" title="OpenMM::NonbondedForce::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a> object, then call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce11addParticleEddd" title="OpenMM::NonbondedForce::addParticle"><code class="xref cpp cpp-any docutils literal"><span class="pre">addParticle()</span></code></a> once for each particle in the <code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code> to define its parameters. The number of particles for which you define nonbonded parameters must be exactly equal to the number of particles in the <code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code>, or else an exception will be thrown when you try to create a <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>. After a particle has been added, you can modify its force field parameters by calling <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce21setParticleParametersEiddd" title="OpenMM::NonbondedForce::setParticleParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setParticleParameters()</span></code></a>. This will have no effect on Contexts that already exist unless you call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce25updateParametersInContextER7Context" title="OpenMM::NonbondedForce::updateParametersInContext"><code class="xref cpp cpp-any docutils literal"><span class="pre">updateParametersInContext()</span></code></a>.
+<a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce14NonbondedForceEv" title="OpenMM::NonbondedForce::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a> also lets you specify &#8220;exceptions&#8221;, particular pairs of particles whose interactions should be computed based on different parameters than those defined for the individual particles. This can be used to completely exclude certain interactions from the force calculation, or to alter how they interact with each other.</p>
+<p>Many molecular force fields omit Coulomb and Lennard-Jones interactions between particles separated by one or two bonds, while using modified parameters for those separated by three bonds (known as &#8220;1-4 interactions&#8221;). This class provides a convenience method for this case called <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd" title="OpenMM::NonbondedForce::createExceptionsFromBonds"><code class="xref cpp cpp-any docutils literal"><span class="pre">createExceptionsFromBonds()</span></code></a>. You pass to it a list of bonds and the scale factors to use for 1-4 interactions. It identifies all pairs of particles which are separated by 1, 2, or 3 bonds, then automatically creates exceptions for them.</p>
+<p>When using a cutoff, by default Lennard-Jones interactions are sharply truncated at the cutoff distance. Optionally you can instead use a switching function to make the interaction smoothly go to zero over a finite distance range. To enable this, call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce23setUseSwitchingFunctionEb" title="OpenMM::NonbondedForce::setUseSwitchingFunction"><code class="xref cpp cpp-any docutils literal"><span class="pre">setUseSwitchingFunction()</span></code></a>. You must also call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce20setSwitchingDistanceEd" title="OpenMM::NonbondedForce::setSwitchingDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">setSwitchingDistance()</span></code></a> to specify the distance at which the interaction should begin to decrease. The switching distance must be less than the cutoff distance.</p>
+<p>Another optional feature of this class (enabled by default) is to add a contribution to the energy which approximates the effect of all Lennard-Jones interactions beyond the cutoff in a periodic system. When running a simulation at constant pressure, this can improve the quality of the result. Call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce26setUseDispersionCorrectionEb" title="OpenMM::NonbondedForce::setUseDispersionCorrection"><code class="xref cpp cpp-any docutils literal"><span class="pre">setUseDispersionCorrection()</span></code></a> to set whether this should be used.</p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -58,97 +58,97 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce14NonbondedForceEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a></td>
-<td>Create a <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForceE" title="OpenMM::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a>.</td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce14NonbondedForceEv" title="OpenMM::NonbondedForce::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a></td>
+<td>Create a <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce14NonbondedForceEv" title="OpenMM::NonbondedForce::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a>.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce15getNumParticlesEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getNumParticles"><code class="xref cpp cpp-any docutils literal"><span class="pre">getNumParticles</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce15getNumParticlesEv" title="OpenMM::NonbondedForce::getNumParticles"><code class="xref cpp cpp-any docutils literal"><span class="pre">getNumParticles</span></code></a></td>
 <td>Get the number of particles for which force field parameters have been defined.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce16getNumExceptionsEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getNumExceptions"><code class="xref cpp cpp-any docutils literal"><span class="pre">getNumExceptions</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce16getNumExceptionsEv" title="OpenMM::NonbondedForce::getNumExceptions"><code class="xref cpp cpp-any docutils literal"><span class="pre">getNumExceptions</span></code></a></td>
 <td>Get the number of special interactions that should be calculated differently from other interactions.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce18getNonbondedMethodEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getNonbondedMethod"><code class="xref cpp cpp-any docutils literal"><span class="pre">getNonbondedMethod</span></code></a></td>
+<tr class="row-even"><td><code class="xref cpp cpp-any docutils literal"><span class="pre">getNonbondedMethod</span></code></td>
 <td>Get the method used for handling long range nonbonded interactions.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce18setNonbondedMethodE15NonbondedMethod" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setNonbondedMethod"><code class="xref cpp cpp-any docutils literal"><span class="pre">setNonbondedMethod</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce18setNonbondedMethodE15NonbondedMethod" title="OpenMM::NonbondedForce::setNonbondedMethod"><code class="xref cpp cpp-any docutils literal"><span class="pre">setNonbondedMethod</span></code></a></td>
 <td>Set the method used for handling long range nonbonded interactions.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce17getCutoffDistanceEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getCutoffDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">getCutoffDistance</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce17getCutoffDistanceEv" title="OpenMM::NonbondedForce::getCutoffDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">getCutoffDistance</span></code></a></td>
 <td>Get the cutoff distance (in nm) being used for nonbonded interactions.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce17setCutoffDistanceEd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setCutoffDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">setCutoffDistance</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce17setCutoffDistanceEd" title="OpenMM::NonbondedForce::setCutoffDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">setCutoffDistance</span></code></a></td>
 <td>Set the cutoff distance (in nm) being used for nonbonded interactions.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce23getUseSwitchingFunctionEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getUseSwitchingFunction"><code class="xref cpp cpp-any docutils literal"><span class="pre">getUseSwitchingFunction</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce23getUseSwitchingFunctionEv" title="OpenMM::NonbondedForce::getUseSwitchingFunction"><code class="xref cpp cpp-any docutils literal"><span class="pre">getUseSwitchingFunction</span></code></a></td>
 <td>Get whether a switching function is applied to the Lennard-Jones interaction.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce23setUseSwitchingFunctionEb" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setUseSwitchingFunction"><code class="xref cpp cpp-any docutils literal"><span class="pre">setUseSwitchingFunction</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce23setUseSwitchingFunctionEb" title="OpenMM::NonbondedForce::setUseSwitchingFunction"><code class="xref cpp cpp-any docutils literal"><span class="pre">setUseSwitchingFunction</span></code></a></td>
 <td>Set whether a switching function is applied to the Lennard-Jones interaction.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce20getSwitchingDistanceEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getSwitchingDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">getSwitchingDistance</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce20getSwitchingDistanceEv" title="OpenMM::NonbondedForce::getSwitchingDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">getSwitchingDistance</span></code></a></td>
 <td>Get the distance at which the switching function begins to reduce the Lennard-Jones interaction.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce20setSwitchingDistanceEd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setSwitchingDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">setSwitchingDistance</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce20setSwitchingDistanceEd" title="OpenMM::NonbondedForce::setSwitchingDistance"><code class="xref cpp cpp-any docutils literal"><span class="pre">setSwitchingDistance</span></code></a></td>
 <td>Set the distance at which the switching function begins to reduce the Lennard-Jones interaction.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce26getReactionFieldDielectricEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getReactionFieldDielectric"><code class="xref cpp cpp-any docutils literal"><span class="pre">getReactionFieldDielectric</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce26getReactionFieldDielectricEv" title="OpenMM::NonbondedForce::getReactionFieldDielectric"><code class="xref cpp cpp-any docutils literal"><span class="pre">getReactionFieldDielectric</span></code></a></td>
 <td>Get the dielectric constant to use for the solvent in the reaction field approximation.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce26setReactionFieldDielectricEd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setReactionFieldDielectric"><code class="xref cpp cpp-any docutils literal"><span class="pre">setReactionFieldDielectric</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce26setReactionFieldDielectricEd" title="OpenMM::NonbondedForce::setReactionFieldDielectric"><code class="xref cpp cpp-any docutils literal"><span class="pre">setReactionFieldDielectric</span></code></a></td>
 <td>Set the dielectric constant to use for the solvent in the reaction field approximation.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce22getEwaldErrorToleranceEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getEwaldErrorTolerance"><code class="xref cpp cpp-any docutils literal"><span class="pre">getEwaldErrorTolerance</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce22getEwaldErrorToleranceEv" title="OpenMM::NonbondedForce::getEwaldErrorTolerance"><code class="xref cpp cpp-any docutils literal"><span class="pre">getEwaldErrorTolerance</span></code></a></td>
 <td>Get the error tolerance for Ewald summation.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce22setEwaldErrorToleranceEd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setEwaldErrorTolerance"><code class="xref cpp cpp-any docutils literal"><span class="pre">setEwaldErrorTolerance</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce22setEwaldErrorToleranceEd" title="OpenMM::NonbondedForce::setEwaldErrorTolerance"><code class="xref cpp cpp-any docutils literal"><span class="pre">setEwaldErrorTolerance</span></code></a></td>
 <td>Set the error tolerance for Ewald summation.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce16getPMEParametersERdRiRiRi" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">getPMEParameters</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce16getPMEParametersERdRiRiRi" title="OpenMM::NonbondedForce::getPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">getPMEParameters</span></code></a></td>
 <td>Get the parameters to use for PME calculations.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce16setPMEParametersEdiii" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setPMEParameters</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce16setPMEParametersEdiii" title="OpenMM::NonbondedForce::setPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setPMEParameters</span></code></a></td>
 <td>Set the parameters to use for PME calculations.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce25getPMEParametersInContextERK7ContextRdRiRiRi" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getPMEParametersInContext"><code class="xref cpp cpp-any docutils literal"><span class="pre">getPMEParametersInContext</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce25getPMEParametersInContextERK7ContextRdRiRiRi" title="OpenMM::NonbondedForce::getPMEParametersInContext"><code class="xref cpp cpp-any docutils literal"><span class="pre">getPMEParametersInContext</span></code></a></td>
 <td>Get the parameters being used for PME in a particular <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce11addParticleEddd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::addParticle"><code class="xref cpp cpp-any docutils literal"><span class="pre">addParticle</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce11addParticleEddd" title="OpenMM::NonbondedForce::addParticle"><code class="xref cpp cpp-any docutils literal"><span class="pre">addParticle</span></code></a></td>
 <td>Add the nonbonded force parameters for a particle.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce21getParticleParametersEiRdRdRd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getParticleParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">getParticleParameters</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce21getParticleParametersEiRdRdRd" title="OpenMM::NonbondedForce::getParticleParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">getParticleParameters</span></code></a></td>
 <td>Get the nonbonded force parameters for a particle.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce21setParticleParametersEiddd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setParticleParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setParticleParameters</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce21setParticleParametersEiddd" title="OpenMM::NonbondedForce::setParticleParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setParticleParameters</span></code></a></td>
 <td>Set the nonbonded force parameters for a particle.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce12addExceptionEiidddb" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::addException"><code class="xref cpp cpp-any docutils literal"><span class="pre">addException</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce12addExceptionEiidddb" title="OpenMM::NonbondedForce::addException"><code class="xref cpp cpp-any docutils literal"><span class="pre">addException</span></code></a></td>
 <td>Add an interaction to the list of exceptions that should be calculated differently from other interactions.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce22getExceptionParametersEiRiRiRdRdRd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getExceptionParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">getExceptionParameters</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce22getExceptionParametersEiRiRiRdRdRd" title="OpenMM::NonbondedForce::getExceptionParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">getExceptionParameters</span></code></a></td>
 <td>Get the force field parameters for an interaction that should be calculated differently from others.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce22setExceptionParametersEiiiddd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setExceptionParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setExceptionParameters</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce22setExceptionParametersEiiiddd" title="OpenMM::NonbondedForce::setExceptionParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setExceptionParameters</span></code></a></td>
 <td>Set the force field parameters for an interaction that should be calculated differently from others.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::createExceptionsFromBonds"><code class="xref cpp cpp-any docutils literal"><span class="pre">createExceptionsFromBonds</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd" title="OpenMM::NonbondedForce::createExceptionsFromBonds"><code class="xref cpp cpp-any docutils literal"><span class="pre">createExceptionsFromBonds</span></code></a></td>
 <td>Identify exceptions based on the molecular topology.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce26getUseDispersionCorrectionEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getUseDispersionCorrection"><code class="xref cpp cpp-any docutils literal"><span class="pre">getUseDispersionCorrection</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce26getUseDispersionCorrectionEv" title="OpenMM::NonbondedForce::getUseDispersionCorrection"><code class="xref cpp cpp-any docutils literal"><span class="pre">getUseDispersionCorrection</span></code></a></td>
 <td>Get whether to add a contribution to the energy that approximately represents the effect of Lennard-Jones interactions beyond the cutoff distance.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce26setUseDispersionCorrectionEb" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setUseDispersionCorrection"><code class="xref cpp cpp-any docutils literal"><span class="pre">setUseDispersionCorrection</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce26setUseDispersionCorrectionEb" title="OpenMM::NonbondedForce::setUseDispersionCorrection"><code class="xref cpp cpp-any docutils literal"><span class="pre">setUseDispersionCorrection</span></code></a></td>
 <td>Set whether to add a contribution to the energy that approximately represents the effect of Lennard-Jones interactions beyond the cutoff distance.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce28getReciprocalSpaceForceGroupEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getReciprocalSpaceForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">getReciprocalSpaceForceGroup</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce28getReciprocalSpaceForceGroupEv" title="OpenMM::NonbondedForce::getReciprocalSpaceForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">getReciprocalSpaceForceGroup</span></code></a></td>
 <td>Get the force group that reciprocal space interactions for Ewald or PME are included in.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce28setReciprocalSpaceForceGroupEi" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setReciprocalSpaceForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">setReciprocalSpaceForceGroup</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce28setReciprocalSpaceForceGroupEi" title="OpenMM::NonbondedForce::setReciprocalSpaceForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">setReciprocalSpaceForceGroup</span></code></a></td>
 <td>Set the force group that reciprocal space interactions for Ewald or PME are included in.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25updateParametersInContextER7Context" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::updateParametersInContext"><code class="xref cpp cpp-any docutils literal"><span class="pre">updateParametersInContext</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce25updateParametersInContextER7Context" title="OpenMM::NonbondedForce::updateParametersInContext"><code class="xref cpp cpp-any docutils literal"><span class="pre">updateParametersInContext</span></code></a></td>
 <td>Update the particle and exception parameters in a <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> to match those stored in this <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> object.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce30usesPeriodicBoundaryConditionsEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::usesPeriodicBoundaryConditions"><code class="xref cpp cpp-any docutils literal"><span class="pre">usesPeriodicBoundaryConditions</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce30usesPeriodicBoundaryConditionsEv" title="OpenMM::NonbondedForce::usesPeriodicBoundaryConditions"><code class="xref cpp cpp-any docutils literal"><span class="pre">usesPeriodicBoundaryConditions</span></code></a></td>
 <td>Returns whether or not this force makes use of periodic boundary conditions.</td>
 </tr>
 </tbody>
@@ -178,38 +178,38 @@
 </tbody>
 </table>
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce14NonbondedForceEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::NonbondedForce"></span><code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">NonbondedForce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce14NonbondedForceEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForceE" title="OpenMM::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a>.</p>
+<dt id="_CPPv2N6OpenMM14NonbondedForce14NonbondedForceEv">
+<span id="OpenMM::NonbondedForce::NonbondedForce"></span><code class="descclassname"></code><code class="descname">NonbondedForce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce14NonbondedForceEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce14NonbondedForceEv" title="OpenMM::NonbondedForce::NonbondedForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">NonbondedForce</span></code></a>.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce15getNumParticlesEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getNumParticlesC"></span>int <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getNumParticles</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce15getNumParticlesEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce15getNumParticlesEv">
+<span id="OpenMM::NonbondedForce::getNumParticlesC"></span><code class="descclassname"></code><code class="descname">getNumParticles</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce15getNumParticlesEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the number of particles for which force field parameters have been defined.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce16getNumExceptionsEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getNumExceptionsC"></span>int <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getNumExceptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce16getNumExceptionsEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce16getNumExceptionsEv">
+<span id="OpenMM::NonbondedForce::getNumExceptionsC"></span><code class="descclassname"></code><code class="descname">getNumExceptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce16getNumExceptionsEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the number of special interactions that should be calculated differently from other interactions.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce18getNonbondedMethodEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getNonbondedMethodC"></span>NonbondedMethod <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getNonbondedMethod</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce18getNonbondedMethodEv" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descname">:cpp:any:`NonbondedMethod &lt;OpenMM::NonbondedForce::NonbondedMethod&gt;` getNonbondedMethod() const</code></dt>
 <dd><p>Get the method used for handling long range nonbonded interactions.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce18setNonbondedMethodE15NonbondedMethod">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setNonbondedMethod__NonbondedMethod"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setNonbondedMethod</code><span class="sig-paren">(</span>NonbondedMethod <em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce18setNonbondedMethodE15NonbondedMethod" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce18setNonbondedMethodE15NonbondedMethod">
+<span id="OpenMM::NonbondedForce::setNonbondedMethod__NonbondedMethod"></span><code class="descclassname"></code><code class="descname">setNonbondedMethod</code><span class="sig-paren">(</span>NonbondedMethod <em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce18setNonbondedMethodE15NonbondedMethod" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the method used for handling long range nonbonded interactions.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce17getCutoffDistanceEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getCutoffDistanceC"></span>double <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getCutoffDistance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce17getCutoffDistanceEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce17getCutoffDistanceEv">
+<span id="OpenMM::NonbondedForce::getCutoffDistanceC"></span><code class="descclassname"></code><code class="descname">getCutoffDistance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce17getCutoffDistanceEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the cutoff distance (in nm) being used for nonbonded interactions. If the NonbondedMethod in use is NoCutoff, this value will have no effect.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -222,8 +222,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce17setCutoffDistanceEd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setCutoffDistance__double"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setCutoffDistance</code><span class="sig-paren">(</span>double <em>distance</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce17setCutoffDistanceEd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce17setCutoffDistanceEd">
+<span id="OpenMM::NonbondedForce::setCutoffDistance__double"></span><code class="descclassname"></code><code class="descname">setCutoffDistance</code><span class="sig-paren">(</span>double <em>distance</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce17setCutoffDistanceEd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the cutoff distance (in nm) being used for nonbonded interactions. If the NonbondedMethod in use is NoCutoff, this value will have no effect.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -237,58 +237,58 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce23getUseSwitchingFunctionEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getUseSwitchingFunctionC"></span>bool <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getUseSwitchingFunction</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce23getUseSwitchingFunctionEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce23getUseSwitchingFunctionEv">
+<span id="OpenMM::NonbondedForce::getUseSwitchingFunctionC"></span><code class="descclassname"></code><code class="descname">getUseSwitchingFunction</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce23getUseSwitchingFunctionEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get whether a switching function is applied to the Lennard-Jones interaction. If the nonbonded method is set to NoCutoff, this option is ignored.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce23setUseSwitchingFunctionEb">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setUseSwitchingFunction__b"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setUseSwitchingFunction</code><span class="sig-paren">(</span>bool <em>use</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce23setUseSwitchingFunctionEb" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce23setUseSwitchingFunctionEb">
+<span id="OpenMM::NonbondedForce::setUseSwitchingFunction__b"></span><code class="descclassname"></code><code class="descname">setUseSwitchingFunction</code><span class="sig-paren">(</span>bool <em>use</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce23setUseSwitchingFunctionEb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set whether a switching function is applied to the Lennard-Jones interaction. If the nonbonded method is set to NoCutoff, this option is ignored.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce20getSwitchingDistanceEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getSwitchingDistanceC"></span>double <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getSwitchingDistance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce20getSwitchingDistanceEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce20getSwitchingDistanceEv">
+<span id="OpenMM::NonbondedForce::getSwitchingDistanceC"></span><code class="descclassname"></code><code class="descname">getSwitchingDistance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce20getSwitchingDistanceEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the distance at which the switching function begins to reduce the Lennard-Jones interaction. This must be less than the cutoff distance.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce20setSwitchingDistanceEd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setSwitchingDistance__double"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setSwitchingDistance</code><span class="sig-paren">(</span>double <em>distance</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce20setSwitchingDistanceEd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce20setSwitchingDistanceEd">
+<span id="OpenMM::NonbondedForce::setSwitchingDistance__double"></span><code class="descclassname"></code><code class="descname">setSwitchingDistance</code><span class="sig-paren">(</span>double <em>distance</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce20setSwitchingDistanceEd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the distance at which the switching function begins to reduce the Lennard-Jones interaction. This must be less than the cutoff distance.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce26getReactionFieldDielectricEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getReactionFieldDielectricC"></span>double <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getReactionFieldDielectric</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce26getReactionFieldDielectricEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce26getReactionFieldDielectricEv">
+<span id="OpenMM::NonbondedForce::getReactionFieldDielectricC"></span><code class="descclassname"></code><code class="descname">getReactionFieldDielectric</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce26getReactionFieldDielectricEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the dielectric constant to use for the solvent in the reaction field approximation.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce26setReactionFieldDielectricEd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setReactionFieldDielectric__double"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setReactionFieldDielectric</code><span class="sig-paren">(</span>double <em>dielectric</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce26setReactionFieldDielectricEd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce26setReactionFieldDielectricEd">
+<span id="OpenMM::NonbondedForce::setReactionFieldDielectric__double"></span><code class="descclassname"></code><code class="descname">setReactionFieldDielectric</code><span class="sig-paren">(</span>double <em>dielectric</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce26setReactionFieldDielectricEd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the dielectric constant to use for the solvent in the reaction field approximation.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce22getEwaldErrorToleranceEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getEwaldErrorToleranceC"></span>double <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getEwaldErrorTolerance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce22getEwaldErrorToleranceEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce22getEwaldErrorToleranceEv">
+<span id="OpenMM::NonbondedForce::getEwaldErrorToleranceC"></span><code class="descclassname"></code><code class="descname">getEwaldErrorTolerance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce22getEwaldErrorToleranceEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the error tolerance for Ewald summation. This corresponds to the fractional error in the forces which is acceptable. This value is used to select the reciprocal space cutoff and separation parameter so that the average error level will be less than the tolerance. There is not a rigorous guarantee that all forces on all atoms will be less than the tolerance, however.</p>
-<p>For PME calculations, if <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce16setPMEParametersEdiii" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setPMEParameters()</span></code></a> is used to set alpha to something other than 0, this value is ignored.</p>
+<p>For PME calculations, if <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce16setPMEParametersEdiii" title="OpenMM::NonbondedForce::setPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setPMEParameters()</span></code></a> is used to set alpha to something other than 0, this value is ignored.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce22setEwaldErrorToleranceEd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setEwaldErrorTolerance__double"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setEwaldErrorTolerance</code><span class="sig-paren">(</span>double <em>tol</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce22setEwaldErrorToleranceEd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce22setEwaldErrorToleranceEd">
+<span id="OpenMM::NonbondedForce::setEwaldErrorTolerance__double"></span><code class="descclassname"></code><code class="descname">setEwaldErrorTolerance</code><span class="sig-paren">(</span>double <em>tol</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce22setEwaldErrorToleranceEd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the error tolerance for Ewald summation. This corresponds to the fractional error in the forces which is acceptable. This value is used to select the reciprocal space cutoff and separation parameter so that the average error level will be less than the tolerance. There is not a rigorous guarantee that all forces on all atoms will be less than the tolerance, however.</p>
-<p>For PME calculations, if <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce16setPMEParametersEdiii" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setPMEParameters()</span></code></a> is used to set alpha to something other than 0, this value is ignored.</p>
+<p>For PME calculations, if <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce16setPMEParametersEdiii" title="OpenMM::NonbondedForce::setPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setPMEParameters()</span></code></a> is used to set alpha to something other than 0, this value is ignored.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce16getPMEParametersERdRiRiRi">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getPMEParameters__doubleR.iR.iR.iRC"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getPMEParameters</code><span class="sig-paren">(</span>double &amp;<em>alpha</em>, int &amp;<em>nx</em>, int &amp;<em>ny</em>, int &amp;<em>nz</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce16getPMEParametersERdRiRiRi" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce16getPMEParametersERdRiRiRi">
+<span id="OpenMM::NonbondedForce::getPMEParameters__doubleR.iR.iR.iRC"></span><code class="descclassname"></code><code class="descname">getPMEParameters</code><span class="sig-paren">(</span>double &amp;<em>alpha</em>, int &amp;<em>nx</em>, int &amp;<em>ny</em>, int &amp;<em>nz</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce16getPMEParametersERdRiRiRi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the parameters to use for PME calculations. If alpha is 0 (the default), these parameters are ignored and instead their values are chosen based on the Ewald error tolerance.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -307,8 +307,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce16setPMEParametersEdiii">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setPMEParameters__double.i.i.i"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setPMEParameters</code><span class="sig-paren">(</span>double <em>alpha</em>, int <em>nx</em>, int <em>ny</em>, int <em>nz</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce16setPMEParametersEdiii" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce16setPMEParametersEdiii">
+<span id="OpenMM::NonbondedForce::setPMEParameters__double.i.i.i"></span><code class="descclassname"></code><code class="descname">setPMEParameters</code><span class="sig-paren">(</span>double <em>alpha</em>, int <em>nx</em>, int <em>ny</em>, int <em>nz</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce16setPMEParametersEdiii" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters to use for PME calculations. If alpha is 0 (the default), these parameters are ignored and instead their values are chosen based on the Ewald error tolerance.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -327,9 +327,9 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce25getPMEParametersInContextERK7ContextRdRiRiRi">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getPMEParametersInContext__ContextCR.doubleR.iR.iR.iRC"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getPMEParametersInContext</code><span class="sig-paren">(</span><em class="property">const</em> Context &amp;<em>context</em>, double &amp;<em>alpha</em>, int &amp;<em>nx</em>, int &amp;<em>ny</em>, int &amp;<em>nz</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce25getPMEParametersInContextERK7ContextRdRiRiRi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the parameters being used for PME in a particular <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>. Because some platforms have restrictions on the allowed grid sizes, the values that are actually used may be slightly different from those specified with <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce16setPMEParametersEdiii" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setPMEParameters()</span></code></a>, or the standard values calculated based on the Ewald error tolerance. See the manual for details.</p>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce25getPMEParametersInContextERK7ContextRdRiRiRi">
+<span id="OpenMM::NonbondedForce::getPMEParametersInContext__ContextCR.doubleR.iR.iR.iRC"></span><code class="descclassname"></code><code class="descname">getPMEParametersInContext</code><span class="sig-paren">(</span><em class="property">const</em> Context &amp;<em>context</em>, double &amp;<em>alpha</em>, int &amp;<em>nx</em>, int &amp;<em>ny</em>, int &amp;<em>nz</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce25getPMEParametersInContextERK7ContextRdRiRiRi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the parameters being used for PME in a particular <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>. Because some platforms have restrictions on the allowed grid sizes, the values that are actually used may be slightly different from those specified with <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce16setPMEParametersEdiii" title="OpenMM::NonbondedForce::setPMEParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setPMEParameters()</span></code></a>, or the standard values calculated based on the Ewald error tolerance. See the manual for details.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -348,8 +348,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce11addParticleEddd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::addParticle__double.double.double"></span>int <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">addParticle</code><span class="sig-paren">(</span>double <em>charge</em>, double <em>sigma</em>, double <em>epsilon</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce11addParticleEddd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce11addParticleEddd">
+<span id="OpenMM::NonbondedForce::addParticle__double.double.double"></span><code class="descclassname"></code><code class="descname">addParticle</code><span class="sig-paren">(</span>double <em>charge</em>, double <em>sigma</em>, double <em>epsilon</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce11addParticleEddd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the nonbonded force parameters for a particle. This should be called once for each particle in the <code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code>. When it is called for the i&#8217;th time, it specifies the parameters for the i&#8217;th particle. For calculating the Lennard-Jones interaction between two particles, the arithmetic mean of the sigmas and the geometric mean of the epsilons for the two interacting particles is used (the Lorentz-Berthelot combining rule).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -370,8 +370,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce21getParticleParametersEiRdRdRd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getParticleParameters__i.doubleR.doubleR.doubleRC"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getParticleParameters</code><span class="sig-paren">(</span>int <em>index</em>, double &amp;<em>charge</em>, double &amp;<em>sigma</em>, double &amp;<em>epsilon</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce21getParticleParametersEiRdRdRd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce21getParticleParametersEiRdRdRd">
+<span id="OpenMM::NonbondedForce::getParticleParameters__i.doubleR.doubleR.doubleRC"></span><code class="descclassname"></code><code class="descname">getParticleParameters</code><span class="sig-paren">(</span>int <em>index</em>, double &amp;<em>charge</em>, double &amp;<em>sigma</em>, double &amp;<em>epsilon</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce21getParticleParametersEiRdRdRd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the nonbonded force parameters for a particle.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -390,8 +390,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce21setParticleParametersEiddd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setParticleParameters__i.double.double.double"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setParticleParameters</code><span class="sig-paren">(</span>int <em>index</em>, double <em>charge</em>, double <em>sigma</em>, double <em>epsilon</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce21setParticleParametersEiddd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce21setParticleParametersEiddd">
+<span id="OpenMM::NonbondedForce::setParticleParameters__i.double.double.double"></span><code class="descclassname"></code><code class="descname">setParticleParameters</code><span class="sig-paren">(</span>int <em>index</em>, double <em>charge</em>, double <em>sigma</em>, double <em>epsilon</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce21setParticleParametersEiddd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the nonbonded force parameters for a particle. When calculating the Lennard-Jones interaction between two particles, it uses the arithmetic mean of the sigmas and the geometric mean of the epsilons for the two interacting particles (the Lorentz-Berthelot combining rule).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -410,10 +410,10 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce12addExceptionEiidddb">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::addException__i.i.double.double.double.b"></span>int <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">addException</code><span class="sig-paren">(</span>int <em>particle1</em>, int <em>particle2</em>, double <em>chargeProd</em>, double <em>sigma</em>, double <em>epsilon</em>, bool <em>replace</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce12addExceptionEiidddb" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce12addExceptionEiidddb">
+<span id="OpenMM::NonbondedForce::addException__i.i.double.double.double.b"></span><code class="descclassname"></code><code class="descname">addException</code><span class="sig-paren">(</span>int <em>particle1</em>, int <em>particle2</em>, double <em>chargeProd</em>, double <em>sigma</em>, double <em>epsilon</em>, bool <em>replace</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce12addExceptionEiidddb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an interaction to the list of exceptions that should be calculated differently from other interactions. If chargeProd and epsilon are both equal to 0, this will cause the interaction to be completely omitted from force and energy calculations.</p>
-<p>In many cases, you can use <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::createExceptionsFromBonds"><code class="xref cpp cpp-any docutils literal"><span class="pre">createExceptionsFromBonds()</span></code></a> rather than adding each exception explicitly.</p>
+<p>In many cases, you can use <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd" title="OpenMM::NonbondedForce::createExceptionsFromBonds"><code class="xref cpp cpp-any docutils literal"><span class="pre">createExceptionsFromBonds()</span></code></a> rather than adding each exception explicitly.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -436,8 +436,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce22getExceptionParametersEiRiRiRdRdRd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getExceptionParameters__i.iR.iR.doubleR.doubleR.doubleRC"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getExceptionParameters</code><span class="sig-paren">(</span>int <em>index</em>, int &amp;<em>particle1</em>, int &amp;<em>particle2</em>, double &amp;<em>chargeProd</em>, double &amp;<em>sigma</em>, double &amp;<em>epsilon</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce22getExceptionParametersEiRiRiRdRdRd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce22getExceptionParametersEiRiRiRdRdRd">
+<span id="OpenMM::NonbondedForce::getExceptionParameters__i.iR.iR.doubleR.doubleR.doubleRC"></span><code class="descclassname"></code><code class="descname">getExceptionParameters</code><span class="sig-paren">(</span>int <em>index</em>, int &amp;<em>particle1</em>, int &amp;<em>particle2</em>, double &amp;<em>chargeProd</em>, double &amp;<em>sigma</em>, double &amp;<em>epsilon</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce22getExceptionParametersEiRiRiRdRdRd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the force field parameters for an interaction that should be calculated differently from others.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -458,8 +458,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce22setExceptionParametersEiiiddd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setExceptionParameters__i.i.i.double.double.double"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setExceptionParameters</code><span class="sig-paren">(</span>int <em>index</em>, int <em>particle1</em>, int <em>particle2</em>, double <em>chargeProd</em>, double <em>sigma</em>, double <em>epsilon</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce22setExceptionParametersEiiiddd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce22setExceptionParametersEiiiddd">
+<span id="OpenMM::NonbondedForce::setExceptionParameters__i.i.i.double.double.double"></span><code class="descclassname"></code><code class="descname">setExceptionParameters</code><span class="sig-paren">(</span>int <em>index</em>, int <em>particle1</em>, int <em>particle2</em>, double <em>chargeProd</em>, double <em>sigma</em>, double <em>epsilon</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce22setExceptionParametersEiiiddd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the force field parameters for an interaction that should be calculated differently from others. If chargeProd and epsilon are both equal to 0, this will cause the interaction to be completely omitted from force and energy calculations.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -480,8 +480,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::createExceptionsFromBonds__std::vector:std::pair:i.i::CR.double.double"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">createExceptionsFromBonds</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;std::pair&lt;int, int&gt;&gt; &amp;<em>bonds</em>, double <em>coulomb14Scale</em>, double <em>lj14Scale</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd">
+<span id="OpenMM::NonbondedForce::createExceptionsFromBonds__std::vector:std::pair:i.i::CR.double.double"></span><code class="descclassname"></code><code class="descname">createExceptionsFromBonds</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;std::pair&lt;int, int&gt;&gt; &amp;<em>bonds</em>, double <em>coulomb14Scale</em>, double <em>lj14Scale</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce25createExceptionsFromBondsERKNSt6vectorINSt4pairIiiEEEEdd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identify exceptions based on the molecular topology. Particles which are separated by one or two bonds are set to not interact at all, while pairs of particles separated by three bonds (known as &#8220;1-4 interactions&#8221;) have their Coulomb and Lennard-Jones interactions reduced by a fixed factor.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -499,27 +499,27 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce26getUseDispersionCorrectionEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getUseDispersionCorrectionC"></span>bool <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getUseDispersionCorrection</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce26getUseDispersionCorrectionEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce26getUseDispersionCorrectionEv">
+<span id="OpenMM::NonbondedForce::getUseDispersionCorrectionC"></span><code class="descclassname"></code><code class="descname">getUseDispersionCorrection</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce26getUseDispersionCorrectionEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get whether to add a contribution to the energy that approximately represents the effect of Lennard-Jones interactions beyond the cutoff distance. The energy depends on the volume of the periodic box, and is only applicable when periodic boundary conditions are used. When running simulations at constant pressure, adding this contribution can improve the quality of results.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce26setUseDispersionCorrectionEb">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setUseDispersionCorrection__b"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setUseDispersionCorrection</code><span class="sig-paren">(</span>bool <em>useCorrection</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce26setUseDispersionCorrectionEb" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N6OpenMM14NonbondedForce26setUseDispersionCorrectionEb">
+<span id="OpenMM::NonbondedForce::setUseDispersionCorrection__b"></span><code class="descclassname"></code><code class="descname">setUseDispersionCorrection</code><span class="sig-paren">(</span>bool <em>useCorrection</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce26setUseDispersionCorrectionEb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set whether to add a contribution to the energy that approximately represents the effect of Lennard-Jones interactions beyond the cutoff distance. The energy depends on the volume of the periodic box, and is only applicable when periodic boundary conditions are used. When running simulations at constant pressure, adding this contribution can improve the quality of results.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce28getReciprocalSpaceForceGroupEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getReciprocalSpaceForceGroupC"></span>int <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">getReciprocalSpaceForceGroup</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce28getReciprocalSpaceForceGroupEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the force group that reciprocal space interactions for Ewald or PME are included in. This allows multiple time step integrators to evaluate direct and reciprocal space interactions at different intervals: <code class="xref cpp cpp-any docutils literal"><span class="pre">getForceGroup()</span></code> specifies the group for direct space, and <a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce28getReciprocalSpaceForceGroupEv" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::getReciprocalSpaceForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">getReciprocalSpaceForceGroup()</span></code></a> specifies the group for reciprocal space. If this is -1 (the default value), the same force group is used for reciprocal space as for direct space.</p>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce28getReciprocalSpaceForceGroupEv">
+<span id="OpenMM::NonbondedForce::getReciprocalSpaceForceGroupC"></span><code class="descclassname"></code><code class="descname">getReciprocalSpaceForceGroup</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce28getReciprocalSpaceForceGroupEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the force group that reciprocal space interactions for Ewald or PME are included in. This allows multiple time step integrators to evaluate direct and reciprocal space interactions at different intervals: <a class="reference internal" href="../autodoxyclass.html#_CPPv2NK6OpenMM5Force13getForceGroupEv" title="OpenMM::Force::getForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">getForceGroup()</span></code></a> specifies the group for direct space, and <a class="reference internal" href="#_CPPv2NK6OpenMM14NonbondedForce28getReciprocalSpaceForceGroupEv" title="OpenMM::NonbondedForce::getReciprocalSpaceForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">getReciprocalSpaceForceGroup()</span></code></a> specifies the group for reciprocal space. If this is -1 (the default value), the same force group is used for reciprocal space as for direct space.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce28setReciprocalSpaceForceGroupEi">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setReciprocalSpaceForceGroup__i"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">setReciprocalSpaceForceGroup</code><span class="sig-paren">(</span>int <em>group</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce28setReciprocalSpaceForceGroupEi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the force group that reciprocal space interactions for Ewald or PME are included in. This allows multiple time step integrators to evaluate direct and reciprocal space interactions at different intervals: <code class="xref cpp cpp-any docutils literal"><span class="pre">setForceGroup()</span></code> specifies the group for direct space, and <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce28setReciprocalSpaceForceGroupEi" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setReciprocalSpaceForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">setReciprocalSpaceForceGroup()</span></code></a> specifies the group for reciprocal space. If this is -1 (the default value), the same force group is used for reciprocal space as for direct space.</p>
+<dt id="_CPPv2N6OpenMM14NonbondedForce28setReciprocalSpaceForceGroupEi">
+<span id="OpenMM::NonbondedForce::setReciprocalSpaceForceGroup__i"></span><code class="descclassname"></code><code class="descname">setReciprocalSpaceForceGroup</code><span class="sig-paren">(</span>int <em>group</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce28setReciprocalSpaceForceGroupEi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the force group that reciprocal space interactions for Ewald or PME are included in. This allows multiple time step integrators to evaluate direct and reciprocal space interactions at different intervals: <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5Force13setForceGroupEi" title="OpenMM::Force::setForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">setForceGroup()</span></code></a> specifies the group for direct space, and <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce28setReciprocalSpaceForceGroupEi" title="OpenMM::NonbondedForce::setReciprocalSpaceForceGroup"><code class="xref cpp cpp-any docutils literal"><span class="pre">setReciprocalSpaceForceGroup()</span></code></a> specifies the group for reciprocal space. If this is -1 (the default value), the same force group is used for reciprocal space as for direct space.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -532,15 +532,15 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25updateParametersInContextER7Context">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::updateParametersInContext__ContextR"></span>void <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">updateParametersInContext</code><span class="sig-paren">(</span>Context &amp;<em>context</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25updateParametersInContextER7Context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update the particle and exception parameters in a <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> to match those stored in this <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> object. This method provides an efficient method to update certain parameters in an existing <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> without needing to reinitialize it. Simply call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce21setParticleParametersEiddd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setParticleParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setParticleParameters()</span></code></a> and <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce22setExceptionParametersEiiiddd" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::setExceptionParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setExceptionParameters()</span></code></a> to modify this object&#8217;s parameters, then call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce6OpenMM14NonbondedForce25updateParametersInContextER7Context" title="OpenMM::NonbondedForce::OpenMM::NonbondedForce::updateParametersInContext"><code class="xref cpp cpp-any docutils literal"><span class="pre">updateParametersInContext()</span></code></a> to copy them over to the <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>.</p>
+<dt id="_CPPv2N6OpenMM14NonbondedForce25updateParametersInContextER7Context">
+<span id="OpenMM::NonbondedForce::updateParametersInContext__ContextR"></span><code class="descclassname"></code><code class="descname">updateParametersInContext</code><span class="sig-paren">(</span>Context &amp;<em>context</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM14NonbondedForce25updateParametersInContextER7Context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the particle and exception parameters in a <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> to match those stored in this <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> object. This method provides an efficient method to update certain parameters in an existing <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> without needing to reinitialize it. Simply call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce21setParticleParametersEiddd" title="OpenMM::NonbondedForce::setParticleParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setParticleParameters()</span></code></a> and <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce22setExceptionParametersEiiiddd" title="OpenMM::NonbondedForce::setExceptionParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">setExceptionParameters()</span></code></a> to modify this object&#8217;s parameters, then call <a class="reference internal" href="#_CPPv2N6OpenMM14NonbondedForce25updateParametersInContextER7Context" title="OpenMM::NonbondedForce::updateParametersInContext"><code class="xref cpp cpp-any docutils literal"><span class="pre">updateParametersInContext()</span></code></a> to copy them over to the <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>.</p>
 <p>This method has several limitations. The only information it updates is the parameters of particles and exceptions. All other aspects of the <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> (the nonbonded method, the cutoff distance, etc.) are unaffected and can only be changed by reinitializing the <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>. Furthermore, only the chargeProd, sigma, and epsilon values of an exception can be changed; the pair of particles involved in the exception cannot change. Finally, this method cannot be used to add new particles or exceptions, only to change the parameters of existing ones.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce30usesPeriodicBoundaryConditionsEv">
-<span id="OpenMM::NonbondedForce::OpenMM::NonbondedForce::usesPeriodicBoundaryConditionsC"></span>bool <code class="descclassname">OpenMM::NonbondedForce::</code><code class="descname">usesPeriodicBoundaryConditions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce6OpenMM14NonbondedForce30usesPeriodicBoundaryConditionsEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2NK6OpenMM14NonbondedForce30usesPeriodicBoundaryConditionsEv">
+<span id="OpenMM::NonbondedForce::usesPeriodicBoundaryConditionsC"></span><code class="descclassname"></code><code class="descname">usesPeriodicBoundaryConditions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM14NonbondedForce30usesPeriodicBoundaryConditionsEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether or not this force makes use of periodic boundary conditions.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

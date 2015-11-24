@@ -77,3 +77,10 @@ The above example has two problems. First, it does not respect distance constrai
 
 """
     assert '\n'.join(format_xml_paragraph(node)) == expected
+
+
+def test_3():
+    node = ET.fromstring("""
+<type><ref refid="classOpenMM_1_1CustomHbondForce_1afefd9143292586209274d8e355d8cba1" kindref="member">NonbondedMethod</ref></type>""")
+    expected = ':cpp:any:`NonbondedMethod`'
+    assert '\n'.join(format_xml_paragraph(node)) == expected

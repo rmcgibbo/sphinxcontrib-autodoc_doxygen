@@ -60,7 +60,9 @@ class _DoxygenXmlParagraphFormatter(object):
             val.extend((' <', real_name, '>`'))
         else:
             val.append('`')
-        val.append(node.tail)
+        if node.tail is not None:
+            val.append(node.tail)
+
         self.lines[-1] += ''.join(val)
 
     def visit_para(self, node):

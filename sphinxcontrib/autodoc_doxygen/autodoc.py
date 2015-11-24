@@ -155,7 +155,12 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
 
     def format_name(self):
         # return self.object.find('definition').text
-        rtype = '\n'.join(format_xml_paragraph(self.object.find('type'))).strip()
+        rtype_el = self.object.find('type')
+        rtype_el_ref = rtype_el.find('ref')
+        if rtype_el_ref is not None:
+            rtype = rtype_el_ref.text
+        else:
+            rtype = rtype_el.text
         return (rtype and (rtype + ' ') or '') + self.objname
 
 

@@ -154,7 +154,10 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         return doc
 
     def format_name(self):
-        return self.object.find('definition').text
+        # return self.object.find('definition').text
+        rtype = '\n'.join(format_xml_paragraph(self.object.find('type'))).strip()
+        return (rtype and (rtype + ' ') or '') + self.objname
+
 
     def format_signature(self):
         args = self.object.find('argsstring').text

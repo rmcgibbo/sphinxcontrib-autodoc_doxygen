@@ -152,7 +152,8 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
         return doc
 
     def get_object_members(self, want_all):
-        all_members = self.object.findall('.//sectiondef[@kind="public-func"]/memberdef[@kind="function"]')
+        all_members = self.object.xpath('.//sectiondef[@kind="public-func" '
+            'or @kind="public-static-func"]/memberdef[@kind="function"]')
 
         if want_all:
             return False, ((m.find('name').text, m) for m in all_members)
@@ -227,8 +228,15 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
             rtype = rtype_el_ref.text
         else:
             rtype = rtype_el.text
-        return (rtype and (rtype + ' ') or '') + self.objname
 
+        signame = (rtype and (rtype + ' ') or '') + self.objname
+        return self.format_template_name() + signame
+
+    def format_template_name(self):
+        types = [e.text for e in self.object.findall('templateparamlist/param/type')]
+        if len(types) == 0:
+            return ''
+        return 'template <%s>\n' % ','.join(types)
 
     def format_signature(self):
         args = self.object.find('argsstring').text

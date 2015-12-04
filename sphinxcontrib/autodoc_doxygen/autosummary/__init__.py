@@ -1,6 +1,9 @@
 from __future__ import print_function, absolute_import, division
 
 import re
+import operator
+from functools import reduce
+from itertools import count, groupby
 
 from docutils import nodes
 from docutils.statemachine import ViewList
@@ -12,7 +15,11 @@ from ..autodoc import DoxygenMethodDocumenter, DoxygenClassDocumenter
 from ..xmlutils import format_xml_paragraph
 
 
-def import_by_name(name, env=None, prefixes=None):
+def import_by_name(name, env=None, prefixes=None, i=0):
+    """Get xml documentation for a class/method with a given name.
+    If there are multiple classes or methods with that name, you
+    can use the `i` kwarg to pick which one.
+    """
     if prefixes is None:
         prefixes = [None]
 
@@ -28,13 +35,13 @@ def import_by_name(name, env=None, prefixes=None):
                 prefixed_name = '::'.join([prefix, name])
             else:
                 prefixed_name = name
-            return _import_by_name(prefixed_name)
+            return _import_by_name(prefixed_name, i=i)
         except ImportError:
             tried.append(prefixed_name)
     raise ImportError('no module named %s' % ' or '.join(tried))
 
 
-def _import_by_name(name):
+def _import_by_name(name, i=0):
     root = get_doxygen_root()
     name = name.replace('.', '::')
 
@@ -45,7 +52,7 @@ def _import_by_name(name):
             'name[text()="%s"]/..') % tuple(name.rsplit('::', 1))
         m = root.xpath(xpath_query)
         if len(m) > 0:
-            obj = m[0]
+            obj = m[i]
             full_name = '.'.join(name.rsplit('::', 1))
             return full_name, obj, full_name, ''
 
@@ -55,14 +62,14 @@ def _import_by_name(name):
             'name[text()="%s"]/..') % tuple(name.rsplit('::', 1))
         m = root.xpath(xpath_query)
         if len(m) > 0:
-            obj = m[0]
+            obj = m[i]
             full_name = '.'.join(name.rsplit('::', 1))
             return full_name, obj, full_name, ''
 
     xpath_query = ('.//compoundname[text()="%s"]/..' % name)
     m = root.xpath(xpath_query)
     if len(m) > 0:
-        obj = m[0]
+        obj = m[i]
         return (name, obj, name, '')
 
     raise ImportError()
@@ -85,21 +92,24 @@ class DoxygenAutosummary(Autosummary):
         env = self.state.document.settings.env
         items = []
 
-        for name in names:
+        names_and_counts = reduce(operator.add,
+            [tuple(zip(g, count())) for _, g in groupby(names)]) # type: List[(Str, Int)]
+
+        for name, i in names_and_counts:
             display_name = name
             if name.startswith('~'):
                 name = name[1:]
                 display_name = name.split('::')[-1]
 
             try:
-                real_name, obj, parent, modname = import_by_name(name, env=env)
+                real_name, obj, parent, modname = import_by_name(name, env=env, i=i)
             except ImportError:
                 self.warn('failed to import %s' % name)
                 items.append((name, '', '', name))
                 continue
 
             self.result = ViewList()  # initialize for each documenter
-            documenter = get_documenter(obj, parent)(self, real_name)
+            documenter = get_documenter(obj, parent)(self, real_name, id=obj.get('id'))
             if not documenter.parse_name():
                 self.warn('failed to parse name %s' % real_name)
                 items.append((display_name, '', '', real_name))

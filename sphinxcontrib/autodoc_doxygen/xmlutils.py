@@ -47,11 +47,11 @@ class _DoxygenXmlParagraphFormatter(object):
                 parent = ref.xpath('./ancestor::compounddef/compoundname')[0].text
                 name = ref.find('./name').text
                 real_name = parent + '::' + name
-            elif ref.tag == 'compounddef':
+            elif ref.tag in ('compounddef', 'enumvalue'):
                 name_node = ref.find('./name')
                 real_name = name_node.text if name_node is not None else ''
             else:
-                raise NotImplementedError()
+                raise NotImplementedError(ref.tag)
         else:
             real_name = None
 

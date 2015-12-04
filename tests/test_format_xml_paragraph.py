@@ -84,3 +84,19 @@ def test_3():
 <type><ref refid="classOpenMM_1_1CustomHbondForce_1afefd9143292586209274d8e355d8cba1" kindref="member">NonbondedMethod</ref></type>""")
     expected = ':cpp:any:`NonbondedMethod`'
     assert '\n'.join(format_xml_paragraph(node)) == expected
+
+
+def test_4():
+    node = ET.fromstring("""<detaileddescription>
+<para>As an example, the following code creates a <ref refid="classOpenMM_1_1CustomNonbondedForce" kindref="compound">CustomNonbondedForce</ref> that implements a 12-6 Lennard-Jones potential:</para><para><computeroutput>CustomNonbondedForce* force = new <ref refid="classOpenMM_1_1CustomNonbondedForce" kindref="compound">CustomNonbondedForce</ref>(&quot;4*epsilon*((sigma/r)^12-(sigma/r)^6); sigma=0.5*(sigma1+sigma2); epsilon=sqrt(epsilon1*epsilon2)&quot;);</computeroutput></para>
+</detaileddescription>""")
+
+    expected = '''
+As an example, the following code creates a :cpp:any:`CustomNonbondedForce` that implements a 12-6 Lennard-Jones potential:
+
+.. code-block:: C++
+
+  CustomNonbondedForce* force = new CustomNonbondedForce("4*epsilon*((sigma/r)^12-(sigma/r)^6); sigma=0.5*(sigma1+sigma2); epsilon=sqrt(epsilon1*epsilon2)");
+'''
+
+    assert '\n'.join(format_xml_paragraph(node)) == expected

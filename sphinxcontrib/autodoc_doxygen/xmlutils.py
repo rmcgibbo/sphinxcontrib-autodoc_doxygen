@@ -96,7 +96,7 @@ class _DoxygenXmlParagraphFormatter(object):
         self.generic_visit(node)
 
     def visit_preformatted(self, node):
-        segment = [node.text]
+        segment = [node.text if node.text is not None else '']
         for n in node.getchildren():
             segment.append(n.text)
             if n.tail is not None:
@@ -105,3 +105,10 @@ class _DoxygenXmlParagraphFormatter(object):
         lines = ''.join(segment).split('\n')
         self.lines.extend(('.. code-block:: C++', ''))
         self.lines.extend(['  ' + l for l in lines])
+
+    def visit_computeroutput(self, node):
+        c = node.find('preformatted')
+        if c is not None:
+            return self.visit_preformatted(c)
+        return self.visit_preformatted(node)
+

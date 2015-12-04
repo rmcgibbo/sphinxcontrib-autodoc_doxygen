@@ -62,7 +62,7 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
             print('WARNING [autosummary] failed to import %r: %s' % (name, e), file=sys.stderr)
             continue
 
-        fn = os.path.join(path, name + suffix)
+        fn = os.path.join(path, name + suffix).replace('::', '.')
 
         # skip it if it exists
         if os.path.isfile(fn):

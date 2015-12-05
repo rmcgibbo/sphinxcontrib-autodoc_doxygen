@@ -100,3 +100,18 @@ As an example, the following code creates a :cpp:any:`CustomNonbondedForce` that
 '''
 
     assert '\n'.join(format_xml_paragraph(node)) == expected
+
+
+def test_5():
+    node = ET.fromstring("""<detaileddescription>
+<para>Add a tabulated function that may appear in the energy expression.</para><para><xrefsect id="deprecated_1_deprecated000015"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This method exists only for backward compatibility. Use <ref refid="classOpenMM_1_1CustomNonbondedForce_1ac7c24d607916cca0d0980956de03cd15" kindref="member">addTabulatedFunction()</ref> instead. </para></xrefdescription></xrefsect></para>        </detaileddescription>""")
+
+    expected = """
+Add a tabulated function that may appear in the energy expression.
+
+.. note::
+
+   This method exists only for backward compatibility. Use :cpp:any:`addTabulatedFunction()` instead.
+
+"""
+    assert '\n'.join(format_xml_paragraph(node)) == expected

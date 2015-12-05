@@ -76,12 +76,7 @@ class _DoxygenXmlParagraphFormatter(object):
         self.continue_line = False
 
     def visit_parametername(self, node):
-        ptype = None
-        type_search = node.xpath('./ancestor::memberdef/param/declname[text()="%s"]/../type' % node.text)
-        if type_search:
-            ptype = type_search[0].text
-
-        self.lines.append((':param %s: ' % node.text) + ('(%s) ' % ptype if ptype else ''))
+        self.lines.append(':param %s: ' % node.text)
         self.continue_line = True
 
     def visit_simplesect(self, node):
@@ -111,4 +106,11 @@ class _DoxygenXmlParagraphFormatter(object):
         if c is not None:
             return self.visit_preformatted(c)
         return self.visit_preformatted(node)
+
+    def visit_xrefsect(self, node):
+        if node.find('xreftitle').text == 'Deprecated':
+            sublines = type(self)().generic_visit(node).lines
+            self.lines.extend(['.. note::'] + ['   ' + s for s in sublines])
+        else:
+            raise ValueError(node)
 

@@ -109,7 +109,7 @@ def test_5():
     expected = """
 Add a tabulated function that may appear in the energy expression.
 
-.. note::
+.. admonition:: Deprecated
 
    This method exists only for backward compatibility. Use :cpp:any:`addTabulatedFunction()` instead.
 

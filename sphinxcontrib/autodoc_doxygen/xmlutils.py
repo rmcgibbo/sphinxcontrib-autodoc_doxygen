@@ -110,7 +110,7 @@ class _DoxygenXmlParagraphFormatter(object):
     def visit_xrefsect(self, node):
         if node.find('xreftitle').text == 'Deprecated':
             sublines = type(self)().generic_visit(node).lines
-            self.lines.extend(['.. note::'] + ['   ' + s for s in sublines])
+            self.lines.extend(['.. admonition:: Deprecated'] + ['   ' + s for s in sublines])
         else:
             raise ValueError(node)
 

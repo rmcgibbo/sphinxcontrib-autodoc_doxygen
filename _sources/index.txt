@@ -11,4 +11,3 @@ This page show some examples using Doxygen XML from OpenMM.
    autodoxyclass
    autodoxymethod
    extra_test_pages
-

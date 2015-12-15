@@ -1,0 +1,36 @@
+System
+==============
+
+.. autodoxyclass:: OpenMM::System
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autodoxysummary::
+   
+      ~OpenMM::System::System
+      ~OpenMM::System::~System
+      ~OpenMM::System::getNumParticles
+      ~OpenMM::System::addParticle
+      ~OpenMM::System::getParticleMass
+      ~OpenMM::System::setParticleMass
+      ~OpenMM::System::setVirtualSite
+      ~OpenMM::System::isVirtualSite
+      ~OpenMM::System::getVirtualSite
+      ~OpenMM::System::getNumConstraints
+      ~OpenMM::System::addConstraint
+      ~OpenMM::System::getConstraintParameters
+      ~OpenMM::System::setConstraintParameters
+      ~OpenMM::System::removeConstraint
+      ~OpenMM::System::addForce
+      ~OpenMM::System::getNumForces
+      ~OpenMM::System::getForce
+      ~OpenMM::System::getForce
+      ~OpenMM::System::removeForce
+      ~OpenMM::System::getDefaultPeriodicBoxVectors
+      ~OpenMM::System::setDefaultPeriodicBoxVectors
+      ~OpenMM::System::usesPeriodicBoundaryConditions
+   
+
+   

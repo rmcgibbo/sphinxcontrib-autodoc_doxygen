@@ -20,7 +20,9 @@ def test_1():
     expected = """
 Get a reference to a tabulated function that may appear in the energy expression.
 
-:param index: the index of the function to get
+:parameters:
+
+* **index** -- the index of the function to get
 
 :returns: the :cpp:any:`TabulatedFunction` object defining the function
 
@@ -114,4 +116,133 @@ Add a tabulated function that may appear in the energy expression.
    This method exists only for backward compatibility. Use :cpp:any:`addTabulatedFunction()` instead.
 
 """
+    assert '\n'.join(format_xml_paragraph(node)) == expected
+
+
+def test_6():
+    node = ET.fromstring('''<detaileddescription>
+<para>Set the force group this <ref refid="classOpenMM_1_1Force" kindref="compound">Force</ref> belongs to.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>group</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the group index. Legal values are between 0 and 31 (inclusive). </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>''')
+
+    expected = """
+Set the force group this :cpp:any:`Force` belongs to.
+
+:parameters:
+
+* **group** -- the group index. Legal values are between 0 and 31 (inclusive).
+
+"""
+    assert '\n'.join(format_xml_paragraph(node)) == expected
+
+
+def test_7():
+    node = ET.fromstring('''<detaileddescription>
+<para>Add an angle term to the force field.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>particle1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the first particle connected by the angle </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>particle2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the second particle connected by the angle </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>particle3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the third particle connected by the angle </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the equilibrium angle, measured in degrees </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quadraticK</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the quadratic force constant for the angle, measured in kJ/mol/radian^2 </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the index of the angle that was added </para></simplesect>
+</para>        </detaileddescription>''')
+
+    expected = """
+Add an angle term to the force field.
+
+:parameters:
+
+* **particle1** -- the index of the first particle connected by the angle
+* **particle2** -- the index of the second particle connected by the angle
+* **particle3** -- the index of the third particle connected by the angle
+* **length** -- the equilibrium angle, measured in degrees
+* **quadraticK** -- the quadratic force constant for the angle, measured in kJ/mol/radian^2
+
+:returns: the index of the angle that was added
+
+"""
+    assert '\n'.join(format_xml_paragraph(node)) == expected
+
+
+def test_8():
+    node = ET.fromstring('''<detaileddescription>
+<para>This is a <ref refid="classOpenMM_1_1VirtualSite" kindref="compound">VirtualSite</ref> that computes the particle location based on three other particles&apos; locations. If r<subscript>1</subscript> is the location of particle 1, r<subscript>12</subscript> is the vector from particle 1 to particle 2, and r<subscript>13</subscript> is the vector from particle 1 to particle 3, then the virtual site location is given by</para><para>r<subscript>1</subscript> + w<subscript>12</subscript>r<subscript>12</subscript> + w<subscript>13</subscript>r<subscript>13</subscript> + w<subscript>cross</subscript>(r<subscript>12</subscript> x r<subscript>13</subscript>)</para><para>The three weight factors are user-specified. This allows the virtual site location to be out of the plane of the three particles. </para>    </detaileddescription>''')
+
+    expected = '''
+This is a :cpp:any:`VirtualSite` that computes the particle location based on three other particles' locations. If r\ :sub:`1`  is the location of particle 1, r\ :sub:`12`  is the vector from particle 1 to particle 2, and r\ :sub:`13`  is the vector from particle 1 to particle 3, then the virtual site location is given by
+
+r\ :sub:`1`  + w\ :sub:`12` r\ :sub:`12`  + w\ :sub:`13` r\ :sub:`13`  + w\ :sub:`cross` (r\ :sub:`12`  x r\ :sub:`13` )
+
+The three weight factors are user-specified. This allows the virtual site location to be out of the plane of the three particles.
+'''
+
+    assert '\n'.join(format_xml_paragraph(node)) == expected
+
+
+def test_9():
+    node = ET.fromstring('''
+<detaileddescription>
+<para>Get the force field parameters for an angle term.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the angle for which to get parameters </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">particle1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the first particle forming the angle </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+</detaileddescription>''')
+
+    expected = '''
+Get the force field parameters for an angle term.
+
+:parameters:
+
+* **index** -- the index of the angle for which to get parameters
+* **particle1** -- [out] the index of the first particle forming the angle
+
+'''
     assert '\n'.join(format_xml_paragraph(node)) == expected

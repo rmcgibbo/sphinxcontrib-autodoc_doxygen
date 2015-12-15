@@ -28,6 +28,7 @@ Output
 .. autodoxysummary::
    :toctree: generated/
 
-   OpenMM::NonbondedForce
-   OpenMM::VerletIntegrator
-   OpenMM::CustomIntegrator
+   ~OpenMM::NonbondedForce
+   ~OpenMM::VerletIntegrator
+   ~OpenMM::CustomIntegrator
+   ~OpenMM::System

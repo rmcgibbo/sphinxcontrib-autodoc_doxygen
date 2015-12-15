@@ -221,11 +221,20 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         return doc
 
     def format_name(self):
-        # return self.object.find('definition').text
+        def text(el):
+            if el.text is not None:
+                return el.text
+            return ''
+
+        def tail(el):
+            if el.tail is not None:
+                return el.tail
+            return ''
+
         rtype_el = self.object.find('type')
         rtype_el_ref = rtype_el.find('ref')
         if rtype_el_ref is not None:
-            rtype = rtype_el_ref.text
+            rtype = text(rtype_el) + text(rtype_el_ref) + tail(rtype_el_ref)
         else:
             rtype = rtype_el.text
 

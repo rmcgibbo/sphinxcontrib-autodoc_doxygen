@@ -13,7 +13,7 @@ def set_doxygen_root(node):
     if hasattr(sphinxcontrib.autodoc_doxygen.setup, 'DOXYGEN_ROOT'):
         old_root = sphinxcontrib.autodoc_doxygen.setup.DOXYGEN_ROOT
         have_old_root = True
-         
+
     sphinxcontrib.autodoc_doxygen.setup.DOXYGEN_ROOT = node
     yield
 
@@ -21,7 +21,7 @@ def set_doxygen_root(node):
         sphinxcontrib.autodoc_doxygen.setup.DOXYGEN_ROOT = old_root
     else:
         delattr(sphinxcontrib.autodoc_doxygen.setup, 'DOXYGEN_ROOT')
-         
+
 
 def test_1():
     node = ET.fromstring('''

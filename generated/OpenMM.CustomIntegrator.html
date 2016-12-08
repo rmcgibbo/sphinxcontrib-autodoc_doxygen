@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>CustomIntegrator &mdash; test1  documentation</title>
+    <title>CustomIntegrator &#8212; test1  documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,20 +17,25 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="test1  documentation" href="../index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
    
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -41,9 +46,9 @@
 <h1>CustomIntegrator<a class="headerlink" href="#customintegrator" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="_CPPv2N6OpenMM16CustomIntegratorE">
-<span id="OpenMM::CustomIntegrator"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">CustomIntegrator</code><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">CustomIntegrator</code><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This is an <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM10IntegratorE" title="OpenMM::Integrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">Integrator</span></code></a> that can be used to implemented arbitrary, user defined integration algorithms. It is flexible enough to support a wide range of methods including both deterministic and stochastic integrators, Metropolized integrators, and integrators that must integrate additional quantities along with the particle positions and momenta.</p>
-<p>To create an integration algorithm, you first define a set of variables the integrator will compute. Variables come in two types: <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="OpenMM::CustomIntegrator::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a>. All variables are persistent between integration steps; once a value is set, it keeps that value until it is changed by the user or recomputed in a later integration step.</p>
+<p>To create an integration algorithm, you first define a set of variables the integrator will compute. Variables come in two types: <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="OpenMM::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a>. All variables are persistent between integration steps; once a value is set, it keeps that value until it is changed by the user or recomputed in a later integration step.</p>
 <p>Next, you define the algorithm as a series of computations. To execute a time step, the integrator performs the list of computations in order. Each computation updates the value of one global or per-DOF value. There are several types of computations that can be done:</p>
 <blockquote>
 <div><ul class="simple">
@@ -54,7 +59,7 @@
 <li>Constrain Velocities: The particle velocities are updated so the net velocity along any constrained distance is 0.</li>
 </ul>
 </div></blockquote>
-<p>Like all integrators, <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="OpenMM::CustomIntegrator::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a> ignores any particle whose mass is 0. It is skipped when doing per-DOF computations, and is not included when computing sums over degrees of freedom.</p>
+<p>Like all integrators, <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="OpenMM::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a> ignores any particle whose mass is 0. It is skipped when doing per-DOF computations, and is not included when computing sums over degrees of freedom.</p>
 <p>In addition to the variables you define by calling <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator17addGlobalVariableERKNSt6stringEd" title="OpenMM::CustomIntegrator::addGlobalVariable"><code class="xref cpp cpp-any docutils literal"><span class="pre">addGlobalVariable()</span></code></a> and <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator17addPerDofVariableERKNSt6stringEd" title="OpenMM::CustomIntegrator::addPerDofVariable"><code class="xref cpp cpp-any docutils literal"><span class="pre">addPerDofVariable()</span></code></a>, the integrator provides the following pre-defined variables:</p>
 <blockquote>
 <div><ul class="simple">
@@ -71,8 +76,8 @@
 <li>A global variable is created for every adjustable parameter defined in the integrator&#8217;s <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>.</li>
 </ul>
 </div></blockquote>
-<p>The following example uses a <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="OpenMM::CustomIntegrator::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a> to implement a velocity Verlet integrator:</p>
-<div class="highlight-C++"><div class="highlight"><pre><span class="n">CustomIntegrator</span> <span class="nf">integrator</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span>
+<p>The following example uses a <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="OpenMM::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a> to implement a velocity Verlet integrator:</p>
+<div class="highlight-C++"><div class="highlight"><pre><span></span><span class="n">CustomIntegrator</span> <span class="nf">integrator</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span>
 <span class="n">integrator</span><span class="p">.</span><span class="n">addComputePerDof</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="s">&quot;v+0.5*dt*f/m&quot;</span><span class="p">);</span>
 <span class="n">integrator</span><span class="p">.</span><span class="n">addComputePerDof</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span> <span class="s">&quot;x+dt*v&quot;</span><span class="p">);</span>
 <span class="n">integrator</span><span class="p">.</span><span class="n">addComputePerDof</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="s">&quot;v+0.5*dt*f/m&quot;</span><span class="p">);</span>
@@ -80,7 +85,7 @@
 </div>
 <p>The first step updates the velocities based on the current forces. The second step updates the positions based on the new velocities, and the third step updates the velocities again. Although the first and third steps look identical, the forces used in them are different. You do not need to tell the integrator that; it will recognize that the positions have changed and know to recompute the forces automatically.</p>
 <p>The above example has two problems. First, it does not respect distance constraints. To make the integrator work with constraints, you need to add extra steps to tell it when and how to apply them. Second, it never gives Forces an opportunity to update the context state. This should be done every time step so that, for example, an <code class="xref cpp cpp-any docutils literal"><span class="pre">AndersenThermostat</span></code> can randomize velocities or a <code class="xref cpp cpp-any docutils literal"><span class="pre">MonteCarloBarostat</span></code> can scale particle positions. You need to add a step to tell the integrator when to do this. The following example corrects both these problems, using the RATTLE algorithm to apply constraints:</p>
-<div class="highlight-C++"><div class="highlight"><pre><span class="n">CustomIntegrator</span> <span class="nf">integrator</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span>
+<div class="highlight-C++"><div class="highlight"><pre><span></span><span class="n">CustomIntegrator</span> <span class="nf">integrator</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span>
 <span class="n">integrator</span><span class="p">.</span><span class="n">addPerDofVariable</span><span class="p">(</span><span class="s">&quot;x1&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 <span class="n">integrator</span><span class="p">.</span><span class="n">addUpdateContextState</span><span class="p">();</span>
 <span class="n">integrator</span><span class="p">.</span><span class="n">addComputePerDof</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="s">&quot;v+0.5*dt*f/m&quot;</span><span class="p">);</span>
@@ -91,8 +96,8 @@
 <span class="n">integrator</span><span class="p">.</span><span class="n">addConstrainVelocities</span><span class="p">();</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="OpenMM::CustomIntegrator::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a> can be used to implement multiple time step integrators. The following example shows an r-RESPA integrator. It assumes the quickly changing forces are in force group 0 and the slowly changing ones are in force group 1. It evaluates the &#8220;fast&#8221; forces four times as often as the &#8220;slow&#8221; forces.</p>
-<div class="highlight-C++"><div class="highlight"><pre><span class="n">CustomIntegrator</span> <span class="nf">integrator</span><span class="p">(</span><span class="mf">0.004</span><span class="p">);</span>
+<p><a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="OpenMM::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a> can be used to implement multiple time step integrators. The following example shows an r-RESPA integrator. It assumes the quickly changing forces are in force group 0 and the slowly changing ones are in force group 1. It evaluates the &#8220;fast&#8221; forces four times as often as the &#8220;slow&#8221; forces.</p>
+<div class="highlight-C++"><div class="highlight"><pre><span></span><span class="n">CustomIntegrator</span> <span class="nf">integrator</span><span class="p">(</span><span class="mf">0.004</span><span class="p">);</span>
 <span class="n">integrator</span><span class="p">.</span><span class="n">addComputePerDof</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="s">&quot;v+0.5*dt*f1/m&quot;</span><span class="p">);</span>
 <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">integrator</span><span class="p">.</span><span class="n">addComputePerDof</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="s">&quot;v+0.5*(dt/4)*f0/m&quot;</span><span class="p">);</span>
@@ -102,9 +107,9 @@
 <span class="n">integrator</span><span class="p">.</span><span class="n">addComputePerDof</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="s">&quot;v+0.5*dt*f1/m&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The sequence of computations in a <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="OpenMM::CustomIntegrator::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a> can include flow control in the form of &#8220;if&#8221; and &#8220;while&#8221; blocks. The computations inside an &#8220;if&#8221; block are executed either zero or one times, depending on whether a condition is true. The computations inside a &#8220;while&#8221; block are executed repeatedly for as long as the condition remains true. Be very careful when writing &#8220;while&#8221; blocks; there is nothing to stop you from creating an infinite loop!</p>
+<p>The sequence of computations in a <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="OpenMM::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a> can include flow control in the form of &#8220;if&#8221; and &#8220;while&#8221; blocks. The computations inside an &#8220;if&#8221; block are executed either zero or one times, depending on whether a condition is true. The computations inside a &#8220;while&#8221; block are executed repeatedly for as long as the condition remains true. Be very careful when writing &#8220;while&#8221; blocks; there is nothing to stop you from creating an infinite loop!</p>
 <p>For example, suppose you are writing a Monte Carlo algorithm. Assume you have already computed a new set of particle coordinates &#8220;xnew&#8221; and a step acceptance probability &#8220;acceptanceProbability&#8221;. The following lines use an &#8220;if&#8221; block to decide whether to accept the step, and if it is accepted, store the new positions into &#8220;x&#8221;.</p>
-<div class="highlight-C++"><div class="highlight"><pre><span class="n">integrator</span><span class="p">.</span><span class="n">beginIfBlock</span><span class="p">(</span><span class="s">&quot;uniform &lt; acceptanceProbability&quot;</span><span class="p">);</span>
+<div class="highlight-C++"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="p">.</span><span class="n">beginIfBlock</span><span class="p">(</span><span class="s">&quot;uniform &lt; acceptanceProbability&quot;</span><span class="p">);</span>
 <span class="n">integrator</span><span class="p">.</span><span class="n">computePerDof</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span> <span class="s">&quot;xnew&quot;</span><span class="p">);</span>
 <span class="n">integrator</span><span class="p">.</span><span class="n">endBlock</span><span class="p">();</span>
 </pre></div>
@@ -113,7 +118,7 @@
 <p>An <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM10IntegratorE" title="OpenMM::Integrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">Integrator</span></code></a> has one other job in addition to evolving the equations of motion: it defines how to compute the kinetic energy of the system. Depending on the integration method used, simply summing mv</p>
 <p>Call <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator26setKineticEnergyExpressionERKNSt6stringE" title="OpenMM::CustomIntegrator::setKineticEnergyExpression"><code class="xref cpp cpp-any docutils literal"><span class="pre">setKineticEnergyExpression()</span></code></a> to set an expression for the kinetic energy. It is computed for every degree of freedom (excluding ones whose mass is 0) and the result is summed. The default expression is &#8220;m*v*v/2&#8221;, which is correct for many integrators.</p>
 <p>As example, the following line defines the correct way to compute kinetic energy when using a leapfrog algorithm:</p>
-<div class="highlight-C++"><div class="highlight"><pre><span class="n">integrator</span><span class="p">.</span><span class="n">setKineticEnergyExpression</span><span class="p">(</span><span class="s">&quot;m*v1*v1/2; v1=v+0.5*dt*f/m&quot;</span><span class="p">);</span>
+<div class="highlight-C++"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="p">.</span><span class="n">setKineticEnergyExpression</span><span class="p">(</span><span class="s">&quot;m*v1*v1/2; v1=v+0.5*dt*f/m&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The kinetic energy expression may depend on the following pre-defined variables: x, v, f, m, dt. It also may depend on user-defined global and per-DOF variables, and on the values of adjustable parameters defined in the integrator&#8217;s <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code>. It may</p>
@@ -126,7 +131,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="OpenMM::CustomIntegrator::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a></td>
-<td>Create a <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="OpenMM::CustomIntegrator::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a>.</td>
+<td>Create a <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegratorE" title="OpenMM::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM16CustomIntegrator21getNumGlobalVariablesEv" title="OpenMM::CustomIntegrator::getNumGlobalVariables"><code class="xref cpp cpp-any docutils literal"><span class="pre">getNumGlobalVariables</span></code></a></td>
 <td>Get the number of global variables that have been defined.</td>
@@ -258,8 +263,8 @@
 </table>
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd">
-<span id="OpenMM::CustomIntegrator::CustomIntegrator__double"></span><code class="descclassname"></code><code class="descname">CustomIntegrator</code><span class="sig-paren">(</span>double <em>stepSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="OpenMM::CustomIntegrator::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator</span></code></a>.</p>
+<span id="OpenMM::CustomIntegrator::CustomIntegrator__double"></span><code class="descclassname"></code><code class="descname">CustomIntegrator</code><span class="sig-paren">(</span>double <em>stepSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator16CustomIntegratorEd" title="OpenMM::CustomIntegrator::CustomIntegrator"><code class="xref cpp cpp-any docutils literal"><span class="pre">CustomIntegrator()</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -275,25 +280,25 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator21getNumGlobalVariablesEv">
-<span id="OpenMM::CustomIntegrator::getNumGlobalVariablesC"></span>int <code class="descclassname"></code><code class="descname">getNumGlobalVariables</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator21getNumGlobalVariablesEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getNumGlobalVariablesC"></span>int <code class="descclassname"></code><code class="descname">getNumGlobalVariables</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator21getNumGlobalVariablesEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the number of global variables that have been defined.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator21getNumPerDofVariablesEv">
-<span id="OpenMM::CustomIntegrator::getNumPerDofVariablesC"></span>int <code class="descclassname"></code><code class="descname">getNumPerDofVariables</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator21getNumPerDofVariablesEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getNumPerDofVariablesC"></span>int <code class="descclassname"></code><code class="descname">getNumPerDofVariables</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator21getNumPerDofVariablesEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the number of per-DOF variables that have been defined.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator18getNumComputationsEv">
-<span id="OpenMM::CustomIntegrator::getNumComputationsC"></span>int <code class="descclassname"></code><code class="descname">getNumComputations</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator18getNumComputationsEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getNumComputationsC"></span>int <code class="descclassname"></code><code class="descname">getNumComputations</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator18getNumComputationsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the number of computation steps that have been added.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator17addGlobalVariableERKNSt6stringEd">
-<span id="OpenMM::CustomIntegrator::addGlobalVariable__ssCR.double"></span>int <code class="descclassname"></code><code class="descname">addGlobalVariable</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, double <em>initialValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator17addGlobalVariableERKNSt6stringEd" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::addGlobalVariable__ssCR.double"></span>int <code class="descclassname"></code><code class="descname">addGlobalVariable</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, double <em>initialValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator17addGlobalVariableERKNSt6stringEd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Define a new global variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -319,7 +324,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator21getGlobalVariableNameEi">
-<span id="OpenMM::CustomIntegrator::getGlobalVariableName__iC"></span><em class="property">const</em> std::string &amp;<code class="descclassname"></code><code class="descname">getGlobalVariableName</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator21getGlobalVariableNameEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getGlobalVariableName__iC"></span><em class="property">const</em> std::string &amp;<code class="descclassname"></code><code class="descname">getGlobalVariableName</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator21getGlobalVariableNameEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the name of a global variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -344,7 +349,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator17addPerDofVariableERKNSt6stringEd">
-<span id="OpenMM::CustomIntegrator::addPerDofVariable__ssCR.double"></span>int <code class="descclassname"></code><code class="descname">addPerDofVariable</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, double <em>initialValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator17addPerDofVariableERKNSt6stringEd" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::addPerDofVariable__ssCR.double"></span>int <code class="descclassname"></code><code class="descname">addPerDofVariable</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, double <em>initialValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator17addPerDofVariableERKNSt6stringEd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Define a new per-DOF variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -370,7 +375,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator21getPerDofVariableNameEi">
-<span id="OpenMM::CustomIntegrator::getPerDofVariableName__iC"></span><em class="property">const</em> std::string &amp;<code class="descclassname"></code><code class="descname">getPerDofVariableName</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator21getPerDofVariableNameEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getPerDofVariableName__iC"></span><em class="property">const</em> std::string &amp;<code class="descclassname"></code><code class="descname">getPerDofVariableName</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator21getPerDofVariableNameEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the name of a per-DOF variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -395,7 +400,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator17getGlobalVariableEi">
-<span id="OpenMM::CustomIntegrator::getGlobalVariable__iC"></span>double <code class="descclassname"></code><code class="descname">getGlobalVariable</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator17getGlobalVariableEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getGlobalVariable__iC"></span>double <code class="descclassname"></code><code class="descname">getGlobalVariable</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator17getGlobalVariableEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the current value of a global variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -420,7 +425,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator23getGlobalVariableByNameERKNSt6stringE">
-<span id="OpenMM::CustomIntegrator::getGlobalVariableByName__ssCRC"></span>double <code class="descclassname"></code><code class="descname">getGlobalVariableByName</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator23getGlobalVariableByNameERKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getGlobalVariableByName__ssCRC"></span>double <code class="descclassname"></code><code class="descname">getGlobalVariableByName</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator23getGlobalVariableByNameERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the current value of a global variable, specified by name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -445,7 +450,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator17setGlobalVariableEid">
-<span id="OpenMM::CustomIntegrator::setGlobalVariable__i.double"></span>void <code class="descclassname"></code><code class="descname">setGlobalVariable</code><span class="sig-paren">(</span>int <em>index</em>, double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator17setGlobalVariableEid" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::setGlobalVariable__i.double"></span>void <code class="descclassname"></code><code class="descname">setGlobalVariable</code><span class="sig-paren">(</span>int <em>index</em>, double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator17setGlobalVariableEid" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the value of a global variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -463,7 +468,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator23setGlobalVariableByNameERKNSt6stringEd">
-<span id="OpenMM::CustomIntegrator::setGlobalVariableByName__ssCR.double"></span>void <code class="descclassname"></code><code class="descname">setGlobalVariableByName</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator23setGlobalVariableByNameERKNSt6stringEd" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::setGlobalVariableByName__ssCR.double"></span>void <code class="descclassname"></code><code class="descname">setGlobalVariableByName</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator23setGlobalVariableByNameERKNSt6stringEd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the value of a global variable, specified by name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -481,7 +486,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator17getPerDofVariableEiRNSt6vectorI4Vec3EE">
-<span id="OpenMM::CustomIntegrator::getPerDofVariable__i.std::vector:Vec3:RC"></span>void <code class="descclassname"></code><code class="descname">getPerDofVariable</code><span class="sig-paren">(</span>int <em>index</em>, std::vector&lt;Vec3&gt; &amp;<em>values</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator17getPerDofVariableEiRNSt6vectorI4Vec3EE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getPerDofVariable__i.std::vector:Vec3:RC"></span>void <code class="descclassname"></code><code class="descname">getPerDofVariable</code><span class="sig-paren">(</span>int <em>index</em>, std::vector&lt;Vec3&gt; &amp;<em>values</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator17getPerDofVariableEiRNSt6vectorI4Vec3EE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the value of a per-DOF variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -499,7 +504,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator23getPerDofVariableByNameERKNSt6stringERNSt6vectorI4Vec3EE">
-<span id="OpenMM::CustomIntegrator::getPerDofVariableByName__ssCR.std::vector:Vec3:RC"></span>void <code class="descclassname"></code><code class="descname">getPerDofVariableByName</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, std::vector&lt;Vec3&gt; &amp;<em>values</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator23getPerDofVariableByNameERKNSt6stringERNSt6vectorI4Vec3EE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getPerDofVariableByName__ssCR.std::vector:Vec3:RC"></span>void <code class="descclassname"></code><code class="descname">getPerDofVariableByName</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, std::vector&lt;Vec3&gt; &amp;<em>values</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator23getPerDofVariableByNameERKNSt6stringERNSt6vectorI4Vec3EE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the value of a per-DOF variable, specified by name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -517,7 +522,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator17setPerDofVariableEiRKNSt6vectorI4Vec3EE">
-<span id="OpenMM::CustomIntegrator::setPerDofVariable__i.std::vector:Vec3:CR"></span>void <code class="descclassname"></code><code class="descname">setPerDofVariable</code><span class="sig-paren">(</span>int <em>index</em>, <em class="property">const</em> std::vector&lt;Vec3&gt; &amp;<em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator17setPerDofVariableEiRKNSt6vectorI4Vec3EE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::setPerDofVariable__i.std::vector:Vec3:CR"></span>void <code class="descclassname"></code><code class="descname">setPerDofVariable</code><span class="sig-paren">(</span>int <em>index</em>, <em class="property">const</em> std::vector&lt;Vec3&gt; &amp;<em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator17setPerDofVariableEiRKNSt6vectorI4Vec3EE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the value of a per-DOF variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -535,7 +540,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator23setPerDofVariableByNameERKNSt6stringERKNSt6vectorI4Vec3EE">
-<span id="OpenMM::CustomIntegrator::setPerDofVariableByName__ssCR.std::vector:Vec3:CR"></span>void <code class="descclassname"></code><code class="descname">setPerDofVariableByName</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, <em class="property">const</em> std::vector&lt;Vec3&gt; &amp;<em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator23setPerDofVariableByNameERKNSt6stringERKNSt6vectorI4Vec3EE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::setPerDofVariableByName__ssCR.std::vector:Vec3:CR"></span>void <code class="descclassname"></code><code class="descname">setPerDofVariableByName</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em>, <em class="property">const</em> std::vector&lt;Vec3&gt; &amp;<em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator23setPerDofVariableByNameERKNSt6stringERKNSt6vectorI4Vec3EE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the value of a per-DOF variable, specified by name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -553,7 +558,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator16addComputeGlobalERKNSt6stringERKNSt6stringE">
-<span id="OpenMM::CustomIntegrator::addComputeGlobal__ssCR.ssCR"></span>int <code class="descclassname"></code><code class="descname">addComputeGlobal</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>variable</em>, <em class="property">const</em> std::string &amp;<em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator16addComputeGlobalERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::addComputeGlobal__ssCR.ssCR"></span>int <code class="descclassname"></code><code class="descname">addComputeGlobal</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>variable</em>, <em class="property">const</em> std::string &amp;<em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator16addComputeGlobalERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add a step to the integration algorithm that computes a global value.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -579,7 +584,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator16addComputePerDofERKNSt6stringERKNSt6stringE">
-<span id="OpenMM::CustomIntegrator::addComputePerDof__ssCR.ssCR"></span>int <code class="descclassname"></code><code class="descname">addComputePerDof</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>variable</em>, <em class="property">const</em> std::string &amp;<em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator16addComputePerDofERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::addComputePerDof__ssCR.ssCR"></span>int <code class="descclassname"></code><code class="descname">addComputePerDof</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>variable</em>, <em class="property">const</em> std::string &amp;<em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator16addComputePerDofERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add a step to the integration algorithm that computes a per-DOF value.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -605,7 +610,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator13addComputeSumERKNSt6stringERKNSt6stringE">
-<span id="OpenMM::CustomIntegrator::addComputeSum__ssCR.ssCR"></span>int <code class="descclassname"></code><code class="descname">addComputeSum</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>variable</em>, <em class="property">const</em> std::string &amp;<em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator13addComputeSumERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::addComputeSum__ssCR.ssCR"></span>int <code class="descclassname"></code><code class="descname">addComputeSum</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>variable</em>, <em class="property">const</em> std::string &amp;<em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator13addComputeSumERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add a step to the integration algorithm that computes a sum over degrees of freedom.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -631,7 +636,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator21addConstrainPositionsEv">
-<span id="OpenMM::CustomIntegrator::addConstrainPositions"></span>int <code class="descclassname"></code><code class="descname">addConstrainPositions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator21addConstrainPositionsEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::addConstrainPositions"></span>int <code class="descclassname"></code><code class="descname">addConstrainPositions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator21addConstrainPositionsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add a step to the integration algorithm that updates particle positions so all constraints are satisfied.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -645,7 +650,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator22addConstrainVelocitiesEv">
-<span id="OpenMM::CustomIntegrator::addConstrainVelocities"></span>int <code class="descclassname"></code><code class="descname">addConstrainVelocities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator22addConstrainVelocitiesEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::addConstrainVelocities"></span>int <code class="descclassname"></code><code class="descname">addConstrainVelocities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator22addConstrainVelocitiesEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add a step to the integration algorithm that updates particle velocities so the net velocity along all constraints is 0.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -659,7 +664,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator21addUpdateContextStateEv">
-<span id="OpenMM::CustomIntegrator::addUpdateContextState"></span>int <code class="descclassname"></code><code class="descname">addUpdateContextState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator21addUpdateContextStateEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::addUpdateContextState"></span>int <code class="descclassname"></code><code class="descname">addUpdateContextState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator21addUpdateContextStateEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add a step to the integration algorithm that allows Forces to update the context state.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -673,7 +678,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator12beginIfBlockERKNSt6stringE">
-<span id="OpenMM::CustomIntegrator::beginIfBlock__ssCR"></span>int <code class="descclassname"></code><code class="descname">beginIfBlock</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>condition</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator12beginIfBlockERKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::beginIfBlock__ssCR"></span>int <code class="descclassname"></code><code class="descname">beginIfBlock</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>condition</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator12beginIfBlockERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add a step which begins a new &#8220;if&#8221; block.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -698,7 +703,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator15beginWhileBlockERKNSt6stringE">
-<span id="OpenMM::CustomIntegrator::beginWhileBlock__ssCR"></span>int <code class="descclassname"></code><code class="descname">beginWhileBlock</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>condition</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator15beginWhileBlockERKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::beginWhileBlock__ssCR"></span>int <code class="descclassname"></code><code class="descname">beginWhileBlock</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>condition</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator15beginWhileBlockERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add a step which begins a new &#8220;while&#8221; block.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -723,7 +728,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator8endBlockEv">
-<span id="OpenMM::CustomIntegrator::endBlock"></span>int <code class="descclassname"></code><code class="descname">endBlock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator8endBlockEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::endBlock"></span>int <code class="descclassname"></code><code class="descname">endBlock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator8endBlockEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add a step which marks the end of the most recently begun &#8220;if&#8221; or &#8220;while&#8221; block.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -737,7 +742,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator18getComputationStepEiR15ComputationTypeRNSt6stringERNSt6stringE">
-<span id="OpenMM::CustomIntegrator::getComputationStep__i.ComputationTypeR.ssR.ssRC"></span>void <code class="descclassname"></code><code class="descname">getComputationStep</code><span class="sig-paren">(</span>int <em>index</em>, ComputationType &amp;<em>type</em>, std::string &amp;<em>variable</em>, std::string &amp;<em>expression</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator18getComputationStepEiR15ComputationTypeRNSt6stringERNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getComputationStep__i.ComputationTypeR.ssR.ssRC"></span>void <code class="descclassname"></code><code class="descname">getComputationStep</code><span class="sig-paren">(</span>int <em>index</em>, ComputationType &amp;<em>type</em>, std::string &amp;<em>variable</em>, std::string &amp;<em>expression</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator18getComputationStepEiR15ComputationTypeRNSt6stringERNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the details of a computation step that has been added to the integration algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -757,32 +762,32 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator26getKineticEnergyExpressionEv">
-<span id="OpenMM::CustomIntegrator::getKineticEnergyExpressionC"></span><em class="property">const</em> std::string &amp;<code class="descclassname"></code><code class="descname">getKineticEnergyExpression</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator26getKineticEnergyExpressionEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getKineticEnergyExpressionC"></span><em class="property">const</em> std::string &amp;<code class="descclassname"></code><code class="descname">getKineticEnergyExpression</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator26getKineticEnergyExpressionEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the expression to use for computing the kinetic energy. The expression is evaluated for every degree of freedom. Those values are then added together, and the sum is reported as the current kinetic energy.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator26setKineticEnergyExpressionERKNSt6stringE">
-<span id="OpenMM::CustomIntegrator::setKineticEnergyExpression__ssCR"></span>void <code class="descclassname"></code><code class="descname">setKineticEnergyExpression</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator26setKineticEnergyExpressionERKNSt6stringE" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::setKineticEnergyExpression__ssCR"></span>void <code class="descclassname"></code><code class="descname">setKineticEnergyExpression</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator26setKineticEnergyExpressionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the expression to use for computing the kinetic energy. The expression is evaluated for every degree of freedom. Those values are then added together, and the sum is reported as the current kinetic energy.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM16CustomIntegrator19getRandomNumberSeedEv">
-<span id="OpenMM::CustomIntegrator::getRandomNumberSeedC"></span>int <code class="descclassname"></code><code class="descname">getRandomNumberSeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator19getRandomNumberSeedEv" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::getRandomNumberSeedC"></span>int <code class="descclassname"></code><code class="descname">getRandomNumberSeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM16CustomIntegrator19getRandomNumberSeedEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the random number seed. See <a class="reference internal" href="#_CPPv2N6OpenMM16CustomIntegrator19setRandomNumberSeedEi" title="OpenMM::CustomIntegrator::setRandomNumberSeed"><code class="xref cpp cpp-any docutils literal"><span class="pre">setRandomNumberSeed()</span></code></a> for details.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator19setRandomNumberSeedEi">
-<span id="OpenMM::CustomIntegrator::setRandomNumberSeed__i"></span>void <code class="descclassname"></code><code class="descname">setRandomNumberSeed</code><span class="sig-paren">(</span>int <em>seed</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator19setRandomNumberSeedEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::setRandomNumberSeed__i"></span>void <code class="descclassname"></code><code class="descname">setRandomNumberSeed</code><span class="sig-paren">(</span>int <em>seed</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator19setRandomNumberSeedEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the random number seed. The precise meaning of this parameter is undefined, and is left up to each <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM8PlatformE" title="OpenMM::Platform"><code class="xref cpp cpp-any docutils literal"><span class="pre">Platform</span></code></a> to interpret in an appropriate way. It is guaranteed that if two simulations are run with different random number seeds, the sequence of random numbers will be different. On the other hand, no guarantees are made about the behavior of simulations that use the same seed. In particular, Platforms are permitted to use non-deterministic algorithms which produce different results on successive runs, even if those runs were initialized identically.</p>
 <p>If seed is set to 0 (which is the default value assigned), a unique seed is chosen when a <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> is created from this <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a>. This is done to ensure that each <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> receives unique random seeds without you needing to set them explicitly.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM16CustomIntegrator4stepEi">
-<span id="OpenMM::CustomIntegrator::step__i"></span>void <code class="descclassname"></code><code class="descname">step</code><span class="sig-paren">(</span>int <em>steps</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator4stepEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::CustomIntegrator::step__i"></span>void <code class="descclassname"></code><code class="descname">step</code><span class="sig-paren">(</span>int <em>steps</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM16CustomIntegrator4stepEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Advance a simulation through time by taking a series of time steps.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -817,17 +822,16 @@
 
 
 
+
+
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul>
@@ -845,11 +849,11 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="../_sources/generated/OpenMM.CustomIntegrator.txt"
+      <a href="../_sources/generated/OpenMM.CustomIntegrator.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

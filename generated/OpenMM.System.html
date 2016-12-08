@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>System &mdash; test1  documentation</title>
+    <title>System &#8212; test1  documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,20 +17,25 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="test1  documentation" href="../index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
    
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -41,8 +46,8 @@
 <h1>System<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="_CPPv2N6OpenMM6SystemE">
-<span id="OpenMM::System"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">System</code><a class="headerlink" href="#_CPPv2N6OpenMM6SystemE" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class represents a molecular system. The definition of a <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> involves four elements:</p>
+<span id="OpenMM::System"></span><em class="property">class </em><code class="descclassname">OpenMM::</code><code class="descname">System</code><a class="headerlink" href="#_CPPv2N6OpenMM6SystemE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class represents a molecular system. The definition of a <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> involves four elements:</p>
 <blockquote>
 <div><ul class="simple">
 <li>The set of particles in the system</li>
@@ -51,7 +56,7 @@
 <li>For periodic systems, the dimensions of the periodic box</li>
 </ul>
 </div></blockquote>
-<p>The particles and constraints are defined directly by the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> object, while forces are defined by objects that extend the <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> class. After creating a <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>, call <a class="reference internal" href="#_CPPv2N6OpenMM6System11addParticleEd" title="OpenMM::System::addParticle"><code class="xref cpp cpp-any docutils literal"><span class="pre">addParticle()</span></code></a> once for each particle, <a class="reference internal" href="#_CPPv2N6OpenMM6System13addConstraintEiid" title="OpenMM::System::addConstraint"><code class="xref cpp cpp-any docutils literal"><span class="pre">addConstraint()</span></code></a> for each constraint, and <a class="reference internal" href="#_CPPv2N6OpenMM6System8addForceEP5Force" title="OpenMM::System::addForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">addForce()</span></code></a> for each <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a>.</p>
+<p>The particles and constraints are defined directly by the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> object, while forces are defined by objects that extend the <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> class. After creating a <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>, call <a class="reference internal" href="#_CPPv2N6OpenMM6System11addParticleEd" title="OpenMM::System::addParticle"><code class="xref cpp cpp-any docutils literal"><span class="pre">addParticle()</span></code></a> once for each particle, <a class="reference internal" href="#_CPPv2N6OpenMM6System13addConstraintEiid" title="OpenMM::System::addConstraint"><code class="xref cpp cpp-any docutils literal"><span class="pre">addConstraint()</span></code></a> for each constraint, and <a class="reference internal" href="#_CPPv2N6OpenMM6System8addForceEP5Force" title="OpenMM::System::addForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">addForce()</span></code></a> for each <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a>.</p>
 <p>In addition, particles may be designated as &#8220;virtual sites&#8221;. These are particles whose positions are computed automatically based on the positions of other particles. To define a virtual site, call <a class="reference internal" href="#_CPPv2N6OpenMM6System14setVirtualSiteEiP11VirtualSite" title="OpenMM::System::setVirtualSite"><code class="xref cpp cpp-any docutils literal"><span class="pre">setVirtualSite()</span></code></a>, passing in a <code class="xref cpp cpp-any docutils literal"><span class="pre">VirtualSite</span></code> object that defines the rules for computing its position.</p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
@@ -61,16 +66,16 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a></td>
-<td>Create a new <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Create a new <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM6SystemD0Ev" title="OpenMM::System::~System"><code class="xref cpp cpp-any docutils literal"><span class="pre">~System</span></code></a></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM6System15getNumParticlesEv" title="OpenMM::System::getNumParticles"><code class="xref cpp cpp-any docutils literal"><span class="pre">getNumParticles</span></code></a></td>
-<td>Get the number of particles in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Get the number of particles in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM6System11addParticleEd" title="OpenMM::System::addParticle"><code class="xref cpp cpp-any docutils literal"><span class="pre">addParticle</span></code></a></td>
-<td>Add a particle to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Add a particle to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM6System15getParticleMassEi" title="OpenMM::System::getParticleMass"><code class="xref cpp cpp-any docutils literal"><span class="pre">getParticleMass</span></code></a></td>
 <td>Get the mass (in atomic mass units) of a particle.</td>
@@ -88,10 +93,10 @@
 <td>Get <code class="xref cpp cpp-any docutils literal"><span class="pre">VirtualSite</span></code> object for a particle.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM6System17getNumConstraintsEv" title="OpenMM::System::getNumConstraints"><code class="xref cpp cpp-any docutils literal"><span class="pre">getNumConstraints</span></code></a></td>
-<td>Get the number of distance constraints in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Get the number of distance constraints in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM6System13addConstraintEiid" title="OpenMM::System::addConstraint"><code class="xref cpp cpp-any docutils literal"><span class="pre">addConstraint</span></code></a></td>
-<td>Add a constraint to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Add a constraint to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM6System23getConstraintParametersEiRiRiRd" title="OpenMM::System::getConstraintParameters"><code class="xref cpp cpp-any docutils literal"><span class="pre">getConstraintParameters</span></code></a></td>
 <td>Get the parameters defining a distance constraint.</td>
@@ -100,22 +105,22 @@
 <td>Set the parameters defining a distance constraint.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM6System16removeConstraintEi" title="OpenMM::System::removeConstraint"><code class="xref cpp cpp-any docutils literal"><span class="pre">removeConstraint</span></code></a></td>
-<td>Remove a constraint from the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Remove a constraint from the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM6System8addForceEP5Force" title="OpenMM::System::addForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">addForce</span></code></a></td>
-<td>Add a <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Add a <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM6System12getNumForcesEv" title="OpenMM::System::getNumForces"><code class="xref cpp cpp-any docutils literal"><span class="pre">getNumForces</span></code></a></td>
-<td>Get the number of <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> objects that have been added to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Get the number of <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> objects that have been added to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#_CPPv2NK6OpenMM6System8getForceEi" title="OpenMM::System::getForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">getForce</span></code></a></td>
-<td>Get a const reference to one of the Forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Get a const reference to one of the Forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM6System8getForceEi" title="OpenMM::System::getForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">getForce</span></code></a></td>
-<td>Get a writable reference to one of the Forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Get a writable reference to one of the Forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#_CPPv2N6OpenMM6System11removeForceEi" title="OpenMM::System::removeForce"><code class="xref cpp cpp-any docutils literal"><span class="pre">removeForce</span></code></a></td>
-<td>Remove a <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> from the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
+<td>Remove a <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> from the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2NK6OpenMM6System28getDefaultPeriodicBoxVectorsER4Vec3R4Vec3R4Vec3" title="OpenMM::System::getDefaultPeriodicBoxVectors"><code class="xref cpp cpp-any docutils literal"><span class="pre">getDefaultPeriodicBoxVectors</span></code></a></td>
 <td>Get the default values of the vectors defining the axes of the periodic box (measured in nm).</td>
@@ -124,31 +129,31 @@
 <td>Set the default values of the vectors defining the axes of the periodic box (measured in nm).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#_CPPv2N6OpenMM6System30usesPeriodicBoundaryConditionsEv" title="OpenMM::System::usesPeriodicBoundaryConditions"><code class="xref cpp cpp-any docutils literal"><span class="pre">usesPeriodicBoundaryConditions</span></code></a></td>
-<td>Returns whether or not any forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> use periodic boundaries.</td>
+<td>Returns whether or not any forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> use periodic boundaries.</td>
 </tr>
 </tbody>
 </table>
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System6SystemEv">
-<span id="OpenMM::System::System"></span><code class="descclassname"></code><code class="descname">System</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System6SystemEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
+<span id="OpenMM::System::System"></span><code class="descclassname"></code><code class="descname">System</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System6SystemEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6SystemD0Ev">
-<span id="OpenMM::System::~System"></span><code class="descclassname"></code><code class="descname">~System</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6SystemD0Ev" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::System::~System"></span><code class="descclassname"></code><code class="descname">~System</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6SystemD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM6System15getNumParticlesEv">
-<span id="OpenMM::System::getNumParticlesC"></span>int <code class="descclassname"></code><code class="descname">getNumParticles</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System15getNumParticlesEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the number of particles in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
+<span id="OpenMM::System::getNumParticlesC"></span>int <code class="descclassname"></code><code class="descname">getNumParticles</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System15getNumParticlesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the number of particles in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System11addParticleEd">
-<span id="OpenMM::System::addParticle__double"></span>int <code class="descclassname"></code><code class="descname">addParticle</code><span class="sig-paren">(</span>double <em>mass</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System11addParticleEd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a particle to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>. If the mass is 0, Integrators will ignore the particle and not modify its position or velocity. This is most often used for virtual sites, but can also be used as a way to prevent a particle from moving.</p>
+<span id="OpenMM::System::addParticle__double"></span>int <code class="descclassname"></code><code class="descname">addParticle</code><span class="sig-paren">(</span>double <em>mass</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System11addParticleEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add a particle to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>. If the mass is 0, Integrators will ignore the particle and not modify its position or velocity. This is most often used for virtual sites, but can also be used as a way to prevent a particle from moving.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -172,7 +177,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM6System15getParticleMassEi">
-<span id="OpenMM::System::getParticleMass__iC"></span>double <code class="descclassname"></code><code class="descname">getParticleMass</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System15getParticleMassEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::System::getParticleMass__iC"></span>double <code class="descclassname"></code><code class="descname">getParticleMass</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System15getParticleMassEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the mass (in atomic mass units) of a particle. If the mass is 0, Integrators will ignore the particle and not modify its position or velocity. This is most often used for virtual sites, but can also be used as a way to prevent a particle from moving.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -189,7 +194,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System15setParticleMassEid">
-<span id="OpenMM::System::setParticleMass__i.double"></span>void <code class="descclassname"></code><code class="descname">setParticleMass</code><span class="sig-paren">(</span>int <em>index</em>, double <em>mass</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System15setParticleMassEid" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::System::setParticleMass__i.double"></span>void <code class="descclassname"></code><code class="descname">setParticleMass</code><span class="sig-paren">(</span>int <em>index</em>, double <em>mass</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System15setParticleMassEid" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the mass (in atomic mass units) of a particle. If the mass is 0, Integrators will ignore the particle and not modify its position or velocity. This is most often used for virtual sites, but can also be used as a way to prevent a particle from moving.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -207,8 +212,8 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System14setVirtualSiteEiP11VirtualSite">
-<span id="OpenMM::System::setVirtualSite__i.VirtualSiteP"></span>void <code class="descclassname"></code><code class="descname">setVirtualSite</code><span class="sig-paren">(</span>int <em>index</em>, VirtualSite *<em>virtualSite</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System14setVirtualSiteEiP11VirtualSite" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set a particle to be a virtual site. The <code class="xref cpp cpp-any docutils literal"><span class="pre">VirtualSite</span></code> object should have been created on the heap with the &#8220;new&#8221; operator. The <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> takes over ownership of it, and deletes it when the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> itself is deleted.</p>
+<span id="OpenMM::System::setVirtualSite__i.VirtualSiteP"></span>void <code class="descclassname"></code><code class="descname">setVirtualSite</code><span class="sig-paren">(</span>int <em>index</em>, VirtualSite *<em>virtualSite</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System14setVirtualSiteEiP11VirtualSite" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set a particle to be a virtual site. The <code class="xref cpp cpp-any docutils literal"><span class="pre">VirtualSite</span></code> object should have been created on the heap with the &#8220;new&#8221; operator. The <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> takes over ownership of it, and deletes it when the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> itself is deleted.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -225,7 +230,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM6System13isVirtualSiteEi">
-<span id="OpenMM::System::isVirtualSite__iC"></span>bool <code class="descclassname"></code><code class="descname">isVirtualSite</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System13isVirtualSiteEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::System::isVirtualSite__iC"></span>bool <code class="descclassname"></code><code class="descname">isVirtualSite</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System13isVirtualSiteEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get whether a particle is a <code class="xref cpp cpp-any docutils literal"><span class="pre">VirtualSite</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -242,7 +247,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM6System14getVirtualSiteEi">
-<span id="OpenMM::System::getVirtualSite__iC"></span><em class="property">const</em> VirtualSite &amp;<code class="descclassname"></code><code class="descname">getVirtualSite</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System14getVirtualSiteEi" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::System::getVirtualSite__iC"></span><em class="property">const</em> VirtualSite &amp;<code class="descclassname"></code><code class="descname">getVirtualSite</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System14getVirtualSiteEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get <code class="xref cpp cpp-any docutils literal"><span class="pre">VirtualSite</span></code> object for a particle. If the particle is not a virtual site, this throws an exception.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -259,14 +264,14 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM6System17getNumConstraintsEv">
-<span id="OpenMM::System::getNumConstraintsC"></span>int <code class="descclassname"></code><code class="descname">getNumConstraints</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System17getNumConstraintsEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the number of distance constraints in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
+<span id="OpenMM::System::getNumConstraintsC"></span>int <code class="descclassname"></code><code class="descname">getNumConstraints</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System17getNumConstraintsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the number of distance constraints in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System13addConstraintEiid">
-<span id="OpenMM::System::addConstraint__i.i.double"></span>int <code class="descclassname"></code><code class="descname">addConstraint</code><span class="sig-paren">(</span>int <em>particle1</em>, int <em>particle2</em>, double <em>distance</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System13addConstraintEiid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a constraint to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>. Particles whose mass is 0 cannot participate in constraints.</p>
+<span id="OpenMM::System::addConstraint__i.i.double"></span>int <code class="descclassname"></code><code class="descname">addConstraint</code><span class="sig-paren">(</span>int <em>particle1</em>, int <em>particle2</em>, double <em>distance</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System13addConstraintEiid" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add a constraint to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>. Particles whose mass is 0 cannot participate in constraints.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -292,7 +297,7 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM6System23getConstraintParametersEiRiRiRd">
-<span id="OpenMM::System::getConstraintParameters__i.iR.iR.doubleRC"></span>void <code class="descclassname"></code><code class="descname">getConstraintParameters</code><span class="sig-paren">(</span>int <em>index</em>, int &amp;<em>particle1</em>, int &amp;<em>particle2</em>, double &amp;<em>distance</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System23getConstraintParametersEiRiRiRd" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::System::getConstraintParameters__i.iR.iR.doubleRC"></span>void <code class="descclassname"></code><code class="descname">getConstraintParameters</code><span class="sig-paren">(</span>int <em>index</em>, int &amp;<em>particle1</em>, int &amp;<em>particle2</em>, double &amp;<em>distance</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System23getConstraintParametersEiRiRiRd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the parameters defining a distance constraint.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -312,7 +317,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System23setConstraintParametersEiiid">
-<span id="OpenMM::System::setConstraintParameters__i.i.i.double"></span>void <code class="descclassname"></code><code class="descname">setConstraintParameters</code><span class="sig-paren">(</span>int <em>index</em>, int <em>particle1</em>, int <em>particle2</em>, double <em>distance</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System23setConstraintParametersEiiid" title="Permalink to this definition">¶</a></dt>
+<span id="OpenMM::System::setConstraintParameters__i.i.i.double"></span>void <code class="descclassname"></code><code class="descname">setConstraintParameters</code><span class="sig-paren">(</span>int <em>index</em>, int <em>particle1</em>, int <em>particle2</em>, double <em>distance</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System23setConstraintParametersEiiid" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the parameters defining a distance constraint. Particles whose mass is 0 cannot participate in constraints.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -332,8 +337,8 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System16removeConstraintEi">
-<span id="OpenMM::System::removeConstraint__i"></span>void <code class="descclassname"></code><code class="descname">removeConstraint</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System16removeConstraintEi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove a constraint from the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
+<span id="OpenMM::System::removeConstraint__i"></span>void <code class="descclassname"></code><code class="descname">removeConstraint</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System16removeConstraintEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove a constraint from the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -349,8 +354,8 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System8addForceEP5Force">
-<span id="OpenMM::System::addForce__ForceP"></span>int <code class="descclassname"></code><code class="descname">addForce</code><span class="sig-paren">(</span><a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force">Force</a> *<em>force</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System8addForceEP5Force" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>. The <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> should have been created on the heap with the &#8220;new&#8221; operator. The <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> takes over ownership of it, and deletes the <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> when the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> itself is deleted.</p>
+<span id="OpenMM::System::addForce__ForceP"></span>int <code class="descclassname"></code><code class="descname">addForce</code><span class="sig-paren">(</span><a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force">Force</a> *<em>force</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System8addForceEP5Force" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add a <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>. The <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> should have been created on the heap with the &#8220;new&#8221; operator. The <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> takes over ownership of it, and deletes the <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> when the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> itself is deleted.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -366,7 +371,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the index within the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> of the <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> that was added</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the index within the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> of the <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> that was added</td>
 </tr>
 </tbody>
 </table>
@@ -374,14 +379,14 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM6System12getNumForcesEv">
-<span id="OpenMM::System::getNumForcesC"></span>int <code class="descclassname"></code><code class="descname">getNumForces</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System12getNumForcesEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the number of <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> objects that have been added to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
+<span id="OpenMM::System::getNumForcesC"></span>int <code class="descclassname"></code><code class="descname">getNumForces</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System12getNumForcesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the number of <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> objects that have been added to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM6System8getForceEi">
-<span id="OpenMM::System::getForce__iC"></span><em class="property">const</em> <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force">Force</a> &amp;<code class="descclassname"></code><code class="descname">getForce</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System8getForceEi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a const reference to one of the Forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
+<span id="OpenMM::System::getForce__iC"></span><em class="property">const</em> <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force">Force</a> &amp;<code class="descclassname"></code><code class="descname">getForce</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System8getForceEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get a const reference to one of the Forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -397,8 +402,8 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System8getForceEi">
-<span id="OpenMM::System::getForce__i"></span><a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force">Force</a> &amp;<code class="descclassname"></code><code class="descname">getForce</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System8getForceEi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a writable reference to one of the Forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
+<span id="OpenMM::System::getForce__i"></span><a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force">Force</a> &amp;<code class="descclassname"></code><code class="descname">getForce</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System8getForceEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get a writable reference to one of the Forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -414,8 +419,8 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System11removeForceEi">
-<span id="OpenMM::System::removeForce__i"></span>void <code class="descclassname"></code><code class="descname">removeForce</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System11removeForceEi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove a <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> from the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>. The memory associated with the removed <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> object is deleted.</p>
+<span id="OpenMM::System::removeForce__i"></span>void <code class="descclassname"></code><code class="descname">removeForce</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System11removeForceEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove a <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> from the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a>. The memory associated with the removed <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> object is deleted.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -431,8 +436,8 @@
 
 <dl class="function">
 <dt id="_CPPv2NK6OpenMM6System28getDefaultPeriodicBoxVectorsER4Vec3R4Vec3R4Vec3">
-<span id="OpenMM::System::getDefaultPeriodicBoxVectors__Vec3R.Vec3R.Vec3RC"></span>void <code class="descclassname"></code><code class="descname">getDefaultPeriodicBoxVectors</code><span class="sig-paren">(</span>Vec3 &amp;<em>a</em>, Vec3 &amp;<em>b</em>, Vec3 &amp;<em>c</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System28getDefaultPeriodicBoxVectorsER4Vec3R4Vec3R4Vec3" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the default values of the vectors defining the axes of the periodic box (measured in nm). Any newly created <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> will have its box vectors set to these. They will affect any <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> added to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> that uses periodic boundary conditions.</p>
+<span id="OpenMM::System::getDefaultPeriodicBoxVectors__Vec3R.Vec3R.Vec3RC"></span>void <code class="descclassname"></code><code class="descname">getDefaultPeriodicBoxVectors</code><span class="sig-paren">(</span>Vec3 &amp;<em>a</em>, Vec3 &amp;<em>b</em>, Vec3 &amp;<em>c</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6OpenMM6System28getDefaultPeriodicBoxVectorsER4Vec3R4Vec3R4Vec3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the default values of the vectors defining the axes of the periodic box (measured in nm). Any newly created <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> will have its box vectors set to these. They will affect any <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> added to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> that uses periodic boundary conditions.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -450,8 +455,8 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System28setDefaultPeriodicBoxVectorsERK4Vec3RK4Vec3RK4Vec3">
-<span id="OpenMM::System::setDefaultPeriodicBoxVectors__Vec3CR.Vec3CR.Vec3CR"></span>void <code class="descclassname"></code><code class="descname">setDefaultPeriodicBoxVectors</code><span class="sig-paren">(</span><em class="property">const</em> Vec3 &amp;<em>a</em>, <em class="property">const</em> Vec3 &amp;<em>b</em>, <em class="property">const</em> Vec3 &amp;<em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System28setDefaultPeriodicBoxVectorsERK4Vec3RK4Vec3RK4Vec3" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the default values of the vectors defining the axes of the periodic box (measured in nm). Any newly created <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> will have its box vectors set to these. They will affect any <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> added to the <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> that uses periodic boundary conditions.</p>
+<span id="OpenMM::System::setDefaultPeriodicBoxVectors__Vec3CR.Vec3CR.Vec3CR"></span>void <code class="descclassname"></code><code class="descname">setDefaultPeriodicBoxVectors</code><span class="sig-paren">(</span><em class="property">const</em> Vec3 &amp;<em>a</em>, <em class="property">const</em> Vec3 &amp;<em>b</em>, <em class="property">const</em> Vec3 &amp;<em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System28setDefaultPeriodicBoxVectorsERK4Vec3RK4Vec3RK4Vec3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the default values of the vectors defining the axes of the periodic box (measured in nm). Any newly created <code class="xref cpp cpp-any docutils literal"><span class="pre">Context</span></code> will have its box vectors set to these. They will affect any <a class="reference internal" href="../autodoxyclass.html#_CPPv2N6OpenMM5ForceE" title="OpenMM::Force"><code class="xref cpp cpp-any docutils literal"><span class="pre">Force</span></code></a> added to the <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> that uses periodic boundary conditions.</p>
 <p>Triclinic boxes are supported, but the vectors must satisfy certain requirements. In particular, a must point in the x direction, b must point &#8220;mostly&#8221; in the y direction, and c must point &#8220;mostly&#8221; in the z direction. See the documentation for details.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -470,9 +475,9 @@
 
 <dl class="function">
 <dt id="_CPPv2N6OpenMM6System30usesPeriodicBoundaryConditionsEv">
-<span id="OpenMM::System::usesPeriodicBoundaryConditions"></span>bool <code class="descclassname"></code><code class="descname">usesPeriodicBoundaryConditions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System30usesPeriodicBoundaryConditionsEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns whether or not any forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> use periodic boundaries.</p>
-<p>If a force in this <a class="reference internal" href="#_CPPv2N6OpenMM6System6SystemEv" title="OpenMM::System::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> does not implement usesPeriodicBoundaryConditions a <code class="xref cpp cpp-any docutils literal"><span class="pre">OpenMM::OpenMMException</span></code> is thrown</p>
+<span id="OpenMM::System::usesPeriodicBoundaryConditions"></span>bool <code class="descclassname"></code><code class="descname">usesPeriodicBoundaryConditions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6OpenMM6System30usesPeriodicBoundaryConditionsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns whether or not any forces in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> use periodic boundaries.</p>
+<p>If a force in this <a class="reference internal" href="#_CPPv2N6OpenMM6SystemE" title="OpenMM::System"><code class="xref cpp cpp-any docutils literal"><span class="pre">System</span></code></a> does not implement usesPeriodicBoundaryConditions a <code class="xref cpp cpp-any docutils literal"><span class="pre">OpenMM::OpenMMException</span></code> is thrown</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -503,17 +508,16 @@
 
 
 
+
+
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul>
@@ -531,11 +535,11 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="../_sources/generated/OpenMM.System.txt"
+      <a href="../_sources/generated/OpenMM.System.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

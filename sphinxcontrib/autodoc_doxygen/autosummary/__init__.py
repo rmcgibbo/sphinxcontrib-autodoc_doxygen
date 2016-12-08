@@ -24,9 +24,12 @@ def import_by_name(name, env=None, prefixes=None, i=0):
         prefixes = [None]
 
     if env is not None:
-        parent = env.ref_context.get('cpp:parent')
-        if parent:
-            prefixes.append(str(parent[0]))
+        parent = env.ref_context.get('cpp:parent_symbol')
+        parent_symbols = []
+        while parent is not None and parent.identifier is not None:
+            parent_symbols.insert(0, str(parent.identifier))
+            parent = parent.parent
+        prefixes.append('::'.join(parent_symbols))
 
     tried = []
     for prefix in prefixes:

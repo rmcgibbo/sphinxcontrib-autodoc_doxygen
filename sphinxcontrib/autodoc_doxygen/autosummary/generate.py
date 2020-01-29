@@ -196,7 +196,7 @@ def process_generate_options(app):
     if not genfiles:
         return
 
-    ext = app.config.source_suffix[0]
+    ext = list(app.config.source_suffix)[0]
     genfiles = [genfile + (not genfile.endswith(ext) and ext or '')
                 for genfile in genfiles]
 

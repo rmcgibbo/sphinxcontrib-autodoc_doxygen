@@ -6,7 +6,7 @@ from functools import reduce
 from itertools import count, groupby
 
 from docutils import nodes
-from docutils.statemachine import ViewList
+from docutils.statemachine import StringList, ViewList
 from sphinx import addnodes
 from sphinx.ext.autosummary import Autosummary, autosummary_table
 
@@ -111,7 +111,7 @@ class DoxygenAutosummary(Autosummary):
                 items.append((name, '', '', name))
                 continue
 
-            self.result = ViewList()  # initialize for each documenter
+            self.bridge.result = StringList()  # initialize for each documenter
             documenter = get_documenter(obj, parent)(self, real_name, id=obj.get('id'))
             if not documenter.parse_name():
                 self.warn('failed to parse name %s' % real_name)
@@ -128,7 +128,7 @@ class DoxygenAutosummary(Autosummary):
 
             # -- Grab the summary
             documenter.add_content(None)
-            doc = list(documenter.process_doc([self.result.data]))
+            doc = list(documenter.process_doc([self.bridge.result.data]))
 
             while doc and not doc[0].strip():
                 doc.pop(0)
@@ -208,9 +208,12 @@ class DoxygenAutoEnum(DoxygenAutosummary):
         env = self.state.document.settings.env
         self.name = names[0]
 
-        real_name, obj, parent, modname = import_by_name(self.name, env=env)
-        names = [n.text for n in obj.findall('./enumvalue/name')]
-        descriptions = [format_xml_paragraph(d) for d in obj.findall('./enumvalue/detaileddescription')]
+        try:
+            real_name, obj, parent, modname = import_by_name(self.name, env=env)
+            names = [n.text for n in obj.findall('./enumvalue/name')]
+            descriptions = [format_xml_paragraph(d) for d in obj.findall('./enumvalue/detaileddescription')]
+        except:
+            return zip(names, ['' for n in names])
         return zip(names, descriptions)
 
     def get_table(self, items):

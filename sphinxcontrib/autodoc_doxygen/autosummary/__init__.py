@@ -24,14 +24,13 @@ def import_by_name(name, env=None, prefixes=None, i=0):
         prefixes = [None]
 
     if env is not None:
-        parent = env.ref_context.get('cpp:parent_symbol')
-        parent_symbols = []
-        while parent is not None and parent.identifier is not None:
-            parent_symbols.insert(0, str(parent.identifier))
-            parent = parent.parent
-        prefixes.append('::'.join(parent_symbols))
+        parents = env.ref_context.get('cpp:parent_key')
+        if parents is not None:
+            parent_symbols = [p[0].get_display_string() for p in parents]
+            prefixes.append('::'.join(parent_symbols))
 
     tried = []
+
     for prefix in prefixes:
         try:
             if prefix:
@@ -208,12 +207,9 @@ class DoxygenAutoEnum(DoxygenAutosummary):
         env = self.state.document.settings.env
         self.name = names[0]
 
-        try:
-            real_name, obj, parent, modname = import_by_name(self.name, env=env)
-            names = [n.text for n in obj.findall('./enumvalue/name')]
-            descriptions = [format_xml_paragraph(d) for d in obj.findall('./enumvalue/detaileddescription')]
-        except:
-            return zip(names, ['' for n in names])
+        real_name, obj, parent, modname = import_by_name(self.name, env=env)
+        names = [n.text for n in obj.findall('./enumvalue/name')]
+        descriptions = [format_xml_paragraph(d) for d in obj.findall('./enumvalue/detaileddescription')]
         return zip(names, descriptions)
 
     def get_table(self, items):

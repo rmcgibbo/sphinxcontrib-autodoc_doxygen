@@ -6,7 +6,7 @@ from functools import reduce
 from itertools import count, groupby
 
 from docutils import nodes
-from docutils.statemachine import ViewList
+from docutils.statemachine import StringList, ViewList
 from sphinx import addnodes
 from sphinx.ext.autosummary import Autosummary, autosummary_table
 
@@ -24,14 +24,13 @@ def import_by_name(name, env=None, prefixes=None, i=0):
         prefixes = [None]
 
     if env is not None:
-        parent = env.ref_context.get('cpp:parent_symbol')
-        parent_symbols = []
-        while parent is not None and parent.identifier is not None:
-            parent_symbols.insert(0, str(parent.identifier))
-            parent = parent.parent
-        prefixes.append('::'.join(parent_symbols))
+        parents = env.ref_context.get('cpp:parent_key')
+        if parents is not None:
+            parent_symbols = [p[0].get_display_string() for p in parents]
+            prefixes.append('::'.join(parent_symbols))
 
     tried = []
+
     for prefix in prefixes:
         try:
             if prefix:
@@ -111,7 +110,7 @@ class DoxygenAutosummary(Autosummary):
                 items.append((name, '', '', name))
                 continue
 
-            self.result = ViewList()  # initialize for each documenter
+            self.bridge.result = StringList()  # initialize for each documenter
             documenter = get_documenter(obj, parent)(self, real_name, id=obj.get('id'))
             if not documenter.parse_name():
                 self.warn('failed to parse name %s' % real_name)
@@ -128,7 +127,7 @@ class DoxygenAutosummary(Autosummary):
 
             # -- Grab the summary
             documenter.add_content(None)
-            doc = list(documenter.process_doc([self.result.data]))
+            doc = list(documenter.process_doc([self.bridge.result.data]))
 
             while doc and not doc[0].strip():
                 doc.pop(0)

@@ -2,7 +2,7 @@ from __future__ import print_function, absolute_import, division
 
 from six import itervalues
 from lxml import etree as ET
-from sphinx.ext.autodoc import Documenter, AutoDirective, members_option, ALL
+from sphinx.ext.autodoc import Documenter, members_option, ALL
 from sphinx.errors import ExtensionError
 
 from . import get_doxygen_root
@@ -83,7 +83,7 @@ class DoxygenDocumenter(Documenter):
         # document non-skipped members
         memberdocumenters = []
         for (mname, member, isattr) in self.filter_members(members, want_all):
-            classes = [cls for cls in itervalues(AutoDirective._registry)
+            classes = [cls for cls in itervalues(self.env.app.registry.documenters)
                        if cls.can_document_member(member, mname, isattr, self)]
             if not classes:
                 # don't know how to document this member
@@ -146,7 +146,7 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
     def format_name(self):
         return self.fullname
 
-    def get_doc(self, encoding):
+    def get_doc(self):
         detaileddescription = self.object.find('detaileddescription')
         doc = [format_xml_paragraph(detaileddescription)]
         return doc
@@ -215,7 +215,7 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         self.object = match[0]
         return True
 
-    def get_doc(self, encoding):
+    def get_doc(self):
         detaileddescription = self.object.find('detaileddescription')
         doc = [format_xml_paragraph(detaileddescription)]
         return doc

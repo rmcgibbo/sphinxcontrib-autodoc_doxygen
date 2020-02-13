@@ -2,8 +2,7 @@ from mock import Mock
 from contextlib import contextmanager
 
 import lxml.etree as ET
-from sphinxcontrib.autodoc_doxygen.autodoc import (DoxygenMethodDocumenter,
-                                                   AutoDirective)
+from sphinxcontrib.autodoc_doxygen.autodoc import DoxygenMethodDocumenter
 import sphinxcontrib.autodoc_doxygen
 
 

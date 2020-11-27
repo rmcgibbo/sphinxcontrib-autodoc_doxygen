@@ -127,8 +127,17 @@ class DoxygenAutosummary(Autosummary):
 
             # -- Grab the summary
             documenter.add_content(None)
-            doc = list(documenter.process_doc([self.bridge.result.data]))
+            brief = documenter.get_brief()
+            if brief is not None:
+                doc = list(documenter.process_doc(brief))
+                while doc and not doc[0].strip():
+                    doc.pop(0)
+                if doc:
+                    summary = doc[0].strip()
+                    items.append((display_name, sig, summary, real_name))
+                    continue
 
+            doc = list(documenter.process_doc([self.bridge.result.data]))
             while doc and not doc[0].strip():
                 doc.pop(0)
 
@@ -202,7 +211,6 @@ class DoxygenAutosummary(Autosummary):
 
 
 class DoxygenAutoEnum(DoxygenAutosummary):
-
     def get_items(self, names):
         env = self.state.document.settings.env
         self.name = names[0]

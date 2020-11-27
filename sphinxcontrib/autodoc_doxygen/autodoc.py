@@ -151,6 +151,14 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
         doc = [format_xml_paragraph(detaileddescription)]
         return doc
 
+    def get_brief(self):
+        briefdescription = self.object.find('briefdescription')
+        if briefdescription is None:
+            return None
+
+        brief = [format_xml_paragraph(briefdescription)]
+        return brief
+
     def get_object_members(self, want_all):
         all_members = self.object.xpath('.//sectiondef[@kind="public-func" '
             'or @kind="public-static-func"]/memberdef[@kind="function"]')
@@ -219,6 +227,14 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         detaileddescription = self.object.find('detaileddescription')
         doc = [format_xml_paragraph(detaileddescription)]
         return doc
+
+    def get_brief(self):
+        briefdescription = self.object.find('briefdescription')
+        if briefdescription is None:
+            return None
+
+        brief = [format_xml_paragraph(briefdescription)]
+        return brief
 
     def format_name(self):
         def text(el):

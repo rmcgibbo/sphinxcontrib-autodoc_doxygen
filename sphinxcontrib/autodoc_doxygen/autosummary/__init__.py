@@ -2,6 +2,8 @@ from __future__ import print_function, absolute_import, division
 
 import re
 import operator
+import posixpath
+import logging
 from functools import reduce
 from itertools import count, groupby
 
@@ -9,10 +11,16 @@ from docutils import nodes
 from docutils.statemachine import StringList, ViewList
 from sphinx import addnodes
 from sphinx.ext.autosummary import Autosummary, autosummary_table
+from sphinx.ext.autodoc.directive import DocumenterBridge, Options
+from sphinx.environment.adapters.toctree import TocTree
+from sphinx.util.matching import Matcher
+from sphinx.locale import __
 
 from .. import get_doxygen_root
 from ..autodoc import DoxygenMethodDocumenter, DoxygenClassDocumenter
 from ..xmlutils import format_xml_paragraph
+
+logger = logging.getLogger(__name__)
 
 
 def import_by_name(name, env=None, prefixes=None, i=0):
@@ -87,6 +95,54 @@ def get_documenter(obj, full_name):
 
 
 class DoxygenAutosummary(Autosummary):
+    def run(self):
+        self.bridge = DocumenterBridge(self.env, self.state.document.reporter,
+                                       Options(), self.lineno, self.state)
+
+        names = [x.strip().split()[0] for x in self.content
+                 if x.strip() and re.search(r'^[~a-zA-Z_]', x.strip()[0])]
+        items = self.get_items(names)
+        tablenodes = self.get_table(items)
+
+        if 'toctree' in self.options:
+            dirname = posixpath.dirname(self.env.docname)
+
+            tree_prefix = self.options['toctree'].strip()
+            docnames = []
+            excluded = Matcher(self.config.exclude_patterns)
+            filename_map = self.config.autosummary_filename_map
+            for name, sig, summary, real_name in items:
+                real_name = filename_map.get(real_name, real_name.replace('::', '.'))
+                docname = posixpath.join(tree_prefix, real_name)
+                docname = posixpath.normpath(posixpath.join(dirname, docname))
+                if docname not in self.env.found_docs:
+                    if excluded(self.env.doc2path(docname, None)):
+                        msg = __('autosummary references excluded document %r. Ignored.')
+                    else:
+                        msg = __('autosummary: stub file not found %r. '
+                                 'Check your autosummary_generate setting.')
+
+                    logger.warning(msg, real_name)
+                    continue
+
+                docnames.append(docname)
+
+            if docnames:
+                tocnode = addnodes.toctree()
+                tocnode['includefiles'] = docnames
+                tocnode['entries'] = [(None, docn) for docn in docnames]
+                tocnode['maxdepth'] = -1
+                tocnode['glob'] = None
+                tocnode['caption'] = self.options.get('caption')
+
+                tablenodes.append(nodes.comment('', '', tocnode))
+
+        if 'toctree' not in self.options and 'caption' in self.options:
+            logger.warning(__('A captioned autosummary requires :toctree: option. ignored.'),
+                           location=tablenodes[-1])
+
+        return tablenodes
+
     def get_items(self, names):
         """Try to import the given names, and return a list of
         ``[(name, signature, summary_string, real_name), ...]``.
@@ -106,18 +162,18 @@ class DoxygenAutosummary(Autosummary):
             try:
                 real_name, obj, parent, modname = import_by_name(name, env=env, i=i)
             except ImportError:
-                self.warn('failed to import %s' % name)
+                logger.warning('failed to import %s' % name)
                 items.append((name, '', '', name))
                 continue
 
             self.bridge.result = StringList()  # initialize for each documenter
             documenter = get_documenter(obj, parent)(self, real_name, id=obj.get('id'))
             if not documenter.parse_name():
-                self.warn('failed to parse name %s' % real_name)
+                logger.warning('failed to parse name %s' % real_name)
                 items.append((display_name, '', '', real_name))
                 continue
             if not documenter.import_object():
-                self.warn('failed to import object %s' % real_name)
+                logger.warning('failed to import object %s' % real_name)
                 items.append((display_name, '', '', real_name))
                 continue
             if documenter.options.members and not documenter.check_module():
@@ -206,7 +262,6 @@ class DoxygenAutosummary(Autosummary):
             col2 = summary
             append_row(col1, col2)
 
-        self.result.append('   .. rubric: sdsf', 0)
         return [table_spec, table]
 
 

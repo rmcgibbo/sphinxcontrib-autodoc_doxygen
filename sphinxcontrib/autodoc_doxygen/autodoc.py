@@ -104,6 +104,20 @@ class DoxygenDocumenter(Documenter):
         self.env.temp_data['autodoc:module'] = None
         self.env.temp_data['autodoc:class'] = None
 
+    def get_doc(self):
+        detaileddescription = self.object.find('detaileddescription')
+        doc = [format_xml_paragraph(detaileddescription)]
+        return doc
+
+    def get_brief(self):
+        briefdescription = self.object.find('briefdescription')
+        if briefdescription is None:
+            return None
+
+        brief = [format_xml_paragraph(briefdescription)]
+        return brief
+
+
 
 class DoxygenClassDocumenter(DoxygenDocumenter):
     objtype = 'doxyclass'
@@ -145,19 +159,6 @@ class DoxygenClassDocumenter(DoxygenDocumenter):
 
     def format_name(self):
         return self.fullname
-
-    def get_doc(self):
-        detaileddescription = self.object.find('detaileddescription')
-        doc = [format_xml_paragraph(detaileddescription)]
-        return doc
-
-    def get_brief(self):
-        briefdescription = self.object.find('briefdescription')
-        if briefdescription is None:
-            return None
-
-        brief = [format_xml_paragraph(briefdescription)]
-        return brief
 
     def get_object_members(self, want_all):
         all_members = self.object.xpath('.//sectiondef[@kind="public-func" '
@@ -222,19 +223,6 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
                                  'the following xpath: "%s"' % (tuple(self.fullname.rsplit('::', 1)) + (xpath_query,)))
         self.object = match[0]
         return True
-
-    def get_doc(self):
-        detaileddescription = self.object.find('detaileddescription')
-        doc = [format_xml_paragraph(detaileddescription)]
-        return doc
-
-    def get_brief(self):
-        briefdescription = self.object.find('briefdescription')
-        if briefdescription is None:
-            return None
-
-        brief = [format_xml_paragraph(briefdescription)]
-        return brief
 
     def format_name(self):
         def text(el):

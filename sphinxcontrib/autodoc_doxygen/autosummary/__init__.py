@@ -26,7 +26,7 @@ def import_by_name(name, env=None, prefixes=None, i=0):
     if env is not None:
         parents = env.ref_context.get('cpp:parent_key')
         if parents is not None:
-            parent_symbols = [p[0].get_display_string() for p in parents]
+            parent_symbols = [p[0].get_display_string() for p in parents.data]
             prefixes.append('::'.join(parent_symbols))
 
     tried = []
@@ -111,7 +111,7 @@ class DoxygenAutosummary(Autosummary):
                 continue
 
             self.bridge.result = StringList()  # initialize for each documenter
-            documenter = get_documenter(obj, parent)(self, real_name, id=obj.get('id'))
+            documenter = get_documenter(obj, parent)(self.bridge, real_name, id=obj.get('id'))
             if not documenter.parse_name():
                 self.warn('failed to parse name %s' % real_name)
                 items.append((display_name, '', '', real_name))
@@ -197,7 +197,7 @@ class DoxygenAutosummary(Autosummary):
             col2 = summary
             append_row(col1, col2)
 
-        self.result.append('   .. rubric: sdsf', 0)
+        self.bridge.result.append('   .. rubric: sdsf', 0)
         return [table_spec, table]
 
 

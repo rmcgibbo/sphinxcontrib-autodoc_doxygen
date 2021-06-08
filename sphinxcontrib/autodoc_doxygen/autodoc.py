@@ -245,7 +245,7 @@ class DoxygenMethodDocumenter(DoxygenDocumenter):
         types = [e.text for e in self.object.findall('templateparamlist/param/type')]
         if len(types) == 0:
             return ''
-        return 'template <%s>\n' % ','.join(types)
+        return 'template <%s> ' % ','.join(types)
 
     def format_signature(self):
         args = self.object.find('argsstring').text
